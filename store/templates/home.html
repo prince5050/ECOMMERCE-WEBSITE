@@ -1,0 +1,442 @@
+{% extends 'index.html' %}
+{%block title%}Medical Technology in India, Healthcare Devices, IoT in AMTZ	{% endblock %}
+ {% block meta_description%}
+<meta name="description" content="India's premier medical technology park for modern healthcare devices manufacturing, Innovations, research, scientific facilities and incubation centre.">
+ {% endblock %}
+{%block content%}
+{% load static %}
+<!-- START SLIDER SECTION -->
+    <style type="text/css">
+.g-recaptcha{
+transform:scale(0.77);
+-webkit-transform:scale(0.77);
+transform-origin:0 0;
+-webkit-transform-origin:0 0;
+}
+#logo{
+	    position: fixed;
+    top: 155px;
+    right: 0;
+    z-index:9999;
+}
+.modal-backdrop
+{
+    opacity:0.5 !important;
+}
+</style>
+<section class="slider-section">
+    <div class="container-fluid">
+        <div class="row">
+            <video autoplay loop id="myVideo" controls>
+                <source src="{% static 'video/amtzv_web2.mp4' %}" type="video/mp4">
+            </video>
+        </div>
+
+    </div>
+</section>
+<img id="logo" class="img-fluid" src=" {% static 'img/logo/amtz-great-place-to-work.png'%}" alt="Andhra Pradesh MedTech Zone - AMTZ Organization certified has Great Place to Work "
+     data-toggle="modal" data-target=".bd-example-modal-lg"style="width: 100px; cursor:pointer;">
+
+<div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-body">
+          <div class="float-right">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close" style="cursor:pointer;">
+          <span aria-hidden="true">&times;</span>
+        </button></div>
+       <img class="img-fluid" src=" {% static 'img/logo/GPTW-Poster.jpg'%}" style="border:2px solid black; ">
+      </div>
+    </div>
+  </div>
+</div>
+<!-- Video section end -->
+    <!--- END CONTAINER -->
+<section id="about" class="section-padding">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-7 col-md-12 col-sm-12 col-12">
+                <div class="section-title">
+                    <h1 style="color: #333;font-size: 30px; margin: 0; text-transform: capitalize;position: relative;">
+                        Welcome to <span>AMTZ</span></h1>
+                    <span class="line"></span>
+                    <p class="about-amtz" style="text-align:justify;">AMTZ is India’s premier medical technology park
+                        with Common Manufacturing
+                        Facilities & Common Scientific Facilities that include specialized laboratories,
+                        warehousing, and testing centers such as the Center for Electromagnetic
+                        Compatibility and Safety Testing, Center for Biomaterial Testing, Center for 3-D
+                        Printing, Centers for Lasers, MRI Super Conducting Magnets, Gamma Irradiation
+                        Centre, Mold & Machining Centre, and many other industrial service centers.</p><br>
+                    <p class="about-amtz" style="text-align:justify;">
+                        In the nation’s battle against the pandemic, AMTZ contributed by producing over
+                        100 ventilators, 500 oxygen concentrators, and 1 million RT PCR kits every day.
+                        Many innovations from AMTZ such as mobile container hospitals, mobile RTPCR
+                        vehicles and mobile oxygen plants were sent even to the remotest parts of the
+                        country. Built in a record time of 342 days, AMTZ showcases modern India as a
+                        leader in the medical technology global stage.
+                    </p><br>
+                    <p class="about-amtz" style="text-align:justify;"> AMTZ is one of world’s largest
+                        medical technology manufacturing cluster with over 100 companies working on
+                        research, development and production of life saving medical devices.
+                    </p>
+
+                </div>
+            </div>
+            <!-- end col -->
+            <div class="col-lg-5 col-md-12 col-sm-12 col-12">
+                <div class="flag-image" style="padding-top:110px;">
+                    <img class="img-fluid"
+                         src="{%static 'img/bg/admin_image.jpg'%}" alt="health technology and medical laboratory technology industry for medical devices manufacturing in India - LSHC"/>
+                </div>
+            </div>
+            <!-- end col -->
+        </div>
+        <!--- END ROW -->
+
+    </div>
+    <!--- END CONTAINER -->
+</section>
+
+<!-- Gallery start -->
+<section id="testimonial" class="m-4">
+    <div class="container">
+        <div class="row text-center">
+            <div class="col-lg-12">
+                <div class="section-title gallary">
+                    <h4 style="color: #333;font-size: 30px; margin: 0; text-transform: capitalize;position: relative;" class="section-title-black">Our Image<span> Gallery</span></h4>
+                    <span class="line"></span>
+                </div>
+            </div>
+            <!-- end section title -->
+            <div class="containergall" style="margin-bottom:100px">
+                <div id="carouselgall">
+                    <figure><img id="myImg" onclick="getImage(this)"
+                                 src="{%static 'img/gallery/campus-staff.png'%}" alt="AMTZ Staff" title="AMTZ Staff"></figure>
+                    <figure><img id="myImg" onclick="getImage(this)"
+                                 src="{%static 'img/gallery/World-Incubation-Hub-copy.png'%}" alt="World Incubation Hub-Innovation Centre" title="World Incubation Hub-Innovation Centre"></figure>
+                    <figure><img id="myImg" onclick="getImage(this)" src="{%static 'img/gallery/chief-4.png'%}" alt="Indian Cricketer Mr. Virender Sehwag campus visit" title="Indian Cricketer Mr. Virender Sehwag campus visit">
+                    </figure>
+                    <figure><img id="myImg" onclick="getImage(this)" src="{%static 'img/gallery/pivot.jpg'%}" alt="Kalam Institute of Health Technology - Pivot Building" title="Kalam Institute of Health Technology - Pivot Building">
+                    </figure>
+                    <figure><img id="myImg" onclick="getImage(this)" src="{%static 'img/gallery/KCC.png'%}" alt="Kalam Convention Center" title="Kalam Convention Center">
+                    </figure>
+                    <figure><img id="myImg" onclick="getImage(this)" src="{%static 'img/gallery/chief-3.png'%}" alt="Dr. J.K.Sharma Felicitation to Shri. Amitabh kant CEO, Niti Aayog" title="Dr. J.K.Sharma Felicitation to Shri. Amitabh kant CEO, Niti Aayog">
+                    </figure>
+                    <figure><img id="myImg" onclick="getImage(this)" src="{%static 'img/gallery/gamma-copy.png'%}" alt="Gamma" title="Gamma">
+                    </figure>
+                    <figure><img id="myImg" onclick="getImage(this)"
+                                                    src="{%static 'img/gallery/manufacturing-units.png'%}" alt="Medical Equipment Manufacturing Companies" title="Medical Equipment Manufacturing Companies"></figure>
+
+                    <figure><img id="myImg" onclick="getImage(this)" src="{%static 'img/gallery/orgen.png'%}" alt="Orgen" title="Orgen">
+                    </figure>
+                    <figure><img id="myImg" onclick="getImage(this)"
+                                 src="{%static 'img/gallery/Think-3D-Printing-Facility.png'%}" alt="Think 3D - 3D Printing Facility" title="Think 3D - 3D Printing Facility"></figure>
+                    <figure><img id="myImg" onclick="getImage(this)" src="{%static 'img/gallery/textura.png'%}" alt="Textura" title="Textura">
+                    </figure>
+                    <figure><img id="myImg" onclick="getImage(this)"
+                                 src="{%static 'img/gallery/World-Incubation-Hub-copy.png'%}" alt="World Incubation Hub - Innovation Centre" title="World Incubation Hub - Innovation Centre"></figure>
+                    <figure><img id="myImg" onclick="getImage(this)"
+                                 src="{%static 'img/gallery/Electra-copy.png'%}" alt="Electra" title="Electra"></figure>
+<!--                    <figure><img id="myImg" onclick="getImage(this)"-->
+<!--                                 src="{%static 'img/gallery/World Incubation Hub copy.png'%}" ></figure>-->
+<!--                    <figure><img id="myImg" onclick="getImage(this)"-->
+<!--                                 src="{%static 'img/gallery/World Incubation Hub copy.png'%}" ></figure>-->
+                    <!--							<figure><img id="myImg" onclick="getImage(this)"  src="{%static 'img/gallery/World Incubation Hub copy.png'%}"></figure>-->
+                    <!--							<figure><img id="myImg" onclick="getImage(this)"  src="{%static 'img/gallery/World Incubation Hub copy.png'%}"></figure>-->
+                    <!--							<figure><img id="myImg" onclick="getImage(this)"  src="{%static 'img/gallery/World Incubation Hub copy.png'%}"></figure>-->
+                    <!--							<figure><img id="myImg" onclick="getImage(this)"  src="{%static 'img/gallery/World Incubation Hub copy.png'%}"></figure>-->
+                    <!--							<figure><img id="myImg" onclick="getImage(this)"  src="{%static 'img/gallery/World Incubation Hub copy.png'%}"></figure>-->
+                </div>
+
+            </div>
+        </div>
+        <!-- END CONTAINER -->
+    </div>
+</section>
+
+<!-- END COUNTER -->
+<!-- Start Testimonial -->
+<section id="testimonial">
+    <div class="container">
+        <div class="row text-center">
+            <div class="col-lg-12">
+                <div class="section-title" style="margin-bottom:0;">
+                    <h6 style="color: #333;font-size: 30px; margin: 0; text-transform: capitalize;position: relative;" class="section-title">What They <span>say</span></h6>
+                    <span class="line"></span>
+                </div>
+            </div>
+            <!-- end section title -->
+            <div class="testimonial-slider owl-carousel owl-theme">
+                <div class="single-testimonial">
+                    <div class="team-dec">
+                        <img src="{%static 'img/say/nitin-gadkari1.png' %}" class="img-fluid" alt="">
+                        <span></span>
+                        <h4>Shri Nitin Gadkari</h4>
+                        <p style="text-align:justify;">Union Minister of Micro, Small and Medium Enterprises,
+                            Minister for
+                            Road Transport &
+                            Highways and Minister of Shipping.</p>
+                    </div>
+                </div>
+                <!--- END SINGLE TESTIMONIAL -->
+                <div class="single-testimonial" style="max-height: 500px;overflow-y: scroll;">
+                    <div class="team-dec">
+                        <div class="imagepopup">
+                            <img src="{%static 'img/say/nitin-gadkari.png' %}" class="img-fluid" alt="Testimonial">
+                            <!--                                <div class="imagepopupover">-->
+                            <!--                                    <div class="imagepopupovertext">“COVID-19 have amplified the country’s-->
+                            <!--                                        disproportionate import dependence for medical devices, with as much as 80 per-->
+                            <!--                                        cent coming from outside. An indigenisation movement with an eye on improving-->
+                            <!--                                        productivity as well as upgrading quality backed with cutting edge innovation-->
+                            <!--                                        can pull the country out of this dependency trap paving the way for-->
+                            <!--                                        self-sufficiency. <b>Our goal to become self-reliant can be accomplished by-->
+                            <!--                                            adopting the AMTZ model, not just in medical devices sector but also in-->
+                            <!--                                            other strategic areas too.</b>”-->
+                            <!--                                    </div>-->
+                            <!--                                </div>-->
+                        </div>
+                        <span></span>
+                        <h4>Shri Nitin Gadkari</h4>
+                        <p style="text-align:justify;">“COVID-19 have amplified the country’s
+                            disproportionate import dependence for medical devices, with as much as 80 per
+                            cent coming from outside. An indigenisation movement with an eye on improving
+                            productivity as well as upgrading quality backed with cutting edge innovation
+                            can pull the country out of this dependency trap paving the way for
+                            self-sufficiency. <b>Our goal to become self-reliant can be accomplished by
+                                adopting the AMTZ model, not just in medical devices sector but also in
+                                other strategic areas too.</b>”</p>
+                        <p style="text-align:justify;">Youtube Link:<a
+                                href=" https://www.youtube.com/watch?v=DManf2jP1Yo">https://www.youtube.com/watch?v=DManf2jP1Yo</a>
+                        </p>
+                    </div>
+                </div>
+                <!--- END SINGLE TESTIMONIAL -->
+                <div class="single-testimonial">
+                    <div class="team-dec">
+                        <img src="{%static 'img/say/harsha-vardhan1.png' %}" class="img-fluid" alt="Testimonial">
+                        <span></span>
+                        <h4>Dr Harsh Vardhan</h4>
+                        <p style="text-align:justify;">Former Union Minister for Health & Family Welfare, Science &
+                            Tech, Earth Sciences, Govt
+                            of India.</p>
+                        <h5>"AMTZ will boost India’s fight against Covid-19"</h5>
+                    </div>
+                </div>
+                <!--- END SINGLE TESTIMONIAL -->
+                <div class="single-testimonial h-100">
+                    <div class="team-dec">
+                        <img src="{%static 'img/say/harsha-vardhan2.png' %}" class="img-fluid" alt="Testimonial">
+                        <span></span>
+                        <h4>Dr Harsh Vardhan</h4>
+                        <p style="text-align:justify;">Former Union Minister for Health & Family Welfare, Science &
+                            Tech, Earth Sciences, Govt
+                            of India.</p>
+                    </div>
+                </div>
+                <!--- END SINGLE TESTIMONIAL -->
+                <div class="single-testimonial">
+                    <div class="team-dec">
+                        <img src="{%static 'img/say/harsha-vardhan3.png' %}" class="img-fluid" alt="Testimonial">
+                        <span></span>
+                        <h4>Dr Harsh Vardhan</h4>
+                        <p style="text-align:justify;">Former Union Minister for Health & Family Welfare, Science &
+                            Tech, Earth Sciences, Govt
+                            of India.</p>
+                    </div>
+                </div>
+                <!--- END SINGLE TESTIMONIAL -->
+<!--                <div class="single-testimonial">-->
+<!--                    <div class="team-dec">-->
+<!--                        <img src="{%static 'img/say/harsha-vardhan4.png' %}" class="img-fluid" alt="Testimonial">-->
+<!--                        <span></span>-->
+<!--                        <h4>Dr Harsh Vardhan</h4>-->
+<!--                        <p style="text-align:justify;">Former Union Minister for Health & Family Welfare, Science &-->
+<!--                            Tech, Earth Sciences, Govt-->
+<!--                            of India.</p>-->
+<!--                    </div>-->
+<!--                </div>-->
+                <!--- END SINGLE TESTIMONIAL -->
+                <div class="single-testimonial">
+                    <div class="team-dec">
+                        <img src="{%static 'img/say/harsha-vardhan4.png' %}" class="img-fluid" alt="Testimonial">
+                        <span></span>
+                        <h4>Dr Harsh Vardhan</h4>
+                        <p style="text-align:justify;">Former Union Minister for Health & Family Welfare, Science &
+                            Tech, Earth Sciences, Govt
+                            of India.</p>
+                    </div>
+                </div>
+                <!--- END SINGLE TESTIMONIAL -->
+                <div class="single-testimonial">
+                    <div class="team-dec">
+                        <img src="{%static 'img/say/harsha-vardhan5.png' %}" class="img-fluid" alt="Testimonial">
+                        <span></span>
+                        <h4>Dr Harsh Vardhan</h4>
+                        <p style="text-align:justify;">Former Union Minister for Health & Family Welfare, Science &
+                            Tech, Earth Sciences, Govt
+                            of India.</p>
+                    </div>
+                </div>
+                <!--- END SINGLE TESTIMONIAL -->
+                <div class="single-testimonial">
+                    <div class="team-dec">
+                        <img src="{%static 'img/say/harsha-vardhan6.png' %}" class="img-fluid" alt="Testimonial">
+                        <span></span>
+                        <h4>Dr Harsh Vardhan</h4>
+                        <p style="text-align:justify;">Former Union Minister for Health & Family Welfare, Science &
+                            Tech, Earth Sciences, Govt
+                            of India.</p>
+                    </div>
+                </div>
+                <!--- END SINGLE TESTIMONIAL -->
+                <div class="single-testimonial">
+                    <div class="team-dec">
+                        <img src="{%static 'img/say/harsha-vardhan7.png' %}" class="img-fluid" alt="Testimonial">
+                        <span></span>
+                        <h4>Dr Harsh Vardhan</h4>
+                        <p style="text-align:justify;">Former Union Minister for Health & Family Welfare, Science &
+                            Tech, Earth Sciences, Govt
+                            of India.</p>
+                    </div>
+                </div>
+                <!--- END SINGLE TESTIMONIAL -->
+                <div class="single-testimonial" style="max-height: 500px;overflow-y: scroll;">
+                    <div class="team-dec">
+                        <div class="imagepopup">
+                            <img src="{%static 'img/say/piyush-goyal.png' %}" class="img-fluid" alt="Testimonial">
+                        </div>
+                        <span></span>
+                        <h4>Shri Piyush Goyal</h4>
+                        <p style="text-align:justify;">Minister of Railways and Minister of Commerce & Industry, GOI
+                        </p>
+                        <p style="text-align:justify;">"Fulfilling the supply needs for the critical medical
+                            equipment for the nation"</p>
+                        <p style="text-align:justify;">With Covid-19 outbreak, the country was totally
+                            dependent on import for COVID diagnostic kits for testing its citizens. AMTZ
+                            stepped in and was able to fulfil the need to a very large extend. Close to 60
+                            percent of the first 5 lakh tests conducted in India was done with kits that had
+                            AMTZ’s name on it. Impressed by the response, Shri Piyush Goyal was generous in
+                            his praise for AMTZ
+                            and the people behind it serving the national cause.</p>
+                    </div>
+                </div>
+                <!--- END SINGLE TESTIMONIAL -->
+                <div class="single-testimonial">
+                    <div class="team-dec">
+                        <img src="{%static 'img/say/piyush-goyal-office.png' %}" class="img-fluid" alt="Testimonial">
+                        <span></span>
+                        <h4>Shri Piyush Goyal</h4>
+                        <p style="text-align:justify;">Minister of Railways and Minister of Commerce & Industry, GOI
+                        </p>
+                    </div>
+                </div>
+                <!--- END SINGLE TESTIMONIAL -->
+                <div class="single-testimonial">
+                    <div class="team-dec">
+                        <img src="{%static 'img/say/smiriti.png' %}" class="img-fluid" alt="Testimonial">
+                        <span></span>
+                        <h4>Smt Smriti Irani</h4>
+                        <p style="text-align:justify;">Former Union Minister of Textiles and Minister of Women &
+                            Child Development</p>
+                    </div>
+                </div>
+                <!--- END SINGLE TESTIMONIAL -->
+                <div class="single-testimonial" style="max-height: 500px;overflow-y: scroll;">
+                    <div class="team-dec">
+                        <div class="imagepopup">
+                            <img src="{%static 'img/say/smiriti-irani.png' %}" class="img-fluid" alt="Testimonial">
+                        </div>
+                        <span></span>
+                        <h4>Smt Smriti Irani</h4>
+                        <p style="text-align:justify">Former Union Minister of Textiles and Minister of Women &
+                            Child Development.</p>
+                        <p style="text-align:justify">Before World Health Organization (WHO) spoke of a
+                            global shortage of personal protective equipment (PPE), India had no PPE
+                            coveralls suitable for COVID 19 in the country. Though hospitals had routine
+                            supply for testing H1N1 & HIV, nobody in the world had anticipated such an
+                            outbreak. The entire requirement was being met through imports.<b> It is never
+                                easy
+                                to produce and meet the humungous requirement when the country is put under
+                                a lockdown, workers worried about their safety, shortage in raw materials
+                                and
+                                transport a logistical nightmare. But AMTZ did!</b></p>
+                    </div>
+                </div>
+                <!--- END SINGLE TESTIMONIAL -->
+
+            </div>
+        </div>
+    </div>
+    <!-- END CONTAINER -->
+</section>
+<!-- END TESTIMONIAL -->
+<!-- START FAQ & QUERY FORM -->
+<section id="faq" style="padding:50px;">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-6 col-md-6 col-sm-12 col-12">
+               {% if messages %}
+                        {% for message in messages %}
+                        {% if message.tags == 'success'%}
+                        <div class="alert alert-success alert-dismissible fade show" id="message_success" role="alert">
+                            <strong>{{message}}</strong>
+                        </div>
+                         {% else %}
+                        <div class="alert alert-danger alert-dismissible fade show" id="message_error" role="alert">
+                            <strong>{{message}}</strong>
+                        </div>
+                        {% endif %}
+                        {%endfor%}
+                        {% endif %}
+                <div class="section-title section-title-left">
+                    <h3>Request for <span>service</span></h3>
+                    <span class="line"></span>
+                </div>
+                <div class="req-form">
+                    <form id="contact-form" class="form" name="enq" method="POST" action="/service-request/">
+                        {% csrf_token %}
+                        <div class="row">
+                            <div class="form-group col-lg-6">
+                                <input type="text" name="name" class="form-control" id="rfirst-name"
+                                       placeholder="Your Name" required="required">
+                            </div>
+                            <div class="form-group col-lg-6">
+                                <input type="text" name="mobile" class="form-control" id="rphone"
+                                       placeholder="Phone" required="required">
+                            </div>
+                            <div class="form-group col-lg-12">
+									<textarea rows="6" name="message" class="form-control" id="rdescription"
+                                              placeholder="Your Message" required="required"></textarea>
+                            </div>
+                            <div class="form-group col-lg-6">
+                                <input type="email" name="email" class="form-control" id="remail"
+                                       placeholder="Email" required="required">
+                            </div>
+                            <div class="col-lg-6 g-recaptcha" data-sitekey="6LeHkCUfAAAAAEV981C12rUzERHM2ov-bHOFRxJo"></div>
+                            <div class="form-group col-lg-6 text-center">
+                                <input type="submit" value="Send Message" name="submit" id="rsubmitButton"
+                                       class="btn btn-lg btn-req-form" title="Click here to submit your message!"/>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <!-- end col -->
+            <div class="col-lg-6 col-md-6 col-sm-12 col-12">
+                <div class="section-title section-title-left">
+                    <h2 style="color: #333;font-size: 30px; margin: 0; text-transform: capitalize;position: relative;">AMTZ Corporate <span>Video</span></h2>
+                    <span class="line"></span>
+                </div>
+                <div class="req-form">
+                    <iframe width="100%" height="315" target="_blank"
+                            src="https://www.youtube.com/embed/2lit9OVnzFA" frameborder="0" allowfullscreen=""></iframe>
+                </div>
+            </div>
+            <!-- end col -->
+        </div>
+    </div>
+    <!-- END CONTAINER -->
+</section>
+<!-- END FAQ & QUERY FORM -->
+
+{%endblock%}

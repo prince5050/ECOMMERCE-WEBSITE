@@ -1,0 +1,532 @@
+{% extends 'index.html' %}
+{%block title%}Medical Equipment, Products, Medical Devices Companies in India {% endblock %}
+{% block meta_description%}
+<meta name="description" content="AMTZ aims to facilitate focused research on artificial intelligence in healthcare ecosystem and medical technology for devices manufacturing labs in India">
+ {% endblock %}
+{%block content%}
+{% load static %}
+{% load mathfilters %}
+{% load custom_tags %}
+<style>
+    a.productCategory {
+        color: #2e77c5;
+        font-weight: bold;
+    }
+
+    ul.CategoryProduct li {
+        /* background: #fff; */
+        margin-bottom: 5px;
+        padding: 5px;
+        border: 1px solid #b4afaf3b;
+        /* color: blue; */
+    }
+    ul.CategoryProduct li:hover {
+    background: #d8a91b8f;
+    color: #fff;
+    cursor: pointer;
+}
+a.productCategory:hover {
+    color: #fff;
+}
+.form-control-borderless {
+    border: none;
+}
+
+.form-control-borderless:hover, .form-control-borderless:active, .form-control-borderless:focus {
+    border: none;
+    outline: none;
+    box-shadow: none;
+}
+.dropdown1-toggle::after {
+    display: inline-block;
+    width: 0;
+    height: 0;
+    margin-left: 0.255em;
+    vertical-align: 0.255em;
+    content: "";
+    border-top: 0.3em solid;
+    border-right: 0.3em solid transparent;
+    border-left: 0.3em solid transparent;
+    content:none;
+}
+.dropdown-item:hover {
+    color: #16181b;
+    text-decoration: none;
+    background-color: #ffc300;
+}
+</style>
+<!-- START PAGE BANNER AND BREADCRUMBS -->
+<section class="single-page-title-area" data-background="{%static 'img/bg/Eco system.jpg'%}">
+    <div class="auto-container">
+        <div class="row">
+            <div class="col-lg-8 col-md-8 col-sm-12 col-12">
+                <div class="single-page-title">
+                    <h6>AMTZ</h6>
+                    <span></span>
+                    <h2>Our Products</h2>
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-4 col-sm-12 col-12">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="/">Home</a></li>
+                    <li class="breadcrumb-item active">Product</li>
+                    <!--					  <li class="breadcrumb-item"><a href="/signup/">Register</a></li>-->
+                    <!--					  <li class="breadcrumb-item"><a href="/login/">Login</a></li>-->
+                    <!--						<li class="breadcrumb-item active">Logout</li>-->
+                </ol>
+            </div>
+        </div>
+        <!-- end row-->
+    </div>
+</section>
+<!-- END PAGE BANNER AND BREADCRUMBS -->
+
+
+<!-- START ALL PRODUCT -->
+
+<section style="padding-bottom:0;">
+    <div class="row justify-content-center">
+        <div class="auto-container">
+            <div class="d-block d-lg-none d-md-none d-sm-block" style="margin-top: -80px;">
+                <!--            <div class="col-sm-12">-->
+                <h5 class="widget-title">Product Categories</h5>
+                <ul class="CategoryProduct" style="margin: 0px;">
+                    <li style="display: inline-table; padding:1px"><a class="productCategory" href="/products/">All
+                        Products</a></li>
+                    {% for category in categories %}
+                    <li style="display:inline-table; margin-top:5px; padding:1px"><a class="productCategory"
+                                                                                     href="/products/category/{{category.name|replace_name}}/?category={{category.id}}">{{category.name}}</a>&nbsp;
+                    </li>&nbsp;
+                    {% endfor %}
+                </ul>
+            </div>
+            <br><br>
+            <div class="row justify-content-center">
+                <div class="col-12 col-md-10 col-lg-8">
+                    {% if messages %}
+                    {% for message in messages %}
+                    <div class="alert alert-danger alert-dismissible fade show text-center" id="message_success"
+                         role="alert">
+                        <strong>{{message}}</strong>
+                    </div>
+                    {%endfor%}
+                    {% endif %}
+                    <form action="/product-search/" method="POST" class="card card-sm" style="border-radius: 30px;">
+                        {% csrf_token %}
+                        <div class="card-body row no-gutters align-items-center" style="padding:0.25rem;">
+                            <div class="col-auto">
+                                <i class="fa fa-search" aria-hidden="true"></i>
+                            </div>
+                            <!--end of col-->
+                            <div class="col">
+                                <input class="form-control form-control-lg form-control-borderless" type="search"
+                                       name="product_name" placeholder="Search AMTZ Products" required>
+                            </div>
+                            <!--end of col-->
+                            <div class="col-auto">
+                                <button class="btn btn-lg btn-success" type="submit"
+                                        style="border-radius: 30px; cursor:pointer">
+                                    Search
+                                </button>
+                            </div>
+                            <!--end of col-->
+                        </div>
+                    </form>
+                </div>
+                <div class="dropdown show m-2" style="content: none;">
+                    <a style="background-color: #e3e5e869;;
+    background-image: none;
+    border-color: #e3e5e869;
+    color: black;
+    font-weight: 600" class="btn btn-secondary dropdown1-toggle" href="#" role="button" id="dropdownMenuLink"
+                       data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Filter Products<i style="font-size: 21px;
+    width: 0px;
+    height: 0px;
+    text-align: center;
+    text-decoration: none;
+    padding-top: 0px;
+    padding-right:10px;
+    margin: 0;" class="fa fa-filter"></i>
+                    </a>
+
+                    <div class="dropdown-menu" aria-labelledby="dropdownMenuLink" >
+                        <a class="dropdown-item" href="product-with-price/" style="font-weight: 500";>Product with price</a>
+                        <a class="dropdown-item" href="product-without-price/" style="font-weight: 500";>Product without price</a>
+                        <a class="dropdown-item" href="price-high-to-low/" style="font-weight: 500";>Price : High to low</a>
+                        <a class="dropdown-item" href="price-low-to-high/" style="font-weight: 500";>Price : Low to high</a>
+                    </div>
+                </div>
+            </div>
+            <br>
+            <div class="row">
+                <div class="col-lg-9 col-md-9 col-sm-12 col-12 infinite-container" style="padding-left:25px;">
+                    <div class="row product-base text-center post-wrapper" id="post-wrapper">
+                        {% for product in products %}
+                        <div class="col-lg-4 col-md-6 col-sm-12 col-12 post-box text-center">
+                            <a href="/products/{{product.product_name|replace_name}}/{{product.pk}}/">
+                                <div class=" card single-service h-90" style="height: 353px;">
+                                    <div class="card-header p-0" style="height:200px;">
+                                        {% if product.product_image%}
+                                        <img class="img-product" style="padding:0%;" src="{{product.product_image.url}}"
+                                             alt="{{product.product_name}}" title="{{product.product_name}}"/>
+                                        {% endif %}
+                                    </div>
+                                    <div class="card-body text-left" style="height: 112px;">
+                                        <!--                                    <h6 class="limited-content">{{product.product_name}}</h6>-->
+                                        <h6>{{product.product_name}}</h6>
+                                        <div class="text-left">
+                                            <!--                                        IF Discount type is rupees-->
+
+                                            {% if product.discount_type == 'Rs'%}
+                                            <h6 style="font-size:14px;">Price : <strike>₹{{product.product_price
+                                                }}.00</strike>
+                                                <span>₹{{product.product_price|sub:product.discount_amount_or_per}}</span>
+                                                <span class="badge badge-success " style="font-size:12px;">
+                                                {{product.discount_amount_or_per}} {{product.discount_type}} Off</span>
+                                                {% if product.gst != '0'%}
+                                                <small>+GST {{product.gst}}%</small>
+                                            </h6>
+                                            {%endif%}
+                                            <!--  IF Discount type is Percentage  -->
+
+                                            {% elif product.discount_type == '%' %}
+                                            <h6>Price : <strike>₹{{product.product_price}}.00</strike>
+                                                <span>₹{{product.product_price|percentage:product.discount_amount_or_per}}</span>
+                                                <span class="badge badge-success " style="font-size:12px;">
+                                                {{product.discount_amount_or_per}} {{product.discount_type}} Off </span>
+                                                {% if product.gst != '0'%}
+                                                <small>+GST {{product.gst}}%</small>
+                                                {%endif%}
+                                            </h6>
+                                            {%else%}
+                                            <!--                                                If Discount Not apply-->
+                                            <h6>Price : <span>
+                                                {% if product.product_price != None %}
+                                                ₹ {{product.product_price}}.00
+                                                {% else %}
+                                                <span class="badge badge-success">Ask for price</span>
+                                                {% endif %}
+
+                                            </span>
+                                                {% if product.gst != '0'%}
+                                                <span>+GST {{product.gst}}%</span>
+                                                {%endif%}
+                                            </h6>
+                                            {%endif%}
+                                        </div>
+                                    </div>
+                                    <div class="card-footer m-0 p-0">
+                                        <div class="row" style="margin-left:.5px;margin-right:.5px">
+                                            <button type="button"
+                                                    class="col-lg-6 col-md-6 col-sm-6 col-6 btn btn-primary"
+                                                    style="border-radius:0; cursor:pointer;"
+                                                    onclick="showModal('{{product.product_name}}','{{product.pk}}')"
+                                                    data-toggle="modal" data-target=".bd-example-modal-lg">
+                                                <!--                                            <a style="color:white;" href="/product-details/{{product.pk}}"> Enquiry</a></button>-->
+                                                <a style="color:white;font-weight: 500;"> Enquiry</a>
+                                            </button>
+                                            {% if product.product_price != None %}
+                                            <button type="button"
+                                                    class="col-lg-6 col-md-6 col-sm-6 col-6 btn btn-warning"
+                                                    style="border-radius:0">
+                                                <a style="color:black;font-weight: 500;"
+                                                   href="/Add-cart/{{product.pk}}/"> Add to
+                                                    Cart</a></button>
+                                            <!--                                         <a style="color:black;" href="/Add-cart/{{product.pk}}"> Add to Cart</a></button>-->
+
+                                            {% else %}
+                                            <button type="button"
+                                                    class="col-lg-6 col-md-6 col-sm-6 col-6 btn btn-warning"
+                                                    disabled
+                                                    style="border-radius:0">
+                                                Add to Cart
+                                            </button>
+                                            {% endif %}
+                                        </div>
+                                    </div>
+
+
+                                </div>
+                            </a>
+                        </div>
+                        {% endfor %}
+                    </div>
+
+                </div>
+                <aside class="col-lg-3  col-md-3 d-none  d-sm-block col-3 sidebar sidebar-left mt-4">
+                    <!--					<div class="widget search_wid">-->
+                    <!--						<h5 class="widget-title">Search</h5>-->
+                    <!-- end widget tittle-->
+                    <!--						<div class="error-search">-->
+                    <!--							<form action="#" method="post">-->
+                    <!--								<div class="row no-margin">-->
+                    <!--									<div class="form-group col-lg-10 col-md-10 col-sm-10 col-10 no-padding">-->
+                    <!--										<input type="search" name="esearch" class="form-control" placeholder="Search...">-->
+                    <!--									</div>-->
+                    <!--									<div class="form-group col-lg-2 col-md-2 col-sm-2 col-2 no-padding">-->
+                    <!--										<button type="submit" class="btn error-btn"><i class="icofont icofont-home-search"></i> </button>-->
+                    <!--									</div>-->
+                    <!--								</div>-->
+                    <!--							</form>-->
+                    <!--						</div>-->
+                    <!--					</div>-->
+
+                    <div>
+                        <h5 class="widget-title">Product Categories</h5>
+                        <ul class="CategoryProduct">
+                            <li><a class="productCategory" href="/products/">All Products</a></li>
+                            {% for category in categories %}
+                            <li><a class="productCategory"
+                                   href="/products/category/{{category.name|replace_name}}/?category={{category.id}}">{{category.name}}</a>
+                            </li>
+                            {% endfor %}
+                        </ul>
+                    </div>
+                </aside>
+            </div>
+            <!-- end row-->
+        </div>
+
+
+        <div class="center">
+            <p class="text-center" id="loadmoreBtn">
+            </p>
+            <!--  <div class="pagination">-->
+            <!--  <a href="#">&laquo;</a>-->
+            <!--  <a href="#">1</a>-->
+            <!--  <a href="#" class="active">2</a>-->
+            <!--  <a href="#">3</a>-->
+            <!--  <a href="#">4</a>-->
+            <!--  <a href="#">5</a>-->
+            <!--  <a href="#">6</a>-->
+            <!--  <a href="#">&raquo;</a>-->
+            <!--  </div>-->
+            <div class="pagination">
+                {% if products.has_previous %}
+                <a href="?page=1">&laquo; first</a>
+                <a href="?page={{ products.previous_page_number }}">previous</a>
+                {% endif %}
+
+
+                {% if products.has_next %}
+                <a href="?page={{ products.next_page_number }}">next</a>
+                <a href="?page={{ products.paginator.num_pages }}">last &raquo;</a>
+                {% endif %}
+            </div>
+            <!--        <div class="center">-->
+            <!--            Page {{ products.number }} of {{ products.paginator.num_pages }}.-->
+            <!--        </div>-->
+        </div>
+        <input type="hidden" value="{{product_count}}" name="count" id="count">
+        <!--Modal for Request for Quote-->
+        <div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel"
+             aria-hidden="true">
+            <div class="modal-dialog modal-lg">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="modal_title">
+                        </h5>
+                        <button type="button" style="font-size:35px;" class="close" data-dismiss="modal"
+                                aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <form id="contact-form" class="form" name="enq" method="POST" action="/quotation/">
+                        {% csrf_token %}
+                        <div class="modal-body">
+                            <div class="col-lg-12">
+                                <div class="row">
+                                    <input type="hidden" name="product_name" class="form-control" id="product_name"
+                                           placeholder="product name">
+                                    <input type="hidden" name="product_id" class="form-control" id="product_id">
+                                    <div class="form-group col-lg-6">
+                                        <input type="text" name="fullname" class="form-control" id="firstname"
+                                               placeholder="Full Name" required="required" maxlength="50">
+                                    </div>
+                                    <div class="form-group col-lg-6">
+                                        <input type="email" name="email" class="form-control" id="email"
+                                               placeholder="Email Address" required="required">
+                                    </div>
+                                    <div class="form-group col-lg-6">
+                                        <input type="number" name="mobile" class="form-control" id="phone"
+                                               placeholder="Phone Number" onkeyup='check();' required="required"/>
+                                        <span id="message"></span>
+                                    </div>
+                                    <div class="form-group col-lg-6">
+                                        <input type="number" name="quantity" class="form-control" id="quantity"
+                                               placeholder="Product Quantity" required="required">
+                                    </div>
+
+<!--                                    Addition product start block-->
+                                    <div class="form-group col-lg-6">
+                                     <select class="form-control" id="Other_product1" name="Other_product1"
+                                             onchange="other_pro1(this.value)">
+                                    <option selected disabled  value="selected">Select Other Product If you want</option>
+                                           {% for pro in all_product%}
+                                    <option value="{{pro.product_name}}">{{pro.product_name}}</option>
+                                        {% endfor %}
+                                     </select>
+                                    </div>
+                                     <div class="form-group col-lg-6">
+                                        <input type="number" name="quantity1" class="form-control" id="quantity1"
+                                               placeholder="Product Quantity" style="display:none" onkeyup="qty1()">
+                                    </div>
+                                    <div class="form-group col-lg-6">
+                                     <select class="form-control" id="Other_product2" name="Other_product2" onchange="other_pro2(this.value)"
+                                     style="display:none">
+                                    <option selected disabled value="selected">Select Other Product If you want</option>
+                                         {% for pro in all_product%}
+                                    <option value="{{pro.product_name}}">{{pro.product_name}}</option>
+                                        {% endfor %}
+                                     </select>
+                                    </div>
+                                     <div class="form-group col-lg-6">
+                                        <input type="number" name="quantity2" class="form-control" id="quantity2"
+                                               placeholder="Product Quantity" style="display:none">
+                                    </div>
+
+<!--                                    End Block-->
+
+                                    <div class="form-group col-lg-12">
+                                        <input type="text" name="subject" class="form-control" id="subject"
+                                               placeholder="Subject" required="required">
+                                    </div>
+                                    <div class="form-group col-lg-12">
+                                    <textarea rows="10" name="message" class="form-control" id="description"
+                                              placeholder="Your Message" required="required"></textarea>
+                                    </div>
+                                </div>
+                                <div class="form-group col-lg-12 mb0">
+                                    <div class="actions">
+                                        <!--											<input type="submit" value="Request Quotation" name="submit" id="submitButton" class="btn btn-lg btn-contact-bg" title="Click here to submit your message!" />-->
+                                        <!--                                        <img src="assets/img/ajax-loader.gif" width="16" height="16" id="loader"-->
+                                        <!--                                             style="display:none" alt="loading">-->
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal" style="cursor:pointer" onclick="reset()">Close</button>
+                             <button type="button" class="btn btn-warning"  style="cursor:pointer" onclick="reset()">Reset</button>
+                            <input type="submit" id="submit_button"  style="cursor:pointer" placeholder="Request Quotation" class="btn btn-primary"/>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <br>
+    </div>
+</section>
+<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+<script>
+    var count = 0;
+    $(window).on('scroll', function() {
+
+        if ($(window).scrollTop() >= $(
+          '#post-wrapper').offset().top + $('#post-wrapper').
+            outerHeight() - window.innerHeight) {
+            if(count == 0){
+               count = 1;
+                var _currentResult=$(".post-box").length;
+                $.ajax({
+                    url:'/load_more/',
+                    type:'post',
+                    data:{
+                        'offset':_currentResult,
+                        'csrfmiddlewaretoken':"{{csrf_token}}"
+                    },
+                    dataType:'json',
+                    beforeSend:function(){
+                        $("#loadmoreBtn").addClass('disabled').text('Loading..');
+                    },
+                    success:function(res){
+                       console.log(res)
+                       $(".post-wrapper").append(res.posts);
+                       $("#loadmoreBtn").addClass('disabled').text('No more Products');
+                        count = 0;
+                    }
+                });
+            }
+        }
+    });
+
+
+
+</script>
+<script>
+function other_pro1(val){
+        if(val=='selected'){
+     document.getElementById('quantity1').style.display = 'none';
+     }
+     else{
+      document.getElementById('quantity1').style.display = 'block';
+     }
+    }
+function other_pro2(val){
+     if(val=='selected'){
+     document.getElementById('quantity2').style.display = 'none';
+     }
+     else{
+      document.getElementById('quantity2').style.display = 'block';
+     }
+    }
+
+function qty1(){
+ document.getElementById('Other_product2').style.display = 'Block';
+}
+function reset(){
+ document.getElementById('custom_form').reset();
+}
+</script>
+<script>
+        $(window).ready(function() {
+        $("#contact-form").on("submit", function(){
+        $("#submit_button").attr("disabled", true);
+        })
+        });
+
+    </script>
+<script>
+    function showModal(product_name, product_id) {
+
+         console.log(product_name);
+
+        //you can do anything with data, or pass more data to this function. i set this data to modal header for example
+        $("#modal_title").html('Enquiry For ' + product_name)
+        $("#product_name").val(product_name)
+        $("#product_id").val(product_id)
+
+    }
+
+var check = function() {
+   var pat1=/^\d{10}$/;
+   var phoneno = /^\(?([0-0]{3})\)?[-. ]?([0-0]{3})[-. ]?([0-0]{4})$/;
+  if(!pat1.test(phone.value))
+ {
+    document.getElementById('message').style.color = 'red';
+    document.getElementById('message').innerHTML = 'Mob No should be 10 digit';
+    mobile.focus();
+    document.getElementById('submit_button').disabled = true;
+    return false;
+  } else {
+     document.getElementById('message').style.color = 'green';
+     document.getElementById('message').innerHTML = 'correct Mobile number';
+     document.getElementById('submit_button').disabled = false;
+  }
+  if(mobile.value.match(phoneno)){
+  document.getElementById('message').style.color = 'red';
+  document.getElementById('message').innerHTML = 'Enter correct Mobile number';
+  document.getElementById('submit_button').disabled = true;
+  }
+  else{
+  document.getElementById('message').style.color = 'green';
+     document.getElementById('message').innerHTML = 'correct Mobile number';
+     document.getElementById('submit_button').disabled = false;
+  }
+}
+
+</script>
+<!-- END ALL PRODUCT -->
+{% endblock content %}

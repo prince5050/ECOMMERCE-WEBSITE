@@ -1,0 +1,81 @@
+{% extends 'index.html' %}
+{%block title%}International Medical Technology Equipment Expo 2022 | AMTZ {% endblock %}
+{% block meta_description%}
+<meta name="description" content="Engaging with a wide range of world's top innovative healthcare industry that will be showcasing latest medical laboratory technologies in AMTZ India">
+ {% endblock %}
+{%block content%}
+{% load static %}
+
+<section class="single-page-title-area" data-background="{%static 'img/bg/KCC JPEG.jpg'%}">
+    <div class="auto-container">
+        <div class="row">
+            <div class="col-lg-8 col-md-8 col-sm-12 col-12">
+                <div class="single-page-title">
+                    <h6>AMTZ</h6>
+                    <span></span>
+                    <h2>Upcoming Events</h2>
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-4 col-sm-12 col-12">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="/">Home</a></li>
+                    <li class="breadcrumb-item active">Upcoming Events</li>
+                </ol>
+            </div>
+        </div>
+        <!-- end row-->
+    </div>
+</section>
+<section id="centers" class="section-padding top centers" style="padding:0; margin-top:90px">
+		<div class="container">
+				<div id="tabsJustifiedContent" class="tab-content">
+                        <div id="one" class="tab-pane animated fadeInRight active show">
+                            {% if upcomingevents%}
+							{% for event in upcomingevents%}
+                            <div class="row">
+
+								<div class="col-lg-6 col-md-6 col-sm-12 col-12 text-center" style="max-height:50%">
+									<div class="single-service" style="min-height: 400px;">
+                                        {% if event.event_picture %}
+										<div class="single-service-img">
+											<img class="img-fluid" style="min-height: 220px; max-height: 380px;min-width: -webkit-fill-available;" src="{{event.event_picture.url}}" alt="" />
+										</div>
+                                         {%endif%}
+										<div class="single-service-info" style="min-height: 300px;;">
+											<h4>{{event.event_name}}</h4>
+                                            <span style="color: black;font-size: 20px;">Event Date: {{event.Start_date}}</span>
+											<p style="text-align:justify;">{{event.event_discription}}</p>
+                                            {%  if event.registration_form_urls %}
+                                            <div class="col-md-12">
+                                              <a class="btn btn-primary" href="{{event.registration_form_urls}}" target="_blank">Register Now</a>
+                                            </div>
+                                            {% endif %}
+<!--                                            <a class="serv-red-btn" href="{{service.service_link}}" target="_blank">Play recording</a>-->
+<!--&lt;!&ndash;											<a class="serv-red-btn" href="/centerDetails/?youtubekey={{center.pk}}">Know More</a>&ndash;&gt;-->
+										</div>
+									</div>
+								</div>
+                                {%if event.event_youtube_link_key%}
+                                <div class="col-lg-6 col-md-6 col-sm-12 col-12 text-center" style="max-height:50%">
+                                     <div class="single-service-img">
+											<iframe width="100%" height="300" src="https://www.youtube.com/embed/{{event.event_youtube_link_key}}?rel=0" allowfullscreen ></iframe>
+                                        </div>
+                                </div>
+                                {%endif%}
+
+							</div>
+                            {%endfor%}
+                            {% else %}
+                             <div class=" col-lg-12 col-md-12 col-sm-12">
+                                <div class="text-center">
+                                <h5>NO Upcoming Events..</h5>
+                                    </div>
+                                 <br><br><br>
+                            </div>
+                            {% endif %}
+                        </div>
+				</div>
+		</div>
+ </section>
+
+{% endblock %}

@@ -1,0 +1,79 @@
+{% extends 'index.html' %}
+{%block title%}Past Event {% endblock %}
+{%block content%}
+{% load static %}
+
+<section class="single-page-title-area" data-background="{%static 'img/bg/KCC JPEG.jpg'%}">
+    <div class="auto-container">
+        <div class="row">
+            <div class="col-lg-8 col-md-8 col-sm-12 col-12">
+                <div class="single-page-title">
+                    <h6>AMTZ</h6>
+                    <span></span>
+                    <h2>Past Events</h2>
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-4 col-sm-12 col-12">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="/">Home</a></li>
+                    <li class="breadcrumb-item active">Past Events</li>
+                </ol>
+            </div>
+        </div>
+        <!-- end row-->
+    </div>
+</section>
+<section id="centers" class="section-padding top bg-gray centers">
+    <div class="container">
+        <div id="tabsJustifiedContent" class="tab-content">
+            <div id="one" class="tab-pane animated fadeInRight active show">
+                <div class="row">
+                     {% for event in pastevents%}
+                    <div class="col-lg-4 col-md-6 col-sm-12 col-12 text-center" style="max-height:50%">
+                        <div class="single-service">
+                            <div class="single-service-img" STYLE="box-shadow: 1px 1px 1px 0px  #bfbaba;" >
+                                {% if event.event_picture %}
+                                <img  style="height:200px; width:347px;"
+                                     src="{{event.event_picture.url}}" alt=""/>
+                                {% endif %}
+                            </div>
+                            <div class="single-service-info" style="min-height:292px">
+                                <h4>{{event.event_name}}</h4>
+                                <span style="color: black;font-size: 20px;">Event Date: {{event.Start_date}}</span>
+                                <p style="text-align:justify">{{event.event_discription|truncatewords:20}}</p>
+
+
+<!--                                <a class="serv-red-btn" href="{{service.service_link}}" target="_blank">Visit</a>-->
+
+                                <a class="serv-red-btn" href="/past-event-details/{{event.pk}}/">Know More</a>
+
+                                <!--											<a class="serv-red-btn" href="/centerDetails/?youtubekey={{center.pk}}">Know More</a>-->
+                            </div>
+                        </div>
+                    </div>
+                    {%endfor%}
+
+                </div>
+            </div>
+        </div>
+        <div class="center">
+         <div class="pagination">
+        {% if pastevents.has_previous %}
+            <a href="?page=1">&laquo; first</a>
+            <a href="?page={{ pastevents.previous_page_number }}">previous</a>
+        {% endif %}
+
+
+        {% if pastevents.has_next %}
+            <a href="?page={{pastevents.next_page_number}}">next &raquo;</a>
+            <a href="?page={{pastevents.paginator.num_pages}}">last</a>
+        {% endif %}
+
+     <div class="center">
+            Page {{pastevents.number}} of {{pastevents.paginator.num_pages}}.
+        </div>
+           </div></div>
+    </div>
+</section>
+
+{% endblock %}

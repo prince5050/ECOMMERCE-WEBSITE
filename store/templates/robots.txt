@@ -1,0 +1,13 @@
+User-agent: *
+Disallow: /load_more/
+Disallow: /load_more_product_with_price/
+Disallow: /load_more_product_without_price/
+Disallow: /load_more_product_price_high_to_low/
+Disallow: /load_more_product_price_low_to_high/
+Disallow: /load_more_product_price_high_to_low/
+Disallow: /room_handleResp/
+Disallow: /handleResp/
+Disallow: /state/
+Disallow: /state_change/
+Disallow: /quantity-change/
+Disallow: /quantity-change-buy/

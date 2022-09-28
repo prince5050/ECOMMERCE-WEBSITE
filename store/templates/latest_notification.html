@@ -1,0 +1,95 @@
+{% extends 'index.html' %}
+{%block title%}Latest Notifications | Health Technology Jobs | MedTech in India{% endblock %}
+{% block meta_description%}
+<meta name="description" content="Candidates are advised to keep checking the AMTZ website for any updates on recuitment for medical technology jobs and health technology careers in India">
+ {% endblock %}
+{%block content%}
+{% load static %}
+<section class="single-page-title-area" data-background="{%static 'img/bg/page-banner.jpg'%}">
+		<div class="auto-container">
+			<div class="row">
+				<div class="col-lg-8 col-md-8 col-sm-12 col-12">
+					<div class="single-page-title">
+						<h6>AMTZ</h6>
+						<span></span>
+						<h2>Latest Notification</h2>
+					</div>
+				</div>
+				<div class="col-lg-4 col-md-4 col-sm-12 col-12">
+					<ol class="breadcrumb">
+					  <li class="breadcrumb-item"><a href="/">Home</a></li>
+					  <li class="breadcrumb-item active">Latest Notification</li>
+					</ol>
+				</div>
+			</div>
+			<!-- end row-->
+		</div>
+	</section>
+{% if req_obj%}
+<section class="pages cart-page section-padding">
+		<div class="auto-container">
+			<div class="row">
+				<div class="col-12">
+					<div class="whishlist-table table-responsive">
+						<table class="table">
+							<thead class="thead-inverse">
+								<tr>
+									<th>SI NO.</th>
+									<th>Title</th>
+									<th>Description</th>
+									<th>Start Date</th>
+									<th>End Date</th>
+									<th>View/Download</th>
+								</tr>
+							</thead>
+							<tbody>
+								{% for req in req_obj %}
+								<tr>
+
+									<td>
+										<div class="whishlist-pro-img">
+											<strong>{{ forloop.counter }} </strong>
+										</div>
+									</td>
+									<td>
+										<p>{{req.title}}</p>
+									</td>
+									<td>
+										<p>{{req.description}}</p>
+									</td>
+									<td>
+										<p>{{req.start_date|date}}</p>
+									</td>
+									<td>
+										<p>{{req.end_date|date}}</p>
+									</td>
+									<td>
+										<div class="cart-info ml-5">
+											<a href="{{req.job_description_pdf.url}}" target="_blank">View/Download</a>
+										</div>
+									</td>
+
+								</tr>
+								{% endfor %}
+							</tbody>
+						</table>
+					</div>
+				</div>
+				<!-- END COL -->
+
+			</div>
+
+		</div>
+	</section>
+{% else %}
+<section style="margin-top: 360px;
+    margin-bottom: 150px;">
+    <div class="container text-center m-4">
+    <div class=" text-center m-4">
+		<h3 class="text-center">We are not hiring at the moment ,but please keep checking this web-space for any updates on Recruitment @ AMTZ</h3>
+	</div>
+
+ </div>
+</section>
+{% endif %}
+{%endblock%}

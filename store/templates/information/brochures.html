@@ -1,0 +1,34 @@
+{% extends 'index.html' %}
+{%block title%}Brochures {% endblock %}
+{%block content%}
+{% load static %}
+
+<section class="single-page-title-area" data-background="{%static 'img/bg/page-banner.jpg'%}">
+		<div class="auto-container">
+			<div class="row">
+				<div class="col-lg-8 col-md-8 col-sm-12 col-12">
+					<div class="single-page-title">
+						<h6>AMTZ</h6>
+						<span></span>
+						<h2>Brochures</h2>
+					</div>
+				</div>
+				<div class="col-lg-4 col-md-4 col-sm-12 col-12">
+					<ol class="breadcrumb">
+					  <li class="breadcrumb-item"><a href="/">Home</a></li>
+					  <li class="breadcrumb-item active">Brochures</li>
+					</ol>
+				</div>
+			</div>
+			<!-- end row-->
+		</div>
+</section>
+<div class="container">
+    <div class="row pdf">
+        {% comment %} <iframe src="" width="100%" height="300" style="border:1px solid black;"> </iframe> {% endcomment %}
+        <iframe src="{%static 'img/pdf/AMTZ-BROCHURE.pdf'%}" width="100%" height="1000px"  allowtransparency="true" style="background: #FFFFFF;"  bastyle="background-color: white;"></iframe>
+
+	</div>
+</div>
+
+{% endblock %}

@@ -1,0 +1,83 @@
+{% extends 'index.html' %}
+{%block title%}All India Medical Device Amendments | Tenders | AMTZ Rules{% endblock %}
+{% block meta_description%}
+<meta name="description" content="Centre of amendments, tenders and rules for advanced medical device manufacturing technologies. World’s first Integrated medical technology industry in India	">
+ {% endblock %}
+{%block content%}
+{% load static %}
+<section class="single-page-title-area" data-background="{%static 'img/bg/page-banner.jpg'%}">
+		<div class="auto-container">
+			<div class="row">
+				<div class="col-lg-8 col-md-8 col-sm-12 col-12">
+					<div class="single-page-title">
+						<h6>AMTZ</h6>
+						<span></span>
+						<h2>Tenders</h2>
+					</div>
+				</div>
+				<div class="col-lg-4 col-md-4 col-sm-12 col-12">
+					<ol class="breadcrumb">
+					  <li class="breadcrumb-item"><a href="/">Home</a></li>
+					  <li class="breadcrumb-item active">Tenders</li>
+					</ol>
+				</div>
+			</div>
+			<!-- end row-->
+		</div>
+</section>
+<section class="pages cart-page section-padding">
+		<div class="auto-container">
+			<div class="row">
+				<div class="col-12">
+					<div class="whishlist-table table-responsive">
+						<table class="table">
+							<thead class="thead-inverse">
+								<tr>
+									<th>SI NO.</th>
+									<th>Tender NO.</th>
+									<th>From Date</th>
+									<th>To Date</th>
+									<th>RFP/EOI</th>
+									<th>View/Download</th>
+								</tr>
+							</thead>
+							<tbody>
+								{% for tender in tenders %}
+								<tr>
+
+									<td>
+										<div class="whishlist-pro-img">
+											<strong>{{ forloop.counter }} </strong>
+										</div>
+									</td>
+									<td>
+										<p>{{tender.tenders_number}}</p>
+									</td>
+									<td>
+										<p>{{tender.from_date|date}}</p>
+									</td>
+									<td>
+										<p>{{tender.to_date|date}}</p>
+									</td>
+									<td>
+										<p>{{tender.tenders_description}}</p>
+									</td>
+									<td>
+										<div class="cart-info ml-5">
+											<a href="{{tender.tenders_pdf.url}}" target="_blank">View/Download</a>
+										</div>
+									</td>
+
+								</tr>
+								{% endfor %}
+							</tbody>
+						</table>
+					</div>
+				</div>
+				<!-- END COL -->
+
+			</div>
+
+		</div>
+	</section>
+{%endblock%}

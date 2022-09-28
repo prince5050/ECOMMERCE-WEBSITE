@@ -1,0 +1,582 @@
+{% extends 'index.html' %}
+{%block title%} My Order {% endblock %}
+{%block content%}
+{% load static %}
+<style>
+
+
+p {
+    font-size: 14px;
+    margin-bottom: 7px
+}
+
+.cursor-pointer {
+    cursor: pointer
+}
+
+.bold {
+    font-weight: 600
+}
+
+.small {
+    font-size: 12px !important;
+    letter-spacing: 0.5px !important
+}
+
+.Today {
+    color: rgb(83, 83, 83)
+}
+
+.btn-outline-primary {
+    background-color: #fff !important;
+    color: #4bb8a9 !important;
+    border: 1.3px solid #4bb8a9;
+    font-size: 12px;
+    border-radius: 0.4em !important
+}
+
+.btn-outline-primary:hover {
+    background-color: #4bb8a9 !important;
+    color: #fff !important;
+    border: 1.3px solid #4bb8a9
+}
+
+.btn-outline-primary:focus,
+.btn-outline-primary:active {
+    outline: none !important;
+    box-shadow: none !important;
+    border-color: #42A5F5 !important
+}
+
+#progressbar {
+    margin-bottom: 10px;
+    overflow: hidden;
+    color: #455A64;
+    padding-left: 0px;
+
+}
+
+#progressbar li {
+    list-style-type: none;
+    font-size: 13px;
+    width: 33.33%;
+    float: left;
+    position: relative;
+    font-weight: 400;
+    color: #455A64 !important
+}
+
+#progressbar #step1:before {
+    content: "1";
+    color: #fff;
+    width: 29px;
+    margin-left: 15px !important;
+    padding-left: 11px !important
+}
+
+#progressbar #step2:before {
+    content: "2";
+    color: #fff;
+    width: 29px
+}
+
+#progressbar #step3:before {
+    content: "3";
+    color: #fff;
+    width: 29px;
+    margin-right: 15px !important;
+    padding-right: 11px !important
+}
+
+#progressbar li:before {
+    line-height: 29px;
+    display: block;
+    font-size: 12px;
+    background: #455A64;
+    border-radius: 50%;
+    margin: auto
+}
+
+#progressbar li:after {
+    content: '';
+    width: 121%;
+    height: 2px;
+    background: #455A64;
+    position: absolute;
+    left: 0%;
+    right: 0%;
+    top: 15px;
+    z-index: -1
+}
+
+#progressbar li:nth-child(2):after {
+    left: 50%
+}
+
+#progressbar li:nth-child(1):after {
+    left: 25%;
+    width: 121%
+}
+
+#progressbar li:nth-child(3):after {
+    left: 25% !important;
+    width: 50% !important
+}
+
+#progressbar li.active:before,
+#progressbar li.active:after {
+    background: #077d05
+}
+
+.card {
+    background-color: #fff;
+    box-shadow: 2px 4px 15px 0px rgb(215 229 238);
+    z-index: 0
+}
+
+small {
+    font-size: 12px !important
+}
+
+.a {
+    justify-content: space-between !important
+}
+
+.border-line {
+    border-right: 1px solid rgb(226, 206, 226)
+}
+
+.card-footer img {
+    opacity: 0.3
+}
+
+.card-footer h5 {
+    font-size: 1.1em;
+    color: #8C9EFF;
+    cursor: pointer
+}
+</style>
+<style>
+    /*
+    DEMO STYLE
+*/
+
+@import "https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700";
+a,
+a:hover,
+a:focus {
+    color: inherit;
+    text-decoration: none;
+    transition: all 0.3s;
+}
+
+.navbar1 {
+    padding: 5px 0px;
+    background: #fff;
+    border: none;
+    border-radius: 0;
+    margin-bottom: 40px;
+    box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.navbar-btn {
+    box-shadow: none;
+    outline: none !important;
+    border: none;
+}
+
+.line {
+    width: 100%;
+    height: 1px;
+    border-bottom: 1px dashed #ddd;
+    margin: 40px 0;
+}
+
+/* ---------------------------------------------------
+    SIDEBAR STYLE
+----------------------------------------------------- */
+
+.wrapper {
+    display: flex;
+    width: 100%;
+    align-items: stretch;
+}
+
+#sidebar {
+    min-width: 250px;
+    max-width: 250px;
+    background: #7386D5;
+    color: #fff;
+    transition: all 0.3s;
+}
+
+#sidebar.active {
+    margin-left: -250px;
+}
+
+#sidebar .sidebar-header {
+    padding: 20px;
+    background: #6d7fcc;
+}
+
+#sidebar ul.components {
+    padding: 20px 0;
+    border-bottom: 1px solid #47748b;
+}
+
+#sidebar ul p {
+    color: #fff;
+    padding: 10px;
+}
+
+#sidebar ul li a {
+    padding: 10px;
+    font-size: 1.1em;
+    display: block;
+}
+
+#sidebar ul li a:hover {
+    color:  #fff;
+    background: #1a2d7d;
+}
+
+#sidebar ul li.active>a,
+a[aria-expanded="true"] {
+    color: #fff;
+    background: #0e1120;
+}
+
+a[data-toggle="collapse"] {
+    position: relative;
+}
+
+.dropdown-toggle::after {
+    display: block;
+    position: absolute;
+    top: 50%;
+    right: 20px;
+    transform: translateY(-50%);
+}
+
+ul ul a {
+    font-size: 0.9em !important;
+    padding-left: 30px !important;
+    background: #6d7fcc;
+}
+
+ul.CTAs {
+    padding: 20px;
+}
+
+ul.CTAs a {
+    text-align: center;
+    font-size: 0.9em !important;
+    display: block;
+    border-radius: 5px;
+    margin-bottom: 5px;
+}
+
+a.download {
+    background: #fff;
+    color: #7386D5;
+}
+
+a.article,
+a.article:hover {
+    background: #6d7fcc !important;
+    color: #fff !important;
+}
+
+/* ---------------------------------------------------
+    CONTENT STYLE
+----------------------------------------------------- */
+
+#content {
+    width: 100%;
+    padding: 20px;
+    min-height: 100vh;
+    transition: all 0.3s;
+}
+
+/* ---------------------------------------------------
+    MEDIAQUERIES
+----------------------------------------------------- */
+@media only screen and (max-width: 500px) {
+#sidebar {
+    min-width: 0px;
+    width: 70px;
+    background: #7386D5;
+    color: #fff;
+    transition: all 0.3s;
+    margin-left: 0px;
+}
+}
+@media only screen and (max-width: 768px) {
+   #sidebar {
+        margin-left: 0;
+
+    }
+    #sidebar.active {
+         margin-left: -250px;
+    }
+    #sidebarCollapse span {
+        display: none;
+    }
+}
+
+.order-card {
+    color: #fff;
+}
+
+.bg-c-blue {
+    background: linear-gradient(45deg,#4099ff,#73b4ff);
+}
+
+.bg-c-green {
+    background: linear-gradient(45deg,#2ed8b6,#59e0c5);
+}
+
+.bg-c-yellow {
+    background: linear-gradient(45deg,#FFB64D,#ffcb80);
+}
+
+.bg-c-pink {
+    background: linear-gradient(45deg,#FF5370,#ff869a);
+}
+
+
+.card {
+    border-radius: 5px;
+    -webkit-box-shadow: 0 1px 2.94px 0.06px rgba(4,26,55,0.16);
+    box-shadow: 0 1px 2.94px 0.06px rgba(4,26,55,0.16);
+    border: none;
+    margin-bottom: 30px;
+    -webkit-transition: all 0.3s ease-in-out;
+    transition: all 0.3s ease-in-out;
+}
+
+.card .card-block {
+    padding: 25px;
+}
+
+.order-card i {
+    font-size: 50px;
+}
+
+.f-left {
+    float: left;
+}
+
+.f-right {
+    float: right;
+}
+@media (min-width: 768px) and (max-width: 991.98px) {
+#content {
+    width: 68%;
+    padding-top:20px;
+    min-height: 100vh;
+    transition: all 0.3s;
+}
+}
+@media only screen and (max-width: 500px){
+#content {
+    width: 85%;
+    padding-top: 20px;
+    min-height: 100vh;
+    transition: all 0.3s;
+}
+.order-1{
+padding:0;
+}
+.container{
+padding:0;
+width: 100%;
+}
+.order_id{
+font-size: 13px;
+margin :0;
+}
+}
+</style>
+<script>
+    $(document).ready(function () {
+            $('#sidebarCollapse').on('click', function () {
+                $('#sidebar').toggleClass('active');
+            });
+        });
+</script>
+<section id="centers" class="top bg-gray centers" style="margin-top:0;">
+   <div class="wrapper">
+        <!-- Sidebar  -->
+        <nav id="sidebar">
+            <div class="sidebar-header d-none  d-lg-block d-lg-block">
+                <h4 style="color:white; text-transform: uppercase;">{{request.user.first_name}} {{request.user.last_name}}</h4>
+
+            </div>
+
+            <ul class="list-unstyled components d-none  d-md-block d-lg-block">
+                <li>
+                    <a href="/user-dashboard/"><i class="fa fa-dashboard" style="font-size: 26px;"></i>Dashboard</a>
+
+                </li>
+                <li>
+                    <a href="/profile/"><i class="fa fa-user" style="font-size: 26px;"></i>Profile</a>
+                </li>
+                <li class="active">
+                    <a href="/myOrder/"> <i class="fa fa-shopping-bag" style="font-size: 26px;"></i>My Order</a>
+                </li>
+                <li>
+                    <a href="/Booked-room/"><i class="fa fa-hotel" style="font-size: 26px;"></i> Booked&nbsp;Stay</a>
+                </li>
+                <li>
+                    <a href="/change-password/"> <i class="fa fa-key" style="font-size: 26px;"></i>Change&nbsp;Password</a>
+                </li>
+<!--                 <li>-->
+<!--                    <a href="/refund-form/"> <i class="fa fa-money" style="font-size: 26px;"></i>Refund&nbsp;Form</a>-->
+<!--                </li>-->
+                <li>
+                    <a href="/logout/"><i class="fa fa-sign-out" style="font-size: 26px;"></i>Logout</a>
+                </li>
+            </ul>
+            <ul class="list-unstyled components  d-sm-block d-md-none">
+                <li>
+                    <a href="/user-dashboard/"><i class="fa fa-dashboard" style="font-size: 26px;"></i><span style="font-size: 8px;">Dashboard</span></a>
+
+                </li>
+                <li>
+                    <a href="/profile/"><i class="fa fa-user" style="font-size: 26px;"></i><span style="font-size: 8px;">Profile</span></a>
+                </li>
+                <li class="active">
+                    <a href="/myOrder/"> <i class="fa fa-shopping-bag" style="font-size: 26px;"></i><span style="font-size: 8px;">My Order</span></a>
+                </li>
+                <li>
+                    <a href="/Booked-room/"><i class="fa fa-hotel" style="font-size: 26px;"></i><span style="font-size: 8px;">Booked&nbsp;Stay</span></a>
+                </li>
+                <li>
+                    <a href="/change-password/"> <i class="fa fa-key" style="font-size: 26px;"></i><span style="font-size: 8px;">Change&nbsp;Pass</span></a>
+                </li>
+<!--                <li>-->
+<!--                    <a href="/refund-form/"> <i class="fa fa-money" style="font-size: 26px;"></i><span style="font-size: 8px;">Refund&nbsp;Form</span></a>-->
+<!--                </li>-->
+                <li>
+                    <a href="/logout/"><i class="fa fa-sign-out" style="font-size: 26px;"></i><span style="font-size: 8px;">Logout</span></a>
+                </li>
+            </ul>
+
+
+        </nav>
+
+        <!-- Page Content  -->
+        <div id="content" style="height: 600px;
+    overflow-y: auto;">
+
+            <nav class="navbar1 navbar-expand-lg navbar-light bg-light d-none d-none d-lg-block">
+                <div class="container-fluid ">
+
+                    <button type="button" id="sidebarCollapse" class="btn" style="padding:0; cursor: pointer;">
+                        <i class="fa fa-align-left"></i>
+                    </button>
+                </div>
+            </nav>
+<div class="container">
+
+  <div id="one" class="tab-pane animated fadeInRight active show ">
+                <!--                    style="overflow-y: scroll; height:400px;"-->
+                {% if order_obj%}
+                {% for order in order_obj%}
+                <div class="col-lg-12 col-md-12 col-sm-12 col-12 order-1">
+                    <div class="card">
+                        <div class="card-header" style="background-color:white;">
+                            <div class="row">
+                                <h6 class="ml-4 order_id">Order ID : ORD/{{order.order_Id}}</h6>
+                                <h6 class="ml-4">Place Date : {{order.Date_of_payment|date:"d M, Y"}}</h6>
+                            </div> <div class="float-right">
+                                    <a href="/order-details/{{order.order_Id}}/" class="btn btn-info" style="color:white; border-radius:30px; cursor:pointer;">
+                                            View Details</a>
+                                </div>
+                        </div>
+                        <div class="card-body">
+                            <div class="row ml-2">
+                                <div class="col-md-8">
+                                    <div class="row">
+                                        <div class="col-lg-6 col-md-6 col-sm-6 col-6">
+                                            <p class="m-0" style="margin-left:70px;">Paid Amount :  <b>₹ {{order.amount_initiated}}</b></p></div>
+                                        <div class="col-lg-6 col-md-6 col-sm-6 col-6">
+                                        <p class="mt-0">Payment Mode :  <b>{{order.payment_mode}}</b></p>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-lg-6 col-md-6 col-sm-6 col-6">
+                                        <p class="mt-0">Invoice No : <b> AMT/EC/2122/{{order.Invoice_number}}</b></p></div>
+                                        {%  if order.tracking_id %}
+                                        <div class="col-lg-6 col-md-6 col-sm-6 col-6">
+                                        <p class="mt-0">Tracking Id : <b>{{order.tracking_id}}</b></p></div>
+                                        {% endif %}
+                                    </div>
+                                     <div class="row px-3">
+            <div class="col">
+                {% if order.order_status == '1' or order.order_status == '2'%}
+                <ul id="progressbar">
+                    <li class="step0 active " id="step1">PLACED</li>
+                    <li class="step0 text-muted text-center" id="step2">SHIPPED</li>
+                    <li class="step0 text-muted text-right" id="step3">DELIVERED</li>
+                </ul>
+                {% elif order.order_status == '3' %}
+                 <ul id="progressbar">
+                    <li class="step0 active " id="step1">PLACED</li>
+                    <li class="step0 active text-center" id="step2">SHIPPED</li>
+                    <li class="step0 text-muted text-right" id="step3">DELIVERED</li>
+                </ul>
+                {%else%}
+                <ul id="progressbar">
+                    <li class="step0 active " id="step1">PLACED</li>
+                    <li class="step0 active text-center" id="step2">SHIPPED</li>
+                    <li class="step0 active text-right" id="step3">DELIVERED</li>
+                </ul>
+                {%endif%}
+            </div>
+        </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <h6>Shipping Address</h6>
+                                    <p class="m-0">{{order.address.fullname}}</p>
+                                    <p class="m-0">{{order.address.mobile}}</p>
+                                    <p class="m-0">{{order.address.address1}}</p>
+                                     <p class="m-0">{{order.address.address2}}, {{order.address.landmark}}</p>
+                                    <p class="m-0">{{order.address.city}},{{order.address.pincode}},{{order.address.state}},{{order.address.country}}</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    {% if product_details.count == 0 %}
+                    <br><br>
+                    <div class="text-center">
+                        <h5>No Items Available in your cart. Please add Product</h5>
+                    </div>
+                    <br><br>
+                    {%endif%}
+
+                </div><br>
+                {%endfor%}
+                {%else%}
+                          <div class="col-lg-12 col-md-12 col-sm-12 col-12">
+                        <div class="Card text-center">
+                            <div class="card-body">
+                                <h5>Sorry No Order available ....</h5>
+                                <h4 style="font-family: 'Oregano', cursive;">  Order Product &nbsp;<a href="/products/" class="btn btn-primary white-text">Click Here</a></h4>
+                            </div>
+                        </div>
+                          </div>
+                {%endif%}
+
+            </div>
+</div>
+</div>
+</div>
+</section>
+
+
+
+
+{% endblock%}

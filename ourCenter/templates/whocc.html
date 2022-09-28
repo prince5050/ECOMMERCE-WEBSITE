@@ -1,0 +1,130 @@
+{% extends 'index.html' %}
+{%block title%}WHO Collaborating Centre for HealthTech Innovation in India{% endblock %}
+{% block meta_description%}
+<meta name="description" content="WHO Collaborating Centre for Health Innovations in order to promote global health care of medical technology and healthtech devices manufacturing in India">
+ {% endblock %}
+{%block content%}
+{% load static %}
+{% load custom_tags %}
+<style>
+.vert-move {
+    -webkit-animation: mover 1s infinite  alternate;
+    animation: mover 1s infinite  alternate;
+}
+.vert-move {
+    -webkit-animation: mover 1s infinite  alternate;
+    animation: mover 1s infinite  alternate;
+}
+@-webkit-keyframes mover {
+    0% { transform: translateY(0); }
+    100% { transform: translateY(-10px); }
+}
+@keyframes mover {
+    0% { transform: translateY(0); }
+    100% { transform: translateY(-10px); }
+}
+
+</style>
+<section class="single-page-title-area" data-background="{%static 'img/bg/AMTZ Campus.jpg'%}">
+		<div class="auto-container">
+			<div class="row">
+				<div class="col-lg-8 col-md-8 col-sm-12 col-12">
+					<div class="single-page-title">
+						<h6>AMTZ</h6>
+						<span></span>
+						<h2>WHO Collaborating Centre</h2>
+					</div>
+				</div>
+                
+				<div class="col-lg-4 col-md-4 col-sm-12 col-12">
+					<ol class="breadcrumb">
+					  <li class="breadcrumb-item"><a href="/our-centers/">Our-Centers</a></li>
+					  <li class="breadcrumb-item active">WHO Collaborating Centre</li>
+					</ol>
+				</div>
+			</div>
+			<!-- end row-->
+		</div>
+</section>
+<!-- <section id="centers" class="section-padding top bg-gray centers">-->
+<!--		<div class="container">-->
+<!--				<div id="tabsJustifiedContent" class="tab-content">-->
+<!--                        <div id="one" class="tab-pane animated fadeInRight active show">-->
+<!--							<div class="row">-->
+<!--								{% for center in centers %}-->
+<!--								<div class="col-lg-4 col-md-4 col-sm-12 col-12 text-center" style="max-height:50%">-->
+<!--									<div class="single-service"style="min-height: 550px;">-->
+<!--										<div class="single-service-img">-->
+<!--											{% if center.center_image%}-->
+<!--											<img class="img-fluid" src="{{center.center_image.url}}" alt="" />-->
+<!--											{% endif %}-->
+<!--										</div>-->
+<!--										<div class="single-service-info">-->
+<!--											<h6></h6>-->
+<!--											<h4>{{center.center_title}}</h4>-->
+<!--											<p>{{center.center_description}}</p>-->
+<!--											<a class="serv-red-btn" href="/centerDetails/?youtubekey={{center.pk}}">Know More</a>-->
+<!--										</div>-->
+<!--									</div>-->
+<!--								</div>-->
+<!--								{% endfor %}-->
+<!--							</div>-->
+<!--                        </div>-->
+<!--				</div>-->
+<!--		</div>-->
+<!-- </section>-->
+
+<section id="team" class="section-padding team-page">
+	<div class="container">
+		<div class="row">
+			<h5 class="widget-title vert-move">WHO Collaborating Centre for Health Innovation
+			</h5>
+		</div>
+		<div>
+			<h6>
+				Preamble:
+			</h6>
+			<p style="color:black">
+				Kalam Institute of Health Technology (KIHT), the members of the WHO Collaborating Centre,
+	in order to promote and encourage global health innovations and scaling of technologies.
+			</p><br>
+			<h6>
+				Terms of Reference:
+			</h6>
+			<p style="color:black">
+				1. To support WHO’s work on the development and standardization of need assessment
+framework for health innovation
+			</p>
+			<p style="color:black">
+				2. To support WHO’s work on the development of interactive platforms and applications for
+knowledge exchange on health care innovators and strategies for strengthening local
+manufacturing of health innovations.
+			</p>
+			<p style="color:black">
+				3. To support WHO’s work on the incubation &amp; scaling of innovations.
+			</p><br>
+			<h6>
+				Subjects:
+			</h6>
+			<p style="color:black">
+				1. Health Technology (including laboratory services; but excluding blood safety).
+			</p>
+			<p style="color:black">
+				2. Health systems research &amp; development.
+			</p>
+			<p style="color:black">
+				3. Research policy &amp; development
+			</p><br>
+			<h6>
+				Types of activity:
+			</h6>
+			<p style="color:black">1. Providing technical advice to WHO</p>
+			<p style="color:black">2. Product development (guidelines; manual; methodologies; etc.)</p>
+			<p style="color:black">3. Support WHO in the implementation of WHO programmes and activities at country level</p>
+		</div>
+	</div>
+</section>
+{%endblock%}
+
+
+

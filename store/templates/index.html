@@ -1,0 +1,862 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="zxx">
+
+
+<head>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}{% endblock %}</title>
+    {% block meta_description%}
+    {% endblock %}
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <link rel="shortcut icon" type="image/x-icon" href="{% static 'img/logo/logo.png'%}">
+    <!-- Bootstrap core CSS -->
+    <link href="{% static 'bootstrap/css/bootstrap.min.css'%}" rel="stylesheet">
+    <!-- Google Font  -->
+    <link
+            href="https://fonts.googleapis.com/css?family=Montserrat:400,400i,500,500i,600,600i,700,700i|Roboto:400,400i,500,500i,700,700i"
+            rel="stylesheet">
+    <!-- flaticon icon -->
+    <link rel="stylesheet" href="{% static 'fonts/icon-font.min.css'%}">
+    <!-- icofont icon -->
+    <link rel="stylesheet" href="{% static 'fonts/icofont.css'%}">
+    <!--- meanmenu Css-->
+    <link rel="stylesheet" href="{% static 'css/meanmenu.min.css'%}" media="all"/>
+    <!-- animate CSS -->
+    <link rel="stylesheet" href="{% static 'css/animate.css'%}">
+    <!-- prettyphoto -->
+    <link rel="stylesheet" href="{% static 'prettyphoto/css/prettyPhoto.css'%}"/>
+    <!--- owl carousel Css-->
+    <link rel="stylesheet" href="{% static 'owlcarousel/css/owl.carousel.min.css'%}">
+    <link rel="stylesheet" href="{% static 'owlcarousel/css/owl.theme.default.min.css'%}">
+    <!-- Style CSS -->
+    <link rel="stylesheet" href="{% static 'css/style.css'%}">
+    <!-- Responsive  CSS -->
+    <link rel="stylesheet" href="{% static 'css/responsive.css'%}">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+	<script src="{% static 'js/newrelic.js' %}"></script>
+
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-C8JT3BPJFB"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-C8JT3BPJFB');
+</script>
+<!--Leadfeeder Tracker script-->
+<script> (function(ss,ex){ window.ldfdr=window.ldfdr||function(){(ldfdr._q=ldfdr._q||[]).push([].slice.call(arguments));}; (function(d,s){ fs=d.getElementsByTagName(s)[0]; function ce(src){ var cs=d.createElement(s); cs.src=src; cs.async=1; fs.parentNode.insertBefore(cs,fs); }; ce('https://sc.lfeeder.com/lftracker_v1_'+ss+(ex?'_'+ex:'')+'.js'); })(document,'script'); })('DzLR5a53mNW7BoQ2'); </script>
+
+    <script> // $( document ).ready(function() {$("html").on("contextmenu",function(){return false;});}); </script>
+
+</head>
+<style>
+    .dropdown-toggle::after {
+    display:none;
+}
+</style>
+<!--Tender Marquee Style-->
+<style>
+    body{background: #eee}.news{width: 160px}.news-scroll a{text-decoration: none}.dot{height: 6px;width: 6px;margin-left: 3px;margin-right: 3px;margin-top: 2px !important;background-color: rgb(207,23,23);border-radius: 50%;display: inline-block}
+</style>
+<body id="scrollView">
+{%block header%}
+<header class="main-header header-1">
+
+    <!-- START PRELOADER -->
+    <div id="page-preloader">
+        <div class="preload-tetrominos">
+            <div class="preload-tetromino preload-box1"></div>
+            <div class="preload-tetromino preload-box2"></div>
+            <div class="preload-tetromino preload-box3"></div>
+            <div class="preload-tetromino preload-box4"></div>
+        </div>
+    </div>
+    <!-- END PRELOADER -->
+
+    <!-- START TOP AREA -->
+
+    <div class="top-area">
+        <div class="auto-container">
+            <div class="row">
+                <div class="col-lg-2 col-md-2 col-sm-12">
+                    <a href="/index/"><img class="logotop" src="{% static 'img/logo/logo.png' %}" alt="Andhra Pradesh MedTech Zone Ltd"/></a>
+                </div>
+                <div class="col-lg-6 col-md-10 col-sm-6 mt-2">
+                    <p class="awesome">ANDHRA PRADESH MEDTECH ZONE LTD</p>
+                    <p class="awesometwo">Ultra Modern Medical Equipment Manufacturing and Research hub welcoming
+                        Manufacturers & Innovators.</p>
+
+                </div>
+                <div class="col-lg-2 logohide">
+                    <div class="contactus" style="font-family: 'Montserrat';">
+                        <a href="https://mail.google.com/mail/?view=cm&fs=1&to=info@amtz.in" target="_blank"><i class="lnr lnr-envelope"></i> <strong>Email Us:</strong> info@amtz.in</a><br>
+                        <p style="color:black"><i class="lnr lnr-phone "></i> <strong>Call Us:</strong> +91 8885092122</p>
+                    </div>
+
+
+                </div>
+                <div class="col-lg-2 logohide">
+
+                    <img class="logotop" src=" {% static 'img/logo/make_in.png' %}">
+                    {%if cart_count%}
+                    <span class="fa-stack1 fa-2x" data-count="{{cart_count}}">
+                <a href="/cart/">
+                <i class="fa fa-shopping-cart" style="font-size:36px; color:black; width: 0;"></i></a>
+                </span>
+                    {%else%}
+                <a href="/cart/">
+                <i class="fa fa-shopping-cart" style="font-size:36px; color:black"></i></a>
+                </span>
+                    {%endif%}
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+            <div class="d-flex justify-content-between align-items-center breaking-news" style="background:#2f4e12;">
+                <div class="d-flex flex-row flex-grow-1 flex-fill justify-content-center bg-danger py-2 text-white px-1 news"><span class="d-flex align-items-center">&nbsp;Tenders News</span></div>
+                <marquee class="news-scroll" behavior="scroll" direction="left" onmouseover="this.stop();" onmouseout="this.start();">
+                  <h5 style="color:white;font-family:bold">Tenders....................</h5>
+<!--                    <a href="#">Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. </a> <span class="dot"></span>-->
+                </marquee>
+            </div>
+        </div>
+
+    <!-- END TOP AREA -->
+
+
+    <!-- START NAVIGATION AREA -->
+    <div class="sticky-menu">
+        <div class="mainmenu-area">
+            <div class="auto-container">
+                <div class="row menu-bar">
+                    <div class="col col-lg-12 d-none d-lg-block d-md-none nav-bar">
+                        <nav class="navbar navbar-expand-lg justify-content-center">
+<!--                            <li class="dropdown"><a style="color:white" href="#" class="sub-list"><i-->
+<!--                                    class="fa fa-user-circle-o" aria-hidden="true"></i></a>-->
+<!--                                <ul class="dropdown-menu">-->
+<!--                                    {% if request.user.id%}-->
+<!--                                    <li><a class="sub-list" style="font-size:20px"><b>{{request.user.first_name}} {{request.user.last_name}}</b>-->
+<!--                                    </a></li>-->
+<!--                                    {%else%}-->
+<!--                                    <li><a href="/signup/" class="sub-list"><i style="font-size:20px"-->
+<!--                                                                               class="fa fa-user-plus"></i>Sign Up</a>-->
+<!--                                    </li>-->
+<!--                                    <li><a href="/login/" class="sub-list"><i style="font-size:20px"-->
+<!--                                                                              class="fa fa-sign-in"-->
+<!--                                                                              aria-hidden="true"></i>Login</a></li>-->
+<!--                                    {%endif%}-->
+<!--                                    {% if request.user.id %}-->
+<!--                                    <li><a href="/user-dashboard/" class="sub-list"><i style="font-size:20px"-->
+<!--                                                                                class="fa fa-dashboard"-->
+<!--                                                                                aria-hidden="true"></i>Dashboard</a></li>-->
+<!--                                    <li><a href="/profile/" class="sub-list"><i style="font-size:20px"-->
+<!--                                                                                class="fa fa-user"-->
+<!--                                                                                aria-hidden="true"></i>Profile</a></li>-->
+<!--                                    <li><a href="/myOrder/" class="sub-list"><i style="font-size:20px"-->
+<!--                                                                                class="fa fa-shopping-bag"-->
+<!--                                                                                aria-hidden="true"></i>My Order</a></li>-->
+<!--                                    <li><a href="/Booked-room/" class="sub-list"><i style="font-size:20px"-->
+<!--                                                                                  class='fa fa-hotel'></i>Booked Villa</a></li>-->
+
+<!--                                    <li><a href="/change_password/" class="sub-list"><i style="font-size:20px"-->
+<!--                                                                                        class="fa fa fa-key"-->
+<!--                                                                                        aria-hidden="true"></i>Change-->
+<!--                                        Password</a></li>-->
+<!--                                    <li><a href="/logout/" class="sub-list"><i style="font-size:20px"-->
+<!--                                                                               class="fa fa-sign-out"-->
+<!--                                                                               aria-hidden="true"></i>Log Out</a></li>-->
+<!--                                    {% endif %}-->
+<!--                                </ul>-->
+<!--                            </li>-->
+                            <ul class="navbar-nav custom_nav ">
+                                <li><a href="/index/" class="nav-link">Home</a></li>
+                                 <li class="dropdown"><a href="#" class="nav-link">Our&nbsp;Centers</a>
+                                    <ul class="dropdown-menu sub-list">
+                                        <li><a href="/our-centers/who-collaborating-centre-for-health-innovation/" style="line-height: 2.42857;" class="sub-list">WHOCC</a></li>
+                                       <li><a href="/our-centers/" style="line-height: 2.42857;" class="sub-list">Common scientific Facilities</a></li>
+
+                                    </ul>
+                                        </li>
+<!--                                <li><a class="nav-link" href="/our-centers/">Our&nbsp;Centers</a></li>-->
+                                <li><a class="nav-link" href="/our-hubs/">Our&nbsp;Hubs</a></li>
+                                <li><a class="nav-link" href="/services/">Services</a></li>
+                                <li><a class="nav-link" href="/products/">Products</a></li>
+                                <li><a class="nav-link" href="/room-search/">Book&nbsp;Your&nbsp;Stay</a></li>
+                                <li><a class="nav-link" href="/tenders/">Tenders</a></li>
+                                <li><a class="nav-link" href="/partners/">Partners</a></li>
+                                <li class="dropdown"><a href="#" class="nav-link">Events</a>
+                                    <ul class="dropdown-menu sub-list">
+                                        <!--                                         <li><a href="/past-events/" class="sub-list">Past Events</a></li>-->
+                                        <!--                                        <li><a href="/current-events/" class="sub-list">Current Events</a></li>-->
+                                        {% for year in event_year%}
+                                        <li><a href="/past-events/{{year.pk}}/" class="sub-list"> Past Events {{year.pk}}</a></li>
+                                        {% endfor %}
+                                        <li><a href="/upcoming-events/" class="sub-list">upcoming Events</a></li>
+                                        <li class="dropdown" class="sub-list"><a href="#">Innovation call</a>
+                                            <ul class="dropdown-menu sub-list">
+                                                 <li><a href="/biovalley-innovation-call-2022-Q3-for-biosensor-applications-artificial-intelligence-machine-learning-biotech-and-medtech-incubation-centre-in-healthtech-India/" class="sub-list">
+                                                     Biovalley Innovation Call 2022 - Q3
+                                                   </a></li>
+                                                <li style="width: 238px;"><a href="/3d-bio-printing-innovation-call/" class="sub-list">
+                                                    3D Bio-Printing Innovation Call </a></li>
+                                                <li><a href="/elderly-care-information-innovation-call/" class="sub-list">Elederly Care
+                                                    Information call</a></li>
+                                                <li><a href="/women-health-care-innovation-call/" class="sub-list">Women's Health
+                                                    care start's up FemTech</a></li>
+
+                                            </ul>
+                                        </li>
+                                        <li><a href="https://www.bis.gov.in/" target="_blank"
+                                               class="sub-list">BIS Talks</a></li>
+                                        <li>
+                                            <a href="https://www.tenderwizard.com/ROOTAPP/Mobility/index.html?dc=enccXXf5Old2HlAyefIWrQQQg==#/home"
+                                               class="sub-list" target="_blank">KIHT Tech Transfer e-Auction</a>
+                                        </li>
+                                    </ul>
+                                </li>
+                                <li class="dropdown"><a href="#" class="nav-link">Information</a>
+                                    <ul class="dropdown-menu sub-list">
+                                        <li><a href="{%static 'img/pdf/medical-laboratory-technology-industry-in-India-AMTZ-life-sciences-health-care-LSHC-Broucher.pdf'%}" class="sub-list"
+                                               target="_blank">Brochures</a></li>
+                                        <li><a href="/amtz-schemes/" class="sub-list">Schemes</a></li>
+                                        <li><a href="/RTI/" class="sub-list">Right to Information</a></li>
+                                        <li class="dropdown" class="sub-list"><a href="#">Recruitment</a>
+                                            <ul class="dropdown-menu">
+                                                <li><a href="/latest-notification/" class="sub-list">Latest
+                                                    Notification</a></li>
+                                                <li><a href="/internship-application-form/" class="sub-list">InternShip Application
+                                                    Form</a></li>
+                                            </ul>
+                                        </li>
+
+                                        <li class="dropdown"><a href="#" class="sub-list">WHO</a>
+                                            <ul class="dropdown-menu">
+                                                <li><a href="/who-pre-qualification-cell/" class="sub-list">Pre Qualification
+                                                    Cell</a></li>
+                                            </ul>
+                                        </li>
+                                        <!--                                          <li class="dropdown" class="sub-list"><a href="/training/">Training Program</a>-->
+                                        <!--                                            <ul class="dropdown-menu">-->
+                                        <!--                                                <li><a href="/skill-lync/" class="sub-list">SKILL LYNC</a></li>-->
+                                        <!--                                            </ul>-->
+                                        <!--                                        </li>-->
+                                        <li><a class="sub-list" href="/amtz-training-program/">Training Program</a></li>
+                                        <li class="dropdown"><a href="#" class="sub-list">Publications</a>
+                                            <ul class="dropdown-menu">
+                                                <li><a href="/dossiers/" class="sub-list">Dossiers</a></li>
+                                                <li><a href="/market-intelligence-and-trade-data/" class="sub-list">MARKET INTELLIGENCE
+                                                    & TRADE DATA</a></li>
+                                                <li><a href="/intellectual-property-publication/" class="sub-list">INTELLECTUAL
+                                                    PROPERTY PUBLICATION</a></li>
+                                            </ul>
+                                        </li>
+                                        <li><a href="/distributor-empanelment-form/" class="sub-list">Distributor Empanelment
+                                            Form</a></li>
+                                    </ul>
+                                </li>
+                                <li class="dropdown"><a href="#" class="nav-link">Media</a>
+                                    <ul class="dropdown-menu sub-list">
+                                        <li><a href="/news/"  class="sub-list">News</a></li>
+                                        <li><a href="/amtz-videos/"  class="sub-list">Our Videos</a></li>
+                                    </ul>
+                                        </li>
+<!--                                <li><a href="/news/" class="nav-link">News</a></li>-->
+                                <li><a href="/contact-us/" class="nav-link">ContactUs</a></li>
+                                <!--                                <li><a style="pointer-events: none;" href="/contact/"><i class="fa fa-user-circle-o" aria-hidden="true"></i></a></li>-->
+
+                            </ul>
+                            <li class="dropdown">
+                                {% if request.user.id%}
+                                <a style="color:white; color: #fff; font-weight: 600; padding: 14px 16px;font-family: 'Montserrat';" href="#" class="sub-list"> My&nbsp;Account</a>
+                                {%else%}
+                                 <a style="color:white;font-weight: 600; line-height:0;" href="/login/" class="sub-list row"><i class="fa fa-lock ml-2"
+                                          style="font-size: 25px;width: 30px; height: 30px; text-align: center;text-decoration: none;
+                                    padding-top: 3px;
+                                    margin: 2px 2px;"
+                                        aria-hidden="true"></i><p style="line-height: 36px;">Login</p></a>
+                                {% endif %}
+                                <ul class="dropdown-menu"style="left: -160px;">
+                                    {% if request.user.id %}
+                                    <li><a href="/user-dashboard/" class="sub-list"><i style="font-size:20px"
+                                                                                class="fa fa-dashboard"
+                                                                                aria-hidden="true"></i>Dashboard</a></li>
+                                    <li><a href="/profile/" class="sub-list"><i style="font-size:20px"
+                                                                                class="fa fa-user"
+                                                                                aria-hidden="true"></i>Profile</a></li>
+                                    <li><a href="/myOrder/" class="sub-list"><i style="font-size:20px"
+                                                                                class="fa fa-shopping-bag"
+                                                                                aria-hidden="true"></i>My Order</a></li>
+                                    <li><a href="/Booked-room/" class="sub-list"><i style="font-size:20px"
+                                                                                  class='fa fa-hotel'></i>Booked Villa</a></li>
+
+                                    <li><a href="/change-password/" class="sub-list"><i style="font-size:20px"
+                                                                                        class="fa fa fa-key"
+                                                                                        aria-hidden="true"></i>Change
+                                        Password</a></li>
+                                    <li><a href="/logout/" class="sub-list"><i style="font-size:20px"
+                                                                               class="fa fa-sign-out"
+                                                                               aria-hidden="true"></i>Log Out</a></li>
+                                    {% endif %}
+                                </ul>
+                            </li>
+                        </nav>
+                    </div>
+
+                </div>
+            </div>
+            <!--- END CONTAINER -->
+        </div>
+        <!-- END NAVIGATION AREA -->
+
+        <!-- MOBILE-MENU-AREA START -->
+        <div class="mobile-menu-area d-block d-lg-none d-md-block">
+            <div class="col-md-7">
+                <div class="mobile-menu">
+                    <nav id="dropdown">
+                        <ul class="navbar-nav">
+                            <li><a href="/index/">Home</a></li>
+                            <li><a href="#">Our Centers</a>
+                                <ul>
+                                    <li><a href="/our-centers/who-collaborating-centre-for-health-innovation/" class="sub-list">WHOCC</a></li>
+                                     <li><a href="/our-centers/" class="sub-list">Common scientific Facilities</a></li>
+                                </ul>
+                            </li>
+<!--                            <li><a href="/our-centers/">Our Centers</a></li>-->
+                            <li><a href="/our-hubs/">Our Hubs</a></li>
+                            <li><a href="/services/">Services</a></li>
+                            <li><a href="/products/"> Our Products</a></li>
+                            <li><a href="/cart/">Cart</a></li>
+                            <li><a href="/room-search/">Book Your Stay</a></li>
+                            <li><a href="/tenders/">Tenders</a></li>
+                            <li><a href="/partners/">Partners</a></li>
+                            <li><a href="#">My Account</a>
+                                <ul>
+                                    {% if request.user.id %}
+                                    <li><a href="/user-dashboard/" class="sub-list"><i style="font-size:20px" class="fa fa-dashboard"
+                                                               aria-hidden="true"></i>Dashboard</a></li>
+                                     <li><a href="/profile/" class="sub-list"><i style="font-size:20px" class="fa fa-user"
+                                                               aria-hidden="true"></i>Profile</a></li>
+                                    <li><a href="/myOrder/" class="sub-list"><i style="font-size:20px" class="fa fa-shopping-bag"
+                                                               aria-hidden="true"></i>My Order</a></li>
+                                    <li><a href="/Booked-room/" class="sub-list"><i style="font-size:20px" class='fa fa-hotel'></i>Booked Villa</a></li>
+
+                                    <li><a href="/change_password/" class="sub-list"><i style="font-size:20px" class="fa fa fa-key"
+                                                                       aria-hidden="true"></i>Change Password</a></li>
+                                    <li><a href="/logout/" class="sub-list"><i style="font-size:20px" class="fa fa-sign-out"
+                                                              aria-hidden="true"></i>Log Out</a></li>
+                                    {%else%}
+                                    <li><a href="/signup/" class="sub-list"><i style="font-size:20px" class="fa fa-user-plus"></i>Sign Up</a>
+                                    </li>
+                                    <li><a href="/login/" class="sub-list"><i style="font-size:20px" class="fa fa-sign-in"
+                                                             aria-hidden="true"></i>Login</a></li>
+
+                                {% endif %}
+                                </ul>
+                            </li>
+                            <li><a href="#">Events</a>
+                                <ul>
+                                    <!-- <li><a href="/past-events/" class="sub-list">Past events</a></li>
+                                    <li><a href="/current-events/" class="sub-list">Current event</a></li> -->
+                                    <li><a href="/upcoming-events/" class="sub-list">upcoming event</a></li>
+                                    <li><a href="#">Innovation Call</a>
+                                        <ul>
+                                            <li><a href="/biovalley-innovation-call-2022-Q3-for-biosensor-applications-artificial-intelligence-machine-learning-biotech-and-medtech-incubation-centre-in-healthtech-India/" class="sub-list">
+                                                     Biovalley Innovation Call 2022 - Q3
+                                                   </a></li>
+                                            <li><a href="/3d-bio-printing-innovation-call/" class="sub-list">
+                                                  3D Bio-Printing Innovation Call FemTech</a></li>
+                                            <li><a href="/elderly-care-information-innovation-call/" class="sub-list">Elderly Care
+                                                Information
+                                                call</a></li>
+                                            <li><a href="/women-health-care-innovation-call/" class="sub-list">Women's Health care
+                                                start's up
+                                                FemTech</a></li>
+
+                                        </ul>
+                                    </li>
+                                    <li><a href="https://www.bis.gov.in/" target="_blank"
+                                           class="sub-list">BIS Talks</a></li>
+                                    <li>
+                                        <a href="https://www.tenderwizard.com/ROOTAPP/Mobility/index.html?dc=enccXXf5Old2HlAyefIWrQQQg==#/home"
+                                           class="sub-list" target="_blank">KIHT Tech Transfer e-Auction</a></li>
+                                </ul>
+                            </li>
+                            <li><a href="#">Information</a>
+                                <ul>
+                                    <li><a href="{%static 'img/pdf/medical-laboratory-technology-industry-in-India-AMTZ-life-sciences-health-care-LSHC-Broucher.pdf'%}"
+                                           target="_blank">Brochures</a></li>
+                                    <li><a href="#">Recruitment</a>
+                                        <ul>
+                                            <li><a href="/latest-notification/" class="sub-list">Latest
+                                                Notification</a></li>
+                                            <li><a href="/internship-application-form/" class="sub-list">InternShip Application
+                                                Form</a></li>
+                                        </ul>
+                                    </li>
+                                    <!--                                    <li><a href="/training/">Training Program</a>-->
+                                    <!--                                            <ul>-->
+                                    <!--                                                <li><a href="/skill-lync/" class="sub-list">SKILL LYNC</a></li>-->
+                                    <!--                                            </ul>-->
+                                    <!--                                        </li>-->
+                                    <li><a href="/amtz-training-program/">Training Program</a></li>
+                                    <li><a href="#" class="sub-list">WHO</a>
+                                        <ul>
+                                            <li><a href="/who-pre-qualification-cell/" class="sub-list">Pre Qualification
+                                                Cell</a></li>
+                                        </ul>
+                                    </li>
+                                    <li><a href="#" class="sub-list">Publications</a>
+                                        <ul>
+                                            <li><a href="/dossiers/" class="sub-list">Dossiers</a></li>
+                                            <li><a href="/market-intelligence-and-trade-data/" class="sub-list">MARKET INTELLIGENCE &
+                                                TRADE DATA</a></li>
+                                            <li><a href="/intellectual-property-publication/" class="sub-list">INTELLECTUAL PROPERTY
+                                                PUBLICATIONHOME</a></li>
+                                        </ul>
+                                    </li>
+                                    <li><a href="/distributor-empanelment-form/" class="sub-list">Distributor Empanelment Form</a></li>
+                                    <li><a href="/amtz-schemes/" class="sub-list">Schemes</a></li>
+                                    <li><a href="/RTI/" class="sub-list">Right to Information</a></li>
+                                </ul>
+                            </li>
+                            <li><a href="/news/">News</a></li>
+                            <li><a href="/contact-us/">Contact Us</a></li>
+                        </ul>
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- MOBILE-MENU-AREA END -->
+</header>
+<!-- end header -->
+{% endblock %}
+{%block content%}{% endblock %}
+<!-- START FOOTER -->
+{%block footer%}
+<footer>
+    <!--Footer top -->
+    <div class="footer-top">
+        <div class="auto-container">
+            <div class="row">
+                <div class="col-lg-3 col-md-6 col-sm-12 col-12 footer-widget">
+                    <div class="footer-section-title col-sm-12 no-padding">
+                        <h5 class="text-white ">About us</h5>
+                    </div>
+                    <div class="about">
+                        <p>AMTZ was incorporated on 30th April 2016 and the foundation stone was laid on 19th August
+                            2016.</p>
+                    </div>
+                    <div class="row footer-social">
+                        <ul class="social-media">
+                            <li><a href="https://www.facebook.com/amtzltd/" target="_blank"><i
+                                    class="fa fa-facebook fa-xs"></i></a></li>
+                            <li><a href="https://twitter.com/ap_medtechzone" target="_blank"><i
+                                    class="fa fa-twitter fa-xs"></i></a></li>
+                            <li><a href="https://in.linkedin.com/company/amtz-ltd" target="_blank"><i
+                                    class="fa fa-linkedin fa-xs"></i></a></li>
+                            <!--<li><a href="#"><i class="fa fa-instagram fa-xs"></i> </li>-->
+                        </ul>
+
+
+                    </div>
+
+                </div>
+
+
+                <!-- End Widget -->
+                <div class="col-lg-2 col-md-6 col-sm-12 col-12 footer-widget">
+                    <div class="footer-section-title col-sm-12 no-padding">
+                        <h5 class="text-white ">Site Map</h5>
+                    </div>
+                    <!-- END SECTION TITLE -->
+                    <ul class="quick-link-list">
+                        <li><a href="/index/"><i class="icofont icofont-thin-right"></i> Home</a></li>
+                        <li><a href="/partners/"><i class="icofont icofont-thin-right"></i> Partners</a></li>
+                        <li><a href="/tenders/"><i class="icofont icofont-thin-right"></i> Tenders</a></li>
+                        <li><a href="/products/"><i class="icofont icofont-thin-right"></i> Products</a></li>
+                        <li><a href="/room-search/"><i class="icofont icofont-thin-right"></i>Book Villa</a></li>
+                        <li><a href="/latest-notification/"><i
+                                class="icofont icofont-thin-right"></i>Recruitment</a></li>
+                        <li><a href="/contact-us/"><i class="icofont icofont-thin-right"></i> Contact-Us</a></li>
+                        <li><a href="/privacy-policy/"><i class="icofont icofont-thin-right"></i> Privacy & Policy</a></li>
+                        <li><a href="/terms-conditions/"><i class="icofont icofont-thin-right"></i> Terms &
+                            Conditions</a></li>
+                    </ul>
+                </div>
+                <!-- End Widget -->
+                <div class="col-lg-3 col-md-6 col-sm-12 col-12 footer-widget">
+                    <div class="footer-section-title col-sm-12 no-padding">
+                        <h5 class="text-white ">Our Organizations</h5>
+                    </div>
+                    <!-- END SECTION TITLE -->
+                    <ul class="quick-link-list">
+                        <li><a href="https://kiht.in/" target="_blank"><i
+                                class="icofont icofont-thin-right"></i>KIHT</a></li>
+                        <li><a href="https://biovalley-amtz.in/" target="_blank"><i
+                                class="icofont icofont-thin-right"></i>Biovalley-AMTZ</a></li>
+                        <li><a href="https://medivalley-aic.in/" target="_blank"><i
+                                class="icofont icofont-thin-right"></i>Medivalley-AMTZ</a></li>
+                        <li><a href="https://ibsc-amtz.in/" target="_blank"><i
+                                class="icofont icofont-thin-right"></i>IBSC-AMTZ</a></li>
+                        <li><a href="https://techola.kiht.in/" target="_blank"><i
+                                class="icofont icofont-thin-right"></i>Techola</a></li>
+                        <li><a href="https://o2home.amtz.in/" target="_blank"><i
+                                class="icofont icofont-thin-right"></i>O2Home</a></li>
+                    </ul>
+                </div>
+                <!-- End Widget -->
+                <div class="col-lg-4 col-md-6 col-sm-12 col-12 footer-widget">
+                    <div class="footer-section-title col-sm-12 no-padding">
+                        <h5 class="text-white ">Contact Info</h5>
+                    </div>
+                    <!-- END SECTION TITLE -->
+                    <ul class="contact-link-list">
+                        <li style="color:white"><i class="lnr lnr-map-marker"></i> <strong>OFFICE:</strong> AMTZ Campus,
+                            Pragati Maidan, VM Steel Project S.O, Visakhapatnam.PIN-530031. Andhra Pradesh -
+                            India.</li>
+                        <li><a href="https://mail.google.com/mail/?view=cm&fs=1&to=info@amtz.in" target="_blank" style="text-transform: lowercase; color:white" ><i class="lnr lnr-envelope "></i>
+                            <strong>Email Us:</strong> info@amtz.in</a></li>
+                        <li style="color:white"><i class="lnr lnr-phone "></i> <strong>Call Us:</strong> +91 8885092122
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- End Widget -->
+            </div>
+        </div>
+    </div>
+
+
+    <div class="copyright">
+        <div class="auto-container">
+            <div class="row">
+                <div class="col-lg-12 col-md-12 col-sm-12 col-12 text-center copyright-text">
+                    <p>Copyright ©
+                        <script>document.write(new Date().getFullYear());</script>
+                        <span style="color: #ffc300;">AMTZ</span> | All Rights
+                        Reserved
+                    </p>
+                    <p>Developed By @
+                        <span style="color: #ffc300;">IT Team</span>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</footer>
+<!-- END FOOTER -->
+</footer>
+<!-- END FOOTER -->
+{% endblock %}
+
+<!-- Latest jQuery -->
+<script src="{%static 'js/jquery-2.2.4.min.js'%}"></script>
+<script>
+		if (window.location.pathname === "/" | window.location.pathname === "/room-search/") {
+			$(document).ready(function () {
+				$(document).scrollTop(100);
+
+			});
+		}
+		//if (window.location.pathname === "/room-search/") {
+			//$(document).ready(function () {
+			//	$(document).scrollTop(500);
+
+		//	});
+		//}
+
+
+
+</script>
+<!-- popper js -->
+<script src="{%static 'bootstrap/js/popper.min.js'%}"></script>
+<!-- Latest compiled and minified Bootstrap -->
+<script src="{%static 'bootstrap/js/bootstrap.min.js'%}"></script>
+<!-- meanmenu min js  -->
+<script src="{%static 'js/jquery.meanmenu.min.js'%}"></script>
+<!-- Sticky JS -->
+<script src="{%static 'js/jquery.sticky.js'%}"></script>
+<!-- prettyphoto js -->
+<script src="{%static 'prettyphoto/js/jquery.prettyPhoto.js'%}"></script>
+<!-- venobox js -->
+<!--    <script src="{%static 'venobox/js/venobox.min.js'%}"></script>-->
+<!-- jquery mixitup js -->
+<!--    <script src="{%static 'js/jquery.mixitup.min.js'%}"></script>-->
+<!-- owl-carousel min js  -->
+<script src="{% static 'owlcarousel/js/owl.carousel.min.js'%}"></script>
+<!-- jquery appear js  -->
+<!--    <script src="{% static 'js/jquery.appear.js'%}"></script>-->
+<!-- countTo js -->
+<!--    <script src="{% static 'js/jquery.inview.min.js'%}"></script>-->
+<!-- scrolltopcontrol js -->
+<script src="{% static 'js/scrolltopcontrol.js'%}"></script>
+<!-- WOW - Reveal Animations When You Scroll -->
+<!--    <script src="{% static 'js/wow.min.js'%}"></script>-->
+<!-- scripts js -->
+<script src="{% static 'js/scripts.js'%}"></script>
+<script src='https://www.google.com/recaptcha/api.js'></script>
+<script>
+		// Get the video
+
+
+
+		function getImage(imageData) {
+			var modal = document.getElementById("myModal");
+			var modalImg = document.getElementById("img01");
+			var captionText = document.getElementById("caption");
+			modal.style.display = "block";
+			modalImg.src = imageData.src;
+			captionText.innerHTML = "";//imageData.alt;
+			var span = document.getElementsByClassName("close1")[0];
+			span.onclick = function () {
+				modal.style.display = "none";
+			}
+		}
+// Get the <span> element that closes the modal
+
+// When the user clicks on <span> (x), close the modal
+
+
+
+
+</script>
+<script>
+		// < !--Time Out for success Message-- >
+		var message_success = document.getElementById("message_success");
+		if (message_success != null) {
+			setTimeout(function () {
+				message_success.style.display = "none";
+			}, 5000);
+		}
+
+
+		// < !--Time Out for Error Message-- >
+		var message_error = document.getElementById("message_error");
+
+		if (message_error != null) {
+			setTimeout(function () {
+				message_error.style.display = "none";
+			}, 5000);
+		}
+
+		// < !--Script for reset form-- >
+		function submitForm() {
+			document.getElementById("my_form").reset();
+		}
+
+
+</script>
+<!-- The Modal -->
+<div id="myModal" class="modal-custom">
+    <span class="close1">&times;</span>
+    <img class="modal-content-custom" id="img01">
+    <div id="caption"></div>
+</div>
+<script>
+        $(document).ready(function () {
+            var pathname = window.location.pathname;
+            if (pathname == "/") {
+                $("#exampleModalCenter").modal('show');
+            }
+        });
+        function amtzvideo() {
+            document.getElementById('myVideo').play();
+            $("#exampleModalCenter").modal('hide');
+            $(document).scrollTop(100);
+        }
+
+
+
+</script>
+
+<style>
+		.close {
+        float: none !important;opacity: 1;
+    }
+	button.close.btnnew.third {
+    border: 1px solid #0000001f;
+    padding: 20px;
+    border-radius: 25px;
+    background: #0a5cb0;
+    color: #fff;
+    text-transform: capitalize;
+    font-size: 20px;
+    font-family: 'Montserrat';
+}
+
+
+
+
+</style>
+<div id="exampleModalCenter" class="modal fade" tabindex="-1" role="dialog"
+     aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" style="margin-top: 10%;">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Welcome to AMTZ</h5>
+            </div>
+            <div class="modal-body">
+                <div class="col-md-12">
+                    <center>
+                        <button type="button" class="close btnnew third" value="Click here to enter"
+                                onclick="amtzvideo()">Click here to Enter
+                        </button>
+                    </center>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+<!--Update Member Section-->
+{% if request.get_full_path == '/' %}
+<style type="text/css">
+        #overlay
+        {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: #000;
+            filter: alpha(opacity=70);
+            -moz-opacity: 0.7;
+            -khtml-opacity: 0.7;
+            opacity: 0.7;
+            z-index: 100;
+            display: none;
+        }
+
+        .imgMembers a
+        {
+            text-decoration: none;
+        }
+        .popupBoxMembers
+        {
+            width:99%;
+            margin: 0 auto;
+            display: none;
+	    z-index: 9999 !important;
+            position: absolute;
+            z-index: 101;
+            top:10%;
+            animation: mymove;
+            animation-duration: 3s;
+        }
+        @keyframes mymove {
+          from {top: 0%;}
+          to {top: 10%;}
+        }
+        .imgMembers
+        {
+            min-width: 564px;
+            //width: 564px;
+            width: 65%;
+            min-height: 150px;
+            height:auto;
+            margin: 80px auto;
+            background: #ffffff;
+            position: relative;
+            z-index: 103;
+            padding: 1px;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px #000;
+
+        }
+        .imgMembers p
+        {
+            clear: both;
+            color: #555555;
+            text-align: justify;
+        }
+        .imgMembers p a
+        {
+            color: #d91900;
+            font-weight: bold;
+        }
+        .imgMembers .x
+        {
+            float: right;
+            height: 35px;
+            left: 22px;
+            position: relative;
+            top: -25px;
+            width: 34px;
+        }
+        .imgMembers .x:hover
+        {
+            cursor: pointer;
+        }
+        ul.imageData {
+            display: inline-flex;
+            text-decoration: none;
+        }
+        ul.imageData li {
+            list-style: none;
+            width: 50%;
+            padding: 20px;
+        }
+        .memberImage {
+            width: 100%;
+        }
+    </style>
+<!--Style-->
+
+<!--Hide kiya gya h live after approval-->
+
+<!--<div style="width:100%;">-->
+<!--    <div class='popupBoxMembers'>-->
+<!--        <div class="imgMembers">-->
+<!--            <img src="{% static 'img/logo/close-icon-13574.png'%}" alt='quit' class='x' id='x' />-->
+<!--            <div class="rowImage">-->
+<!--              <ul class="imageData">-->
+<!--               <li>-->
+<!--               <img class="memberImage" src="{% static 'img/logo/apac.png' %}" />-->
+<!--               </li>-->
+<!--                <li>-->
+<!--                <img class="memberImage" src="{% static 'img/logo/iaf.png'%}" />-->
+<!--               </li>-->
+<!--              </ul>-->
+<!--            </div>-->
+<!--        </div>-->
+<!--    </div>-->
+<!--</div>-->
+
+<!-- testing -->
+<script type='text/javascript'>
+        $(function () {
+            var overlay = $('<div id="overlay"></div>');
+            overlay.show();
+            overlay.appendTo(document.body);
+            $('.popupBoxMembers').show();
+            $('.close').click(function () {
+                $('.popupBoxMembers').hide('slow');
+                overlay.appendTo(document.body).remove();
+                return false;
+            });
+            $('.x').click(function () {
+                $('.popupBoxMembers').hide('slow');
+                overlay.appendTo(document.body).remove();
+                return false;
+            });
+            function removeData(){
+                $('.popupBoxMembers').hide('slow');
+                overlay.appendTo(document.body).remove();
+                return false;
+            }
+        const myTimeout = setTimeout(removeData,6000);
+        });
+    </script>
+ {% endif %}
+<!-- Mirrored from tm.hashtheme.com/da/davana-preview3/davana/index.html by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 11 Oct 2021 09:06:01 GMT -->
+
+</html>

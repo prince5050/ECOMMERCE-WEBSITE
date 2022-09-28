@@ -1,0 +1,59 @@
+{% extends 'index.html' %}
+{%block title%} AMTZ Scientific Research Facilities, Medical Technology India{% endblock %}
+{% block meta_description%}
+<meta name="description" content="India's Largest Life sciences focused incubators on scientific method of research, medical technology in healthcare and medical devices laboratory in India">
+ {% endblock %}
+{%block content%}
+{% load static %}
+
+<section class="single-page-title-area" data-background="{%static 'img/bg/Ihub.jpg'%}">
+    <div class="auto-container">
+        <div class="row">
+            <div class="col-lg-8 col-md-8 col-sm-12 col-12">
+                <div class="single-page-title">
+                    <h6>AMTZ</h6>
+                    <span></span>
+                    <h2>Our Hubs</h2>
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-4 col-sm-12 col-12">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="/">Home</a></li>
+                    <li class="breadcrumb-item active">Our Hubs</li>
+                </ol>
+            </div>
+        </div>
+        <!-- end row-->
+    </div>
+</section>
+<section id="centers" class="section-padding top centers">
+		<div class="container">
+				<div id="tabsJustifiedContent" class="tab-content">
+                        <div id="one" class="tab-pane animated fadeInRight active show">
+							<div class="row">
+                                {% for hub in hub_obj%}
+								<div class="col-lg-6 col-md-4 col-sm-12 col-12 text-center" style="max-height:50%">
+									<div class="single-service" style="min-height: 550px;">
+										<div class="single-service-img">
+											<img class="img-fluid" style="height: 270px;;min-width: -webkit-fill-available;"
+                                                 src="{{hub.hub_image.url}}" alt="{{hub.image_alt}}" />
+										</div>
+										<div class="single-service-info"style="min-height: 317px">
+											<h4>{{hub.hub_title}}</h4>
+											<p style="text-align:justify">{{hub.hub_description}}</p>
+                                            {% if hub.hub_link%}
+                                            <a class="serv-red-btn" href="{{hub.hub_link}}" target="_blank">Visit</a>
+<!--											<a class="serv-red-btn" href="/centerDetails/?youtubekey={{center.pk}}">Know More</a>-->
+										{%endif%}
+                                        </div>
+									</div>
+								</div>
+                                {%endfor%}
+
+							</div>
+                        </div>
+				</div>
+		</div>
+ </section>
+
+{% endblock %}

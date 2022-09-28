@@ -1,0 +1,111 @@
+{% extends 'index.html' %}
+{%block title%}Intellectual Property Publication | Health Technology in India{% endblock %}
+{% block meta_description%}
+<meta name="description" content="We aim to assist in-depth coverage and analysis of all the latest trends of medical health technology and patenting activity in medical device sector in India">
+ {% endblock %}
+{%block content%}
+{% load static %}
+<section class="single-page-title-area" data-background="{%static 'img/bg/page-banner.jpg'%}">
+		<div class="auto-container">
+			<div class="row">
+				<div class="col-lg-8 col-md-8 col-sm-12 col-12">
+					<div class="single-page-title">
+						<h6>AMTZ</h6>
+						<span></span>
+						<h2>Publication - intellectual property publication</h2>
+					</div>
+				</div>
+				<div class="col-lg-4 col-md-4 col-sm-12 col-12">
+					<ol class="breadcrumb">
+					  <li class="breadcrumb-item"><a href="/">Home</a></li>
+					  <li class="breadcrumb-item active">intellectual property publication</li>
+					</ol>
+				</div>
+			</div>
+			<!-- end row-->
+		</div>
+</section>
+<section class="pages cart-page section-padding">
+		<div class="row">
+			<div class="col-12">
+				<div class="whishlist-table table-responsive">
+					<table class="table">
+						<thead class="thead-inverse">
+							<tr>
+								<th>SI NO.</th>
+								<th>Name of the Dossiers</th>
+								<th>View</th>
+								<th>Action</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<td>1</td>
+								<td>PATENTING ACTIVITY IN MEDICAL DEVICE SECTOR IN INDIA</td>
+								<td class="text-center"><a>
+								<img style="height:150px; width:120px" src="{%static 'publication/image/image3.png'%}"
+								id="myImg" onclick="getImage(this)" />
+								</a></td>
+								<td>
+									<div class="cart-info ml-5">
+										<button class="btn btn-primary"class="btn btn-primary"data-toggle="modal" data-target=".bd-example-modal-lg">Buy Now</button>
+									</div>
+								</td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+			</div>
+		</div>
+	<div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header"style="background-color: #f799f3;">
+        <h5 class="modal-title" id="exampleModalLongTitle">Buy Now</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <h6>The dossiers can be purchased by sending a Demand Draft or by making an online transfer to:</h6>
+		  <p>Account Name: <b>KALAM INSTITUTE OF HEALTH TECHNOLOGY</b></p>
+		  <p>Account No.: <b>110801000642</b></p>
+		  <p>Branch : <b>AMTZ Campus Branch, Visakhapatnam.</b></p>
+		  <p>IFS Code : <b>ICIC0004362</b></p>
+		  <p>Branch address : <b>C/o AMTZ Campus, Pragathi Maidan, VM Steel Project S.O,  Visakhapatnam – 530031, Andhra Pradesh, India.</b></p>
+		  <p>For further queries and bulk discounts please contact:  <b>info@amtz.in</b></p>
+      </div>
+      <div class="modal-footer"style="background-color:#f5f2f5;">
+        <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+	</section>
+<div id="myModal" class="modal-custom">
+		<span class="close1">&times;</span>
+		<img class="modal-content-custom" id="img01">
+		<div id="caption"></div>
+	</div>
+<script>
+		function getImage(imageData) {
+			var modal = document.getElementById("myModal");
+			var modalImg = document.getElementById("img01");
+			var captionText = document.getElementById("caption");
+			modal.style.display = "block";
+			modalImg.src = imageData.src;
+			captionText.innerHTML = "";//imageData.alt;
+			var span = document.getElementsByClassName("close1")[0];
+			span.onclick = function () {
+				modal.style.display = "none";
+			}
+		}
+// Get the <span> element that closes the modal
+
+// When the user clicks on <span> (x), close the modal
+
+
+
+	</script>
+{%endblock%}

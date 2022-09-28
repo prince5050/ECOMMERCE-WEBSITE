@@ -1,0 +1,12 @@
+version: 0.0
+os: linux
+files:
+  - source: /
+    destination: /var/www/html/AMTZ
+file_exists_behavior: OVERWRITE
+hooks:
+  BeforeInstall:
+    - location: ../../../../../../home/ubuntu/scripts/before_install.sh
+  AfterInstall:
+    - location: ../../../../../../home/ubuntu/scripts/after_install.sh
+ 

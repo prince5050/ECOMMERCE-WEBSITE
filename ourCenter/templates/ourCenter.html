@@ -1,0 +1,86 @@
+{% extends 'index.html' %}
+{%block title%}Incubation Centres, Medical Laboratory Technology, AMTZ India{% endblock %}
+{% block meta_description%}
+<meta name="description" content="MedTech healthcare sector in India and common scientific facilities at the cutting edge of research and medical laboratory technologies incubation">
+ {% endblock %}
+{%block content%}
+{% load static %}
+{% load custom_tags %}
+<section class="single-page-title-area" data-background="{%static 'img/bg/AMTZ Campus.jpg'%}">
+		<div class="auto-container">
+			<div class="row">
+				<div class="col-lg-8 col-md-8 col-sm-12 col-12">
+					<div class="single-page-title">
+						<h6>AMTZ</h6>
+						<span></span>
+						<h2>Our Centers</h2>
+					</div>
+				</div>
+
+				<div class="col-lg-4 col-md-4 col-sm-12 col-12">
+					<ol class="breadcrumb">
+					  <li class="breadcrumb-item"><a href="/">Home</a></li>
+					  <li class="breadcrumb-item active">Our Centers</li>
+					</ol>
+				</div>
+			</div>
+			<!-- end row-->
+		</div>
+</section>
+<!-- <section id="centers" class="section-padding top bg-gray centers">-->
+<!--		<div class="container">-->
+<!--				<div id="tabsJustifiedContent" class="tab-content">-->
+<!--                        <div id="one" class="tab-pane animated fadeInRight active show">-->
+<!--							<div class="row">-->
+<!--								{% for center in centers %}-->
+<!--								<div class="col-lg-4 col-md-4 col-sm-12 col-12 text-center" style="max-height:50%">-->
+<!--									<div class="single-service"style="min-height: 550px;">-->
+<!--										<div class="single-service-img">-->
+<!--											{% if center.center_image%}-->
+<!--											<img class="img-fluid" src="{{center.center_image.url}}" alt="" />-->
+<!--											{% endif %}-->
+<!--										</div>-->
+<!--										<div class="single-service-info">-->
+<!--											<h6></h6>-->
+<!--											<h4>{{center.center_title}}</h4>-->
+<!--											<p>{{center.center_description}}</p>-->
+<!--											<a class="serv-red-btn" href="/centerDetails/?youtubekey={{center.pk}}">Know More</a>-->
+<!--										</div>-->
+<!--									</div>-->
+<!--								</div>-->
+<!--								{% endfor %}-->
+<!--							</div>-->
+<!--                        </div>-->
+<!--				</div>-->
+<!--		</div>-->
+<!-- </section>-->
+
+<section id="team" class="section-padding team-page">
+	<div class="container">
+		<div class="row">
+			<h5 class="widget-title">Centers</h5>
+		</div>
+		<div class="row text-center">
+			{% for center in centers %}
+			<div class="col-lg-3 col-md-6 col-sm-6 col-12 text-center" >
+				<div class="team-mate"style="min-height:380px;">
+					<div class="member-photo">
+						{% if center.center_image%}
+						<img class="img-fluid"  style="max-height:155px;min-width: -webkit-fill-available;" src="{{center.center_image.url}}" alt="{{center.image_alt}}" />
+						{% endif %}
+					</div>
+					<div class="member-title">
+						<h6>{{center.center_title}}</h6>
+						<p>{{center.center_description|truncatechars:40}} </p>
+						<a class="serv-red-btn" href="center-details/{{center.center_title|replace_name}}/?key={{center.pk}}">Know More</a>
+					</div>
+				</div>
+			</div>
+			{%endfor%}
+		</div>
+	</div>
+</section>
+{%endblock%}
+
+
+

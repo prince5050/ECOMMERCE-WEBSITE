@@ -1,0 +1,60 @@
+{% extends 'index.html' %}
+{%block title%}Advancements of Medical Technology Industry Partners in India{% endblock %}
+{% block meta_description%}
+<meta name="description" content="Our partners are well equipped with state-of-the-art facility and high-end new medical technology laboratories for medical devices manufacturing in India">
+ {% endblock %}
+{%block content%}
+{% load static %}
+<style>
+	.member-photo.uber {
+		background: black;
+	}
+</style>
+
+<section class="single-page-title-area" data-background="{%static 'img/bg/patners.jpg'%}">
+	<div class="auto-container">
+		<div class="row">
+			<div class="col-lg-8 col-md-8 col-sm-12 col-12">
+				<div class="single-page-title">
+					<h6>AMTZ</h6>
+					<span></span>
+					<h2>Partners</h2>
+				</div>
+			</div>
+			<div class="col-lg-4 col-md-4 col-sm-12 col-12">
+				<ol class="breadcrumb">
+					<li class="breadcrumb-item"><a href="/">Home</a></li>
+					<li class="breadcrumb-item active">Partners</li>
+				</ol>
+			</div>
+		</div>
+		<!-- end row-->
+	</div>
+</section>
+
+<section id="team" class="section-padding team-page">
+	<div class="container">
+		<div class="row">
+			<h5 class="widget-title">Partners</h5>
+		</div>
+		<div class="row text-center">
+			{% for partner in partners %}
+			<div class="col-lg-3 col-md-6 col-sm-6 col-12">
+				<div class="team-mate" style="min-height:200px;">
+					<div class="member-photo">
+						<a href="#"><img style="width:180px; height:120px;" src="{{partner.partner_image.url}}"
+								alt="{{partner.partner_name}}"> </a>
+					</div>
+					<div class="member-title">
+						<p>{{partner.partner_name}}</p>
+					</div>
+				</div>
+			</div>
+			{% endfor %}
+			<!--- END SINGLE TEAM -->
+
+		</div>
+		<!-- END CONTAINER -->
+</section>
+<!-- END ALL TEAM MEMBERS -->
+{% endblock %}

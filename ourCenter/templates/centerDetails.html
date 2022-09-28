@@ -1,0 +1,57 @@
+{% extends 'index.html' %}
+{%block title%}{{centers_details.meta_title}}{% endblock %}
+{% block meta_description%}
+<meta name="description" content="{{centers_details.meta_description}}">
+ {% endblock %}
+{%block content%}
+{% load static %}
+
+<!--<iframe width="100%" height="500" src="https://www.youtube.com/embed/tgbNymZ7vqY?autoplay=1">-->
+<!--</iframe>-->
+
+<!--<iframe width="100%" height="500" src="https://www.youtube.com/embed/{{centers_details.center_video_key}}?autoplay=1&mute=1" ></iframe>-->
+<style>
+#myVideo{
+		max-height: 550px;
+        object-fit: cover;
+	}
+</style>
+  <div class="col-md-12" style="padding: 0px;">
+
+        <video autoplay muted loop id="myVideo">
+        <source src="{% static 'center/' %}{{centers_details.center_video_key}}" type="video/mp4">
+        </video>
+    </div>
+<section id="about" class="section-padding">
+        <div class="container" style="margin-bottom:15px;">
+            <div class="row">
+                <div class="col-lg-7 col-md-12 col-sm-12 col-12">
+                    <div class="section-title">
+                        <h3>{{centers_details.center_title}}</h3>
+                        <span class="line"></span>
+						<p style="text-align: left;">{{centers_details.center_description}}</p>
+                    </div>
+                    {% if centers_details.center_brochure %}
+                    <div class="row">
+                         <h5 class="mr-4">{{centers_details.center_title}} - Brochure</h5><a href="{{centers_details.center_brochure.url}}" target="_blank"><button class="btn btn-primary" style="border-radius: 17px; cursor:pointer;">View/Download</button></a>
+                    </div>
+
+                    {% endif %}
+                </div>
+                <!-- end col -->
+                <div class="col-lg-5 col-md-12 col-sm-12 col-12">
+                    <div class="image-details">
+                        {%if centers_details.center_image %}
+                        <img class="img-fluid" src="{{centers_details.center_image.url}}" alt="" />
+                        {%endif%}
+                    </div>
+                </div>
+                <!-- end col -->
+			</div>
+            <!--- END ROW -->
+
+        </div>
+        <!--- END CONTAINER -->
+    </section>
+    <!-- END ABOUT -->
+{%endblock%}

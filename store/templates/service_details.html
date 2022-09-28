@@ -1,0 +1,166 @@
+{% extends 'index.html' %}
+{%block title%}{{title}}{% endblock %}
+{% block meta_description%}
+<meta name="description" content="{{description}}">
+ {% endblock %}
+{%block content%}
+{% load static %}
+
+<section class="single-page-title-area" data-background="{%static 'img/bg/medical devices.jpg'%}">
+    <div class="auto-container">
+        <div class="row">
+            <div class="col-lg-8 col-md-8 col-sm-12 col-12">
+                <div class="single-page-title">
+                    <h6>AMTZ</h6>
+                    <span></span>
+                    <h2>Services - {{name}}</h2>
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-4 col-sm-12 col-12">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="/services/">Services</a></li>
+                    <li class="breadcrumb-item active">{{name}}</li>
+                </ol>
+            </div>
+        </div>
+        <!-- end row-->
+    </div>
+</section>
+<section id="centers" class="section-padding top centers">
+     {% for service in services%}
+    <div class="container">
+        <div id="tabsJustifiedContent" class="tab-content">
+            <div id="one" class="tab-pane animated fadeInRight active show">
+                  {% if messages %}
+                        {% for message in messages %}
+                        {% if message.tags == 'success' %}
+                        <div class="alert alert-success alert-dismissible fade show" id="message_success" role="alert">
+                            <strong>{{message}}</strong>
+                        </div>
+                        {% elif message.tags == 'error' %}
+                <div class="alert alert-danger alert-dismissible fade show" id="message_error" role="alert">
+                            <strong>{{message}}</strong>
+                        </div>
+                        {%endif%}
+                        {%endfor%}
+                        {% endif %}
+
+                <div class="row">
+                    <div class="col-lg-8 col-md-12 col-sm-12 col-12 text-center" style="max-height:50%">
+                        <img class="service_poster" src="{{service.service_poster.url}}"/>
+
+                    </div>
+                    <div class="col-lg-4 col-md-12 col-sm-12 col-12" style="max-height:50%">
+                        <div class="text-center"><br>
+                            <h3><u>{{service.service_title}}</u></h3></div>
+                        <div>
+                             <p style="text-align:justify">{{service.service_description}}</p><br>
+                            {% if service.service_use1 %}
+                            <p>{{service.service_use1}}</p>
+                            {%endif%}
+                             {% if service.service_use2 %}
+                            <p>{{service.service_use2}}</p>
+                            {%endif%}
+                            {% if service.service_use3 %}
+                            <p>{{service.service_use3}}</p>
+                            {%endif%}
+                            {% if service.service_use4 %}
+                            <p>{{service.service_use4}}</p>
+                            {%endif%}
+                            {% if service.service_use5 %}
+                            <p>{{service.service_use5}}</p><br>
+                            {%endif%}
+                             {% if service.service_link %}
+                            <h6>For Knowing More About {{service.service_title}}</h6>
+                            <div class="text-center">
+                            <a class="serv-red-btn" style="background: #ffc300; color:black" href="{{service.service_link}}" target="_blank">VISIT</a>
+                        </div>
+                                {%endif%}
+                            {% if service.service_pdf %}
+                            <h6>For Knowing More About {{service.service_title}}</h6>
+                            <div class="text-center">
+                            <a class="serv-red-btn" style="background: #ffc300; color:black" href="{{service.service_pdf.url}}" target="_blank">Click Here</a>
+                        </div>
+                               {%endif%}
+
+                            </div>
+
+
+                    </div>
+
+
+                </div>
+
+            </div>
+        </div>
+    </div><br>
+    <div class="contact-add-padd m-4">
+        <div class="auto-container">
+
+            <div class="row">
+                <div class="col-lg-12 col-md-12 col-sm-12 col-12">
+                    <div class="col-lg-12 text-center">
+
+                        <div class="section-title" style="padding:0;">
+                            <h3>{{service.service_title}} Query From</h3>
+                            <span class="line"></span>
+                            <i class="icofont icofont-map-pins"></i>
+                            <p></p>
+                        </div>
+                    </div>
+                    <div class="mx-auto col-lg-10 mt-40">
+                        <div class="contact">
+                            <form id="contact-form" class="form" name="enq" method="POST" action="/service-query/{{service.pk}}/">
+                                {% csrf_token %}
+                                <div class="row">
+                                    <div class="col-lg-6">
+                                        <div class="form-group col-lg-12">
+                                            <input type="text" name="name" class="form-control" id="firstname"
+                                                   placeholder="Full Name" required="required">
+
+                                        </div>
+                                        <div class="form-group col-lg-12">
+                                            <input type="email" name="email" class="form-control" id="email"
+                                                   placeholder="Email Address" required="required">
+                                        </div>
+                                        <div class="form-group col-lg-12">
+                                            <input type="text" name="mobile" class="form-control" id="phone"
+                                                   placeholder="Phone Number" required="required">
+                                        </div>
+                                        <div class="form-group col-lg-12">
+                                            <input type="text" name="subject" class="form-control" id="subject"
+                                                   placeholder="Subject" required="required">
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-6">
+                                        <div class="form-group col-lg-12">
+											<textarea rows="10" name="message" class="form-control" id="description"
+                                                      placeholder="Your Message" required="required"></textarea>
+                                        </div>
+                                        <div class="form-group col-lg-12 mb0">
+                                            <div class="actions">
+                                                <input type="submit" value="sendmail" name="submit" id="submitButton"
+                                                       class="btn btn-lg btn-contact-bg"
+                                                       title="Click here to submit your Query!"/>
+                                                <img src="assets/img/ajax-loader.gif" width="16" height="16" id="loader"
+                                                     style="display:none" alt="loading">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+
+                </div>
+
+
+
+            </div>
+
+        </div>
+        <!-- end container-->
+    </div>
+     {%endfor%}
+</section>
+{% endblock %}

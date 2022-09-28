@@ -1,0 +1,222 @@
+{% extends 'index.html' %}
+{%block title%}Villa - Booking details{% endblock %}
+{%block content%}
+{% load static %}
+<style>
+    .submit-btn1 {
+    color: #fff;
+    background-color: #e35e0a;
+    font-weight: 700;
+    height: 60px;
+    padding: 10px 30px;
+    width: 100%;
+    border-radius: 40px;
+    border: none;
+    text-transform: uppercase;
+    font-size: 16px;
+    letter-spacing: 1.3px;
+    -webkit-transition: 0.2s all;
+    transition: 0.2s all
+}
+ .submit-btn1:hover{
+  background-color: green;
+
+ }
+
+.order-card {
+    color: #fff;
+}
+
+.bg-c-blue {
+    background: linear-gradient(45deg,#4099ff,#73b4ff);
+}
+
+.bg-c-green {
+    background: linear-gradient(45deg,#2ed8b6,#59e0c5);
+}
+
+.bg-c-yellow {
+    background: linear-gradient(45deg,#FFB64D,#ffcb80);
+
+}
+
+.bg-c-pink {
+    background:linear-gradient(45deg,#0cdcc8,#724ce6);
+}
+
+
+.card {
+    border-radius: 5px;
+    -webkit-box-shadow: 0 1px 2.94px 0.06px rgba(4,26,55,0.16);
+    box-shadow: 0 1px 2.94px 0.06px rgba(4,26,55,0.16);
+    border: none;
+    margin-bottom: 30px;
+    -webkit-transition: all 0.3s ease-in-out;
+    transition: all 0.3s ease-in-out;
+}
+
+.card .card-block {
+    padding: 25px;
+}
+
+.order-card i {
+    font-size: 50px;
+}
+
+.f-left {
+    float: left;
+}
+
+.f-right {
+    float: right;
+}
+.animate-charcter
+{
+   text-transform: uppercase;
+  background-image: linear-gradient(
+    -225deg,
+    #231557 0%,
+    #44107a 29%,
+    #ff1361 67%,
+    #fff800 100%
+  );
+  background-size: auto auto;
+  background-clip: border-box;
+  background-size: 200% auto;
+  color: #fff;
+  background-clip: text;
+  text-fill-color: transparent;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: textclip 2s linear infinite;
+  display: inline-block;
+}
+@keyframes textclip {
+  to {
+    background-position: 200% center;
+  }
+}
+.baseBlock:hover {
+	-webkit-transform: translate(0, -8px);
+	-moz-transform: translate(0, -8px);
+	-ms-transform: translate(0, -8px);
+	-o-transform: translate(0, -8px);
+	transform: translate(0, -8px);
+
+}
+
+
+</style>
+<!-- START SINGLE PRODUCT -->
+
+<section id="single-product" style="padding-bottom:0;">
+    <div class="auto-container">
+        <div class="row">
+            <div class="col l8 offset-l2 m10 offset-m1 s12"><br>
+                <!--    <h3 class="center green-text" style="font-family: 'Oregano', cursive;margin-bottom:7%;margin-top:5%" >Click on the Confirm Booking to book your room...</h3>-->
+                <div class="card" style="box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);">
+                    <div class="row">
+                        <div class="col-lg-6 col-md-6 col-sm-12 col-12">
+                            <div class="card-image ">
+                                <img class="img-fluid" style="min-height:400px;" src="{{data.room_image.url}}">
+                            </div>
+                        </div>
+                        <div class="col-lg-6 col-md-6 col-sm-12 col-12">
+                            <div class="card-stacked" style="padding-top: 20px;">
+                                <div class="card-content">
+                                    <center><h3 class="animate-charcter" style="font-weight: 800;">
+                                        {{data.room_type}}</h3></center>
+                                    <br>
+                                    <div class="col-md-10 col-xl-10 baseBlock">
+                                        <div class="card bg-c-pink order-card">
+                                            <div class="card-block">
+                                                <div class="row ml-0">
+                                                    <h6 style="color: #ffff;" class="ml-4"><b>Check-in &nbsp;
+                                                        &nbsp;: </b>&nbsp;&nbsp;{{start}} <span
+                                                            class="badge badge-warning">12.00 PM</span></h6>
+                                                    <h6 style="color: #ffff;" class="ml-4"><b>Check-out : </b>&nbsp;&nbsp;{{end}}
+                                                        <span class="badge badge-warning">10.00 AM</span></h6>
+                                                </div>
+                                                <h6 style="color: #ffff;" class="ml-4"><b>Villa No &nbsp;&nbsp;: </b>&nbsp;&nbsp;&nbsp;&nbsp;{{data.room_no}}
+                                                </h6>
+                                                <h6 style="color: #ffff;" class="ml-4"><b>Total Price : </b>&nbsp;{{no_of_days}}*{{data.price}}
+                                                    = ₹ {{bill}}</h6>
+                                                <h6 style="color: #ffff;" class="ml-4"><b>Room Manager :</b>&nbsp;{{roomManager}}
+                                                </h6>
+                                            </div>
+                                            <h2 class="text-right"><i style="color: #e35e0a;"
+                                                                      class="fa fa-bed f-right"></i></h2>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="card-action center grey lighten-5">
+                                    <form action={{url}} method="post"
+                                          name="billdesk" id="billdesk">
+                                        <div class="form-check">
+                                            <input class="form-check-input mt-2" type="checkbox" value=""
+                                                   id="flexCheckDefault" required>
+                                            <label for="flexCheckDefault">
+                                                Please Click on checkbox to accept our<a style="color: #3333ad;font-weight: 600;" target="_blank" href="/Villa-terms-conditions/"> terms & Conditions.</a>
+                                            </label>
+                                        </div>
+                                        <input name="msg" type="hidden" value="{{msg}}">
+                                        <input type="submit" class="btn submit-btn1"
+                                               style="cursor: pointer; width:auto;" value="CONFIRM BOOKING" id="submit">
+                                    </form>
+                                </div>
+                                <br>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    </div>
+    <div class="text-center">
+        <div class="col-lg-12 col-md-12 col-sm-12 col-12 infinite-container" style="padding:35px;">
+            <div class="row product-base text-center post-wrapper" id="post-wrapper">
+                {% for room in room_obj%}
+                <div class="col-lg-4 col-md-6 col-sm-12 col-12 post-box text-center">
+                    <div class=" card single-service">
+                        <div class="card-header p-0">
+                            <img class="img-fluid" style="padding:0%; min-height: 327px;"
+                                 src="{{room.room_picture.url}}"
+                                 alt=""/>
+                        </div>
+                        {% if room_image_discription%}
+                        <div class="card-body text-center">
+                            <!--                                    <h6 class="limited-content">{{product.product_name}}</h6>-->
+                            <h6>{{room.room_type}}</h6>
+                            <div class="text-left">
+                                <h6></h6>
+                            </div>
+                        </div>
+                        {%endif%}
+                    </div>
+
+                </div>
+                {% endfor %}
+            </div>
+
+        </div>
+    </div>
+</section>
+<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+<script>
+window.onbeforeunload = function() {
+  window.location.reload(true);
+}
+
+    $(window).ready(function() {
+     $("#billdesk").on("submit", function(){
+        $("#submit").attr("disabled", true);
+        $("#submit").val("Processing....");
+        $("#submit").css("background-color","green");
+        $("#submit").css("text-transform","lowercase");
+        })
+         });
+
+</script>
+{% endblock content %}

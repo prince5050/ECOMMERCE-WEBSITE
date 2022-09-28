@@ -1,0 +1,33 @@
+
+<html>
+<head>
+<meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    {% load static %}
+
+</head>
+<style>
+  .p{
+  font-size : 22px;
+  }
+</style>
+<body>
+<p>Hello <b>{{firstname}} {{lastname}}</b>, </p>
+<p style="margin-top:5px;">Thank you for purchasing from Andhra Pradesh MedTech Zone Limited.</p>
+<p>The invoice for your purchase against RS. {{net_price}} on {{payment_date|date:"d M, Y"}} is attached herewith.</p>
+<p>You can track the dispatch on your orders section.</p>
+<p>We hope you had a pleasant buying experience.</p>
+<p>Thankyou</p><br>
+<p style="font-size:14px;">For further Queries and any feedback write to us on sales@amtz.in and for service related queries on services@amtz.in Ph: 8341622271
+</p>
+<br><br>
+<b>
+<p>Sincerely,</p>
+<p>ANDHRA PRADESH MEDTECH ZONE LTD</p>
+<p>Pragati Maidan, VM Steel Project S.O,</p>
+  <p>Visakhapatnam.PIN-530031. Andhra Pradesh - India. </p>
+</b><br>
+<center><p style="font-size:10px;">Please do not reply to this mail. This is system generated mail.</p></center>
+</body>
+</html>

@@ -1,0 +1,419 @@
+{% extends 'index.html' %}
+{%block title%}Dashboard{% endblock %}
+{%block content%}
+{% load static %}
+<style>
+    /*
+    DEMO STYLE
+*/
+
+@import "https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700";
+a,
+a:hover,
+a:focus {
+    color: inherit;
+    text-decoration: none;
+    transition: all 0.3s;
+}
+
+.navbar1 {
+    padding: 5px 0px;
+    background: #fff;
+    border: none;
+    border-radius: 0;
+    margin-bottom: 40px;
+    box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.navbar-btn {
+    box-shadow: none;
+    outline: none !important;
+    border: none;
+}
+
+.line {
+    width: 100%;
+    height: 1px;
+    border-bottom: 1px dashed #ddd;
+    margin: 40px 0;
+}
+
+/* ---------------------------------------------------
+    SIDEBAR STYLE
+----------------------------------------------------- */
+
+.wrapper {
+    display: flex;
+    width: 100%;
+    align-items: stretch;
+}
+
+#sidebar {
+    min-width: 250px;
+    max-width: 250px;
+    background: #7386D5;
+    color: #fff;
+    transition: all 0.3s;
+}
+
+#sidebar.active {
+    margin-left: -250px;
+}
+
+#sidebar .sidebar-header {
+    padding: 20px;
+    background: #6d7fcc;
+}
+
+#sidebar ul.components {
+    padding: 20px 0;
+    border-bottom: 1px solid #47748b;
+}
+
+#sidebar ul p {
+    color: #fff;
+    padding: 10px;
+}
+
+#sidebar ul li a {
+    padding: 10px;
+    font-size: 1.1em;
+    display: block;
+}
+
+#sidebar ul li a:hover {
+    color:  #fff;
+    background: #1a2d7d;
+}
+
+#sidebar ul li.active>a,
+a[aria-expanded="true"] {
+    color: #fff;
+    background: #0e1120;
+}
+
+a[data-toggle="collapse"] {
+    position: relative;
+}
+
+.dropdown-toggle::after {
+    display: block;
+    position: absolute;
+    top: 50%;
+    right: 20px;
+    transform: translateY(-50%);
+}
+
+ul ul a {
+    font-size: 0.9em !important;
+    padding-left: 30px !important;
+    background: #6d7fcc;
+}
+
+ul.CTAs {
+    padding: 20px;
+}
+
+ul.CTAs a {
+    text-align: center;
+    font-size: 0.9em !important;
+    display: block;
+    border-radius: 5px;
+    margin-bottom: 5px;
+}
+
+a.download {
+    background: #fff;
+    color: #7386D5;
+}
+
+a.article,
+a.article:hover {
+    background: #6d7fcc !important;
+    color: #fff !important;
+}
+
+/* ---------------------------------------------------
+    CONTENT STYLE
+----------------------------------------------------- */
+
+#content {
+    width: 100%;
+    padding-top:20px;
+    min-height: 100vh;
+    transition: all 0.3s;
+}
+
+/* ---------------------------------------------------
+    MEDIAQUERIES
+----------------------------------------------------- */
+@media only screen and (max-width: 500px) {
+#sidebar {
+    min-width: 0px;
+    width: 70px;
+    background: #7386D5;
+    color: #fff;
+    transition: all 0.3s;
+    margin-left: 0px;
+}
+}
+@media (min-width: 768px) and (max-width: 991.98px) {
+#content {
+    width: 68%;
+    padding-top:20px;
+    min-height: 100vh;
+    transition: all 0.3s;
+}
+}
+@media only screen and (max-width: 500px){
+#content {
+    width: 85%;
+    padding-top: 20px;
+    min-height: 100vh;
+    transition: all 0.3s;
+}
+}
+
+
+   #sidebar {
+        margin-left: 0;
+
+    }
+    #sidebar.active {
+         margin-left: -250px;
+    }
+    #sidebarCollapse span {
+        display: none;
+    }
+}
+
+.order-card {
+    color: #fff;
+}
+
+.bg-c-blue {
+    background: linear-gradient(45deg,#4099ff,#73b4ff);
+}
+
+.bg-c-green {
+    background: linear-gradient(45deg,#2ed8b6,#59e0c5);
+}
+
+.bg-c-yellow {
+    background: linear-gradient(45deg,#FFB64D,#ffcb80);
+}
+
+.bg-c-pink {
+    background: linear-gradient(45deg,#FF5370,#ff869a);
+}
+
+
+.card {
+    border-radius: 5px;
+    -webkit-box-shadow: 0 1px 2.94px 0.06px rgba(4,26,55,0.16);
+    box-shadow: 0 1px 2.94px 0.06px rgba(4,26,55,0.16);
+    border: none;
+    margin-bottom: 30px;
+    -webkit-transition: all 0.3s ease-in-out;
+    transition: all 0.3s ease-in-out;
+}
+
+.card .card-block {
+    padding: 25px;
+}
+
+.order-card i {
+    font-size: 50px;
+}
+
+.f-left {
+    float: left;
+}
+
+.f-right {
+    float: right;
+}
+</style>
+<script>
+    $(document).ready(function () {
+            $('#sidebarCollapse').on('click', function () {
+                $('#sidebar').toggleClass('active');
+            });
+        });
+</script>
+<section id="centers" class="top bg-gray centers" style="margin-top:0;">
+   <div class="wrapper">
+        <!-- Sidebar  -->
+        <nav id="sidebar">
+            <div class="sidebar-header d-none  d-lg-block d-lg-block">
+                <h4 style="color:white; text-transform: uppercase;">{{request.user.first_name}} {{request.user.last_name}}</h4>
+            </div>
+
+            <ul class="list-unstyled components d-none  d-md-block d-lg-block">
+                <li class="active">
+                    <a href="/user-dashboard/"><i class="fa fa-dashboard" style="font-size: 26px;"></i>Dashboard</a>
+
+                </li>
+                <li>
+                    <a href="/profile/"><i class="fa fa-user" style="font-size: 26px;"></i>Profile</a>
+                </li>
+                <li>
+                    <a href="/myOrder/"> <i class="fa fa-shopping-bag" style="font-size: 26px;"></i>My Order</a>
+                </li>
+                <li>
+                    <a href="/Booked-room/"><i class="fa fa-hotel" style="font-size: 26px;"></i> Booked Villa </a>
+                </li>
+                <li>
+                    <a href="/change-password/"> <i class="fa fa-key" style="font-size: 26px;"></i>Change Password</a>
+                </li>
+<!--                 <li>-->
+<!--                    <a href="/refund-form/"><i class="fa fa-money" style="font-size: 26px;"></i>Refund Form</a>-->
+<!--                </li>-->
+                <li>
+                    <a href="/logout/"><i class="fa fa-sign-out" style="font-size: 26px;"></i>Logout</a>
+                </li>
+            </ul>
+            <ul class="list-unstyled components  d-sm-block d-md-none">
+                <li class="active">
+                    <a href="/user-dashboard/"><i class="fa fa-dashboard" style="font-size: 26px;"></i><span style="font-size: 8px;">Dashboard</span></a>
+
+                </li>
+                <li>
+                    <a href="/profile/"><i class="fa fa-user" style="font-size: 26px;"></i><span style="font-size: 8px;">Profile</span></a>
+                </li>
+                <li>
+                    <a href="/myOrder/"> <i class="fa fa-shopping-bag" style="font-size: 26px;"></i><span style="font-size: 8px;">MyOrder</span></a>
+                </li>
+                <li>
+                    <a href="/Booked-room/"><i class="fa fa-hotel" style="font-size: 26px;"></i><span style="font-size: 8px;">Booked&nbsp;Stay</span></a>
+                </li>
+                <li>
+                    <a href="/change-password/"> <i class="fa fa-key" style="font-size: 26px;"></i><span style="font-size: 8px;">Change&nbsp;Pass</span></a>
+                </li>
+<!--                <li>-->
+<!--                    <a href="/refund-form/"> <i class="fa fa-money" style="font-size: 26px;"></i><span style="font-size: 8px;">Refund Form</span></a>-->
+<!--                </li>-->
+                <li>
+                    <a href="/logout/"><i class="fa fa-sign-out" style="font-size: 26px;"></i><span style="font-size: 8px;">Logout</span></a>
+                </li>
+            </ul>
+
+
+        </nav>
+
+        <!-- Page Content  -->
+        <div id="content">
+
+            <nav class="navbar1 navbar-expand-lg navbar-light bg-light d-none d-lg-block">
+                <div class="container-fluid ">
+
+                    <button type="button" id="sidebarCollapse" class="btn" style="padding:0; cursor: pointer;">
+                        <i class="fa fa-align-left"></i>
+                    </button>
+                </div>
+            </nav>
+<div class="container">
+    <div class="row">
+        <div class="col-md-6 col-lg-4">
+            <a href="/myOrder/">
+            <div class="card  bg-c-green order-card">
+                <div class="card-block">
+                    <h6 class="m-b-20">Product Orders</h6>
+                    <h2 class="text-right"><i class="fa fa-shopping-bag f-left"></i><span>{{order_product}}</span></h2>
+                </div>
+            </div>
+            </a>
+        </div>
+         <div class="col-md-6 col-lg-4">
+              <a href="/cart/">
+            <div class="card bg-c-yellow order-card">
+                <div class="card-block">
+                    <h6 class="m-b-20">Product In Cart</h6>
+                    <h2 class="text-right"><i class="fa fa-cart-plus f-left"></i><span>{{product}}</span></h2>
+                </div>
+            </div>
+              </a>
+        </div>
+        <div class="col-md-6 col-lg-4">
+             <a href="/Booked-room/">
+            <div class="card bg-c-pink  order-card">
+                <div class="card-block">
+                    <h6 class="m-b-20">Villa Booked</h6>
+                    <h2 class="text-right"><i class="fa fa-hotel f-left"></i><span>{{room_booked}}</span></h2>
+<!--                    <p class="m-b-0">Completed Orders<span class="f-right">351</span></p>-->
+                </div>
+            </div></a>
+        </div>
+
+	</div>
+    {%if order_id%}
+    <br>
+    <h6 class="badge badge-primary" style="font-size: 108%;
+    font-weight: 400;">Recent Order Product</h6>
+     <div class=" col-lg-12 col-md-12 col-sm-12 col-12 p-0">
+                    <div class="card"style=" background: linear-gradient(to bottom, #e7e5e5  0%, #66ffff 100%);">
+                        <div class="card-body" >
+                            <div class="row">
+                                <h6 class="ml-4">Order ID : ORD/{{order_id}}</h6>
+                                <h6 class="ml-4">Place Date : {{payment_date|date:"d M, Y"}}</h6>
+                                <h6 class="ml-4">Paid Amount : ₹{{amount}}</h6>
+                            </div>
+                            <div class="float-right">
+                                    <a href="/myOrder/" class="btn btn-success" style="color:white; border-radius:30px; cursor:pointer;">
+                                            View</a>
+                                </div>
+                        </div>
+                    </div>
+
+
+    {% endif %}
+         {% if room_oder_id %}
+         <br>
+         <h6 class="badge badge-primary" style="font-size: 108%;
+    font-weight: 400;">Recent Booked Villa</h6>
+            <div class="p-0 col-lg-12 col-md-12 col-sm-12 col-12 " style="overflow-x: auto;">
+          <table class="table table-bordered table-hover">
+                        <thead class="thead-dark">
+                        <tr>
+                            <th scope="col">Order Id</th>
+                            <th scope="col">Villa</th>
+                            <th scope="col">Adults</th>
+                            <th scope="col">Amount</th>
+                            <th scope="col">Check-in</th>
+                            <th scope="col">check-out</th>
+                            <th scope="col">Status</th>
+                            {% if Payment_status == '2' %}
+                            <th scope="col">Invoice</th>
+                            {%endif%}
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr>
+                            <td align="center">{{room_oder_id}}</td>
+                            <td align="center"><span class="badge badge-warning">{{room_no}}</span></td>
+                            <td align="center">{{adult_no}}</td>
+                             <td align="center">{{villa_amount}}</td>
+                            <td align="center">{{check_in|date:"d-M-Y" }} (12.00PM)</td>
+                            <td align="center">{{check_out|date:"d-M-Y"}} (10.00AM)</td>
+                            {% if Payment_status == '2' %}
+                            <td align="center"><span class="badge badge-success">Booked</span></td>
+                            {%else%}
+                            <td align="center"><span class="badge badge-danger">Not Booked</span></td>
+                            {% endif %}
+                             {% if Payment_status == '2' %}
+                            <td align="center"><a href="{{room_invoice}}" target="_blank"><img
+                                    src="{% static 'img/logo/download.png'%}" height="50px" ; width="50px;"
+                                    title="Download Villa Booking Invoice" style="cursor:pointer"></a></td>
+                            {%endif%}
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+         {% endif %}
+</div>
+
+
+        </div>
+        </div></div>
+</section>
+{% endblock%}

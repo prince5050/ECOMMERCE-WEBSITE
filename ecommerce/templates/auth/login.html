@@ -1,0 +1,374 @@
+{% extends 'index.html' %}
+{%block title%}Login | AMTZ | Medical Device Industry in India | HealthTech IoT{% endblock %}
+{% block meta_description%}
+<meta name="description" content="Login - Our catalog allows you to order medical devices online, most trusted brands and quality healthcare equipment at best prices in India. Shop Online">
+ {% endblock %}
+{%block content%}
+{% load static %}
+<style>
+@media only screen and (min-device-width : 800px){
+.FormMain {
+
+width:45%
+}
+
+}
+    ._MdeUd.MForm {
+        box-shadow: none;
+    }
+
+    .FormMain {
+        position: relative;
+        box-sizing: border-box;
+        top: 0;
+        left: 0;
+        height: 100%;
+        padding: 48px;
+        background-color: #fff;
+        border: 1px solid #e3e3e3;
+        border-radius: 16px;
+        text-align: left;
+        font-family: "MONTSERRAT";
+    }
+
+    .FormMain h1 {
+        font-weight: 700;
+        font-size: 29px;
+        color: #282a35;
+        margin: 0;
+    }
+
+    .FormL.MForm {
+        display: none;
+        top: 30px;
+        right: 30px;
+    }
+
+    .FormL {
+        position: absolute;
+        top: 40px;
+        right: 40px;
+        cursor: pointer;
+    }
+
+    .FormStart,
+    .FormStart .mailUser {
+        position: relative;
+    }
+
+    .FormStart {
+        display: flex;
+        font-family: "MONTSERRAT";
+        flex-direction: column;
+    }
+
+    .FormStart div.MailForm {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: flex-end;
+    }
+
+    .FormStart div.MailForm label {
+        font-family: "MONTSERRAT";
+        font-weight: 600;
+        font-size: 16px;
+        margin: 30px 0 0;
+        display: inline-block;
+    }
+
+    .FormStart div.MailForm span {
+        font-size: 14px;
+    }
+
+    .FormStart div.MailForm span span {
+        color: #2E77C5;
+        font-weight: 600;
+        display: inline-block;
+        margin-left: 6px;
+        cursor: pointer;
+    }
+
+    .FormStart div.MailForm span {
+        font-size: 14px;
+    }
+
+    .FormStart {
+        display: flex;
+        font-family: "MONTSERRAT";
+        flex-direction: column;
+    }
+
+    .FormStart div.MailForm span {
+        font-size: 14px;
+    }
+
+    .FormStart,
+    .FormStart .mailUser {
+        position: relative;
+    }
+
+    .FormStart .mailUser input {
+        width: 100%;
+    }
+
+    .passForm {
+        position: relative;
+    }
+
+    .passForm div._1GRFh {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: flex-end;
+    }
+
+    .passForm div._1GRFh label {
+        font-family: "MONTSERRAT";
+        font-weight: 600;
+        font-size: 16px;
+        margin: 30px 0 0;
+        display: inline-block;
+    }
+
+    .passForm div._1GRFh span {
+        font-size: 14px;
+    }
+
+    ._8HgG3 {
+        cursor: pointer;
+        font-family: "MONTSERRAT";
+        font-style: normal;
+        font-weight: 600;
+        font-size: 13px;
+        color: #282a35;
+    }
+
+    .passForm div._1GRFh span svg {
+        display: inline-block;
+        margin-right: 4px;
+        position: relative;
+        top: 2px;
+    }
+
+    ._8HgG3 svg {
+        right: 0;
+    }
+
+    .passForm div._1GRFh span {
+        font-size: 14px;
+    }
+
+    ._8HgG3 {
+        cursor: pointer;
+        font-family: "MONTSERRAT";
+        font-style: normal;
+        font-weight: 600;
+        font-size: 13px;
+        color: #282a35;
+    }
+
+    input[type=password],
+    input[type=text] {
+        font-family: "MONTSERRAT";
+        font-size: 14px;
+    }
+
+    ._lEWNL {
+        padding: 14px;
+        margin: 6px 0;
+        border-radius: 4px;
+        border: 1px solid #ced4da;
+        background-color: #fff;
+        box-sizing: border-box;
+        height: 45px;
+    }
+
+    .passForm {
+        position: relative;
+    }
+
+    .passForm {
+        display: flex;
+        font-family: "MONTSERRAT";
+        flex-direction: column;
+    }
+
+    ._BG7UC {
+        height: 39px;
+    }
+
+    ._20LW8 {
+        position: relative;
+        top: 6px;
+        width: 100%;
+        box-sizing: border-box;
+    }
+
+    .LoginB.LoginBB {
+        color: #fff;
+        background-color: #2E77C5;
+    }
+
+    .LoginB.Loginbb {
+        width: 100%;
+    }
+
+    .LoginB {
+        margin: 0;
+        font-family: "MONTSERRAT";
+        font-size: 18px;
+        font-weight: 600;
+        font-stretch: normal;
+        font-style: normal;
+        line-height: 1.17;
+        letter-spacing: normal;
+        text-align: center;
+        white-space: nowrap;
+        position: relative;
+        cursor: pointer;
+        height: 50px;
+        padding-left: 40px;
+        padding-right: 40px;
+        border-radius: 25px;
+        border: 0;
+        box-sizing: border-box;
+        display: inline-block;
+        text-decoration: none;
+    }
+
+    .ForGot {
+        width: 100%;
+        text-align: center;
+        margin-top: 18px;
+        color: #2E77C5;
+    }
+
+    ._MdeUd.MForm {
+        box-shadow: none;
+        padding-top: 50px;
+        padding-bottom: 50px;
+    }
+
+    input#modalusername {
+        padding: 14px;
+        margin: 6px 0;
+        border-radius: 4px;
+        border: 1px solid #ced4da;
+        background-color: #fff;
+        box-sizing: border-box;
+        height: 45px;
+    }
+
+    .LoginB.Loginbb {
+        width: 100%;
+    }
+
+    a.forgOT {
+        color: #2E77C5;
+    }
+
+    i.fa.fa-eye {
+        font-size: 15px;
+    }
+
+</style>
+
+<section id="loGin" class="LoGin">
+    <div class="container">
+        <div class="_MdeUd _3-XBs MForm">
+             {% if messages %}
+            <div class="col-lg-12 text-center">
+                 {% for message in messages %}
+            <div class="alert alert-success alert-dismissible fade show" id="message_success"
+                 role="alert">
+                <strong>{{message}}</strong>
+            </div>
+                {% endfor %}
+            </div>
+            {% endif %}
+            {% if message %}
+            <div class="col-lg-12 text-center">
+            <div class="alert alert-success alert-dismissible fade show" id="message_success"
+                 role="alert">
+                <strong>{{message}}</strong>
+            </div>
+            </div>
+            {% endif %}
+            {% if error %}
+            <div class="col-md-12 text-center">
+            <div class="alert alert-danger alert-dismissible fade show" id="message_error"
+                 role="alert">
+                <strong>{{error}}</strong>
+            </div>
+            </div>
+            {% endif %}
+            <div class="FormMain center">
+
+                <div>
+                    <h1>Login</h1>
+                    <form method="post" action="/login/" id="myform">
+                       {% csrf_token %}
+                    <div>
+                            <div class="FormStart">
+                                <div class="MailForm"><label for="email">Email</label><span style="padding-left: 32px;">Don't have an account?
+                                       <a href="/signup/"><span> Sign Up</span></a></span></div>
+                                <div class="mailUser "><input placeholder="example@gmail.com" class="hello undefined"
+                                                              type="email" name="email" placeholder="" id="modalusername"
+                                                              value="" required></div>
+                            </div>
+                            <div class="passForm">
+                                <div class="_1GRFh"><label for="current-password">Password</label>
+                                </div>
+                                <input class="_lEWNL" name="password" type="password" required
+                                       placeholder="Enter your password" id="showme" value="">
+                                <input type="hidden" name="next" value="{{ request.GET.next }}"/>
+                                <div>
+                                <span class="_8HgG3 float-right"><i class="fa fa-eye" aria-hidden="true"
+                                                                   onclick="showPassword()"></i></span></div>
+                            </div>
+                          <div class="MailForm">
+                              <a href="/forgot-password/"><span style="color:#2E77C5;"><b>Forgot Password ?</b></span></a></span>
+                          </div>
+                    </div>
+                    <div class="_BG7UC"></div>
+                    <div class="_20LW8">
+                        <div>
+                            <button type="submit" class="LoginB LoginBB Loginbb center" id="submit" ><span>Login</span></button>
+                        </div>
+                        <!-- <div class="ForGot center"><a href="#" class="forgOT">Forgot password?</a></div> -->
+                    </div>
+                    </form>
+                </div>
+            </div>
+
+        </div></div>
+
+
+
+</section>
+<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+<script>
+    function showPassword() {
+        var x = document.getElementById("showme");
+        if (x.type === "password") {
+            x.type = "text";
+        } else {
+            x.type = "password";
+        }
+    }
+
+
+</script>
+<script>
+     $(window).ready(function() {
+     $("#myform").on("submit", function(){
+        $("#submit").attr("disabled", true);
+        $("#submit").html("Please Wait...");
+        $("#submit").css("background-color","#072d69");
+        $("#submit").css("text-transform","lowercase");
+        })
+        });
+</script>
+
+{% endblock %}

@@ -1,0 +1,114 @@
+{% extends 'index.html' %}
+{%block title%}Product Checkout {% endblock %}
+{%block content%}
+{% load static %}
+<section id="centers" class="section-padding top bg-gray centers">
+
+    <div class="container">
+        <div class="container">
+            <h4>Order Checkout</h4>
+            <hr>
+        </div>
+        <br>
+        {% for order in order_obj%}
+        <div class="row">
+            <div class="col-lg-8 col-md-12"><br>
+                <div class="card">
+                    <div class="card-header" style="background-color:white">
+                        <h5>Shipping Address</h5>
+                    </div>
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <h6>{{order.address.fullname}}</h6>
+                                <h6>{{order.address.mobile}}</h6>
+                                <p>{{order.address.address1}}</p>
+                                <p>{{order.address.address2}}</p>
+                                <p>{{order.address.city}}, {{order.address.state.state_name}},
+                                    {{order.address.pincode}}, {{order.address.country.country_name}}</p><br>
+                            </div>
+                            <div class="col-md-12">
+                                <h6>Your Product delivered to your address within 10 days.</h6>
+                            </div>
+                        </div>
+                        <br>
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="col-lg-4 col-md-12"><br>
+                <div class="card">
+                    <div class="card-header" style="background-color:white">
+                        <h5>Payment Details</h5>
+                    </div>
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <h6>Price ({{total_qty}} items)</h6>
+                            </div>
+                            <div class="col-md-6">
+                                <h6>₹ {{price_without_gst}}.00</h6>
+                            </div>
+                        </div>
+                        <hr>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <h6>GST amt</h6>
+                            </div>
+                            <div class="col-md-6">
+                                <h6>₹ {{total_gst}}.00</h6>
+                            </div>
+                        </div>
+                        <hr>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <h6>Total Price</h6>
+                            </div>
+                            <div class="col-md-6">
+                                <h6>₹ {{net_price}}.00</h6>
+                            </div>
+                        </div>
+                        <div class="float-right">
+                            <form action={{url}} method="post"
+                                  name="billdesk" id="billdesk">
+                                {% csrf_token %}
+                                <input name="msg" type="hidden" value="{{msg}}">
+                                <input type="submit" class="btn btn-primary" style="cursor: pointer;" value="Pay" id="submit">
+                            </form>
+                        </div>
+                        <br>
+
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        {% endfor %}
+        <br><br>
+
+    </div>
+</section>
+
+<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+<!--                       <button type="button" id="rzp-button1">Pay</button>-->
+
+
+<script>
+  document.billdesk.submit();
+
+</script>
+<script>
+window.onbeforeunload = function() {
+  window.location.reload(true);
+}
+
+    $(window).ready(function() {
+     $("#billdesk").on("submit", function(){
+        $("#submit").attr("disabled", true);
+        $("#submit").val("Processing....");
+        })
+         });
+</script>
+
+{% endblock%}

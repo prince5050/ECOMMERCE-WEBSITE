@@ -1,0 +1,189 @@
+{% extends 'index.html' %}
+{%block title%}Contact AMTZ | Medical Technologies in India | LSHC | Insights  {% endblock %}
+{% block meta_description%}
+<meta name="description" content="To contact AMTZ medical technologies, innovations and healthcare equipment industry in India. Telephone: +91 8885092122 / Email us at info@amtz.in">
+ {% endblock %}
+{%block content%}
+{% load static %}
+
+
+<!-- START PAGE BANNER AND BREADCRUMBS -->
+<section class="single-page-title-area" data-background="{%static 'img/bg/amtz flag.jpg'%}">
+    <div class="auto-container">
+        <div class="row">
+            <div class="col-lg-8 col-md-8 col-sm-12 col-12">
+                <div class="single-page-title">
+                    <h6>AMTZ</h6>
+                    <span></span>
+                    <h2>Contact us</h2>
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-4 col-sm-12 col-12">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="/">Home</a></li>
+                    <!--					  <li class="breadcrumb-item"><a href="#">Pages</a></li>-->
+                    <li class="breadcrumb-item active">Contact us</li>
+                </ol>
+            </div>
+        </div>
+        <!-- end row-->
+    </div>
+</section>
+<!-- END PAGE BANNER AND BREADCRUMBS -->
+
+
+<!-- START CONTACT PAGE -->
+<section id="contact-page">
+    <!-- end row-->
+    <div class="section-padding contact-add-padd">
+        <div class="auto-container">
+            <div class="row">
+                <div class="col-lg-8 col-md-8 col-sm-12 col-12">
+                    <div class="col-lg-12 text-center">
+                        {% if messages %}
+                        {% for message in messages %}
+                        {% if message.tags == 'success'%}
+                        <div class="alert alert-success alert-dismissible fade show" id="message_success" role="alert">
+                            <strong>{{message}}</strong>
+                        </div>
+                         {% else %}
+                        <div class="alert alert-danger alert-dismissible fade show" id="message_error" role="alert">
+                            <strong>{{message}}</strong>
+                        </div>
+                        {% endif %}
+                        {%endfor%}
+                        {% endif %}
+                        <div class="section-title">
+                            <h3>Our Quick Contact From</h3>
+                            <span class="line"></span>
+                            <i class="icofont icofont-map-pins"></i>
+                            <p></p>
+                        </div>
+                    </div>
+                    <div class="mx-auto col-lg-10 mt-40">
+                        <div class="contact">
+                            <form id="contact-form" class="form" name="enq" method="POST"  action="/sendmail/">
+                                {% csrf_token %}
+                                <div class="row">
+                                    <div class="col-lg-6">
+                                        <div class="form-group col-lg-12">
+                                            <input type="text" name="name" class="form-control" id="firstname"
+                                                   placeholder="Full Name" required="required">
+                                        </div>
+                                        <div class="form-group col-lg-12">
+                                            <input type="email" name="email" class="form-control" id="email"
+                                                   placeholder="Email Address" required="required">
+                                        </div>
+                                        <div class="form-group col-lg-12">
+                                            <input type="text" name="mobile" class="form-control" id="phone"
+                                                   placeholder="Phone Number" required="required">
+                                        </div>
+                                        <div class="form-group col-lg-12">
+                                            <input type="text" name="subject" class="form-control" id="subject"
+                                                   placeholder="Subject" required="required">
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-6">
+                                        <div class="form-group col-lg-12">
+											<textarea rows="10" name="message" class="form-control" id="description"
+                                                      placeholder="Your Message" required="required"></textarea>
+<!--                                            <input type="hidden" id="g-recaptcha-response" name="g-recaptcha-response"> -->
+                                        </div>
+
+                                        <div class="g-recaptcha" data-sitekey="6LeHkCUfAAAAAEV981C12rUzERHM2ov-bHOFRxJo"></div><br>
+                                        <div class="form-group col-lg-12 mb0">
+                                            <div class="actions">
+<!--                                                <input type="hidden" id="g-recaptcha-response" name="g-recaptcha-response">-->
+
+<!--                                                <button class="g-recaptcha"-->
+<!--        data-sitekey="reCAPTCHA_site_key"-->
+<!--        data-callback='onSubmit'-->
+<!--        data-action='submit'>Submit</button>-->
+
+                                                <input type="submit" value="sendmail" name="submit" id="submitButton"
+                                                       class="btn btn-lg btn-contact-bg"
+                                                       title="Click here to submit your message!"/>
+                                                <img src="assets/img/ajax-loader.gif" width="16" height="16" id="loader"
+                                                     style="display:none" alt="loading">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>
+                            {% for msg in message %}
+                            {{msg}}
+                            {% endfor %}
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class="col-lg-4 col-md-4 col-sm-12 col-12">
+                    <div class="col-lg-12 text-center">
+                        <div class="section-title">
+                            <h5>Connect with us</h5>
+                            <h3>We are here to help you</h3>
+                            <span class="line"></span>
+                            <i class="icofont icofont-contact-add"></i>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-12 col-md-12 col-sm-12 col-12">
+                            <div class="single-con-add">
+                                <div class="single-con-add-icon">
+                                    <i class="icofont icofont-ui-office"></i>
+                                </div>
+                                <div class="single-con-add-text">
+                                    <h3>Corporate Offices</h3>
+                                    <p> C/o AMTZ Campus Pragati Maidan VM Steel Project S.O Visakhapatnam,</p>
+                                    <p> Pin -530031 Andhra Pradesh - India </p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-12 col-md-12 col-sm-6 col-12">
+                            <div class="single-con-add">
+                                <div class="single-con-add-icon">
+                                    <i class="icofont icofont-email"></i>
+                                </div>
+                                <div class="single-con-add-text">
+                                    <h3>Send Email</h3>
+                                    <p><a style="color:#777777;" href="https://mail.google.com/mail/?view=cm&fs=1&to=info@amtz.in" target="_blank">info@amtz.in</a></p>
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-12 col-md-12 col-sm-6 col-12">
+                            <div class="single-con-add">
+                                <div class="single-con-add-icon">
+                                    <i class="icofont icofont-open-eye"></i>
+                                </div>
+                                <div class="single-con-add-text">
+                                    <h3>Open Door</h3>
+                                    <p>Mon - Sat: 10 AM - 6 PM</p>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+        <!-- end container-->
+    </div>
+</section>
+<!-- END CONTACT PAGE -->
+
+
+<!-- START MAP -->
+<div class="gmap_canvas">
+    <iframe id="gmap_canvas"
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d237.65232945752658!2d83.15830946183777!3d17.62943700981855!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3a395a5a5e684bfd%3A0xeb22d147c29b416d!2sAndhra%20Pradesh%20MedTech%20Zone!5e0!3m2!1sen!2sin!4v1634730162445!5m2!1sen!2sin"
+            width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy"
+            &amp;t=&amp;z=13&amp;ie=UTF8&amp;iwloc=&amp;output=embed></iframe>
+</div>
+<!-- END MAP -->
+
+
+{% endblock %}

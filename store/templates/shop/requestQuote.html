@@ -1,0 +1,53 @@
+{% extends 'index.html' %}
+{%block title%}Contact {% endblock %}
+{%block content%}
+{% load static %}
+
+<!-- START CONTACT FORM -->
+	<section class="section-padding">
+		<div class="container">
+			<div class="row">
+				<!-- end section title -->
+			    <div class="mx-auto col-lg-10 mt-40">
+                    <div class="contact">
+                        <form id="contact-form" class="form" name="enq" method="POST" action="/quotation/">
+							{% csrf_token %}
+                            <div class="row">
+								<div class="col-lg-6">
+									<div class="form-group col-lg-12">
+										<input type="text" name="name" class="form-control" id="firstname" placeholder="Full Name" required="required">
+									</div>
+									<div class="form-group col-lg-12">
+										<input type="email" name="email" class="form-control" id="email" placeholder="Email Address" required="required">
+									</div>
+									<div class="form-group col-lg-12">
+										<input type="text" name="phone" class="form-control" id="phone" placeholder="Phone Number" required="required">
+									</div>
+									<div class="form-group col-lg-12">
+										<input type="text" name="subject" class="form-control" id="subject" placeholder="Subject" required="required">
+									</div>
+								</div>
+								<div class="col-lg-6">
+									<div class="form-group col-lg-12">
+										<textarea rows="10" name="message" class="form-control" id="description" placeholder="Your Message" required="required"></textarea>
+									</div>
+									<div class="form-group col-lg-12 mb0">
+										<div class="actions">
+											<input type="submit" value="Request Quotation" name="submit" id="submitButton" class="btn btn-lg btn-contact-bg" title="Click here to submit your message!" />
+											<img src="assets/img/ajax-loader.gif" width="16" height="16" id="loader" style="display:none" alt="loading">
+										</div>
+									</div>
+								</div>
+                            </div>
+                        </form>
+						{% for msg in message %}
+						{{msg}}
+						{% endfor %}
+                    </div>
+				</div>
+			</div>
+			<!-- end row-->
+		</div>
+	</section>
+	<!-- END CONTACT FORM -->
+{% endblock %}

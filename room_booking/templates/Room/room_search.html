@@ -1,0 +1,400 @@
+{% extends 'index.html' %}
+{%block title%}Book your Stay at AMTZ India | New Medical Technology in India{% endblock %}
+{% block meta_description%}
+<meta name="description" content="Stay at world's largest medtech cluster with world class medical laboratory technology, technology incubation center and medical equipment manufacturers.	">
+ {% endblock %}
+{%block content%}
+{% load static %}
+<style>
+.section-padding {
+    padding: 45px 0;
+}
+.section {
+    position: relative;
+    height: 60vh !important;
+}
+
+.section {
+    position: relative;
+    height: 100vh
+}
+
+.section .section-center {
+    position: absolute;
+    top: 50%;
+    left: 0;
+    right: 0;
+    -webkit-transform: translateY(-50%);
+    transform: translateY(-50%)
+}
+
+#booking {
+    font-family: 'Raleway', sans-serif
+}
+
+.booking-form {
+    position: relative;
+    max-width: 642px;
+    width: 100%;
+    margin: auto;
+    padding: 40px;
+    overflow: hidden;
+<!--    background-image: url('https://i.imgur.com/8z1tx3u.jpg');-->
+    background-size: cover;
+    border-radius: 5px;
+    z-index: 20
+}
+
+.booking-form::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    top: 0;
+    background: rgba(0, 0, 0, 0.7);
+    z-index: -1
+}
+
+.booking-form .form-header {
+    text-align: center;
+    position: relative;
+    margin-bottom: 30px
+}
+
+.booking-form .form-header h1 {
+    font-weight: 700;
+    text-transform: capitalize;
+    font-size:22px;
+    margin: 0px;
+    color: #fff
+}
+
+<!--.booking-form .form-group {-->
+<!--    position: relative;-->
+<!--    margin-bottom: 30px-->
+<!--}-->
+
+.booking-form .form-control {
+    background-color: rgba(255, 255, 255, 0.2);
+    height: 45px;
+    padding: 0px 10px;
+    border: none;
+    border-radius: 10px;
+    color: #fff;
+    -webkit-box-shadow: 0px 0px 0px 2px transparent;
+    box-shadow: 0px 0px 0px 2px transparent;
+    -webkit-transition: 0.2s;
+    transition: 0.2s
+}
+select.form-control:not([size]):not([multiple]){
+height:45px !important;
+}
+
+.booking-form .form-control::-webkit-input-placeholder {
+    color: rgba(255, 255, 255, 0.5)
+}
+
+.booking-form .form-control:-ms-input-placeholder {
+    color: rgba(255, 255, 255, 0.5)
+}
+
+.booking-form .form-control::placeholder {
+    color: rgba(255, 255, 255, 0.5)
+}
+
+.booking-form .form-control:focus {
+    -webkit-box-shadow: 0px 0px 0px 2px #ff8846;
+    box-shadow: 0px 0px 0px 2px #ff8846
+}
+
+.booking-form input[type="date"].form-control {
+    padding-top: 16px
+}
+
+.booking-form input[type="date"].form-control:invalid {
+    color: rgba(255, 255, 255, 0.5)
+}
+
+.booking-form input[type="date"].form-control+.form-label {
+    opacity: 1;
+    top: 6px
+}
+
+.booking-form select.form-control {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none
+}
+
+.booking-form select.form-control:invalid {
+    color: rgba(255, 255, 255, 0.5)
+}
+
+.booking-form select.form-control+.select-arrow {
+    position: absolute;
+    right: 15px;
+    top: 50%;
+    -webkit-transform: translateY(-50%);
+    transform: translateY(-50%);
+    width: 32px;
+    line-height: 16px;
+    height: 32px;
+    text-align: center;
+    pointer-events: none;
+    color: rgba(255, 255, 255, 0.5);
+    font-size: 14px
+}
+
+.booking-form select.form-control+.select-arrow:after {
+    content: '\279C';
+    display: block;
+    -webkit-transform: rotate(90deg);
+    transform: rotate(90deg)
+}
+
+.booking-form select.form-control option {
+    color: #000
+}
+
+.booking-form .form-label {
+    position: absolute;
+    top: -10px;
+    left: 25px;
+    opacity: 0;
+    color: #ff8846;
+    font-size: 11px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1.3px;
+    height: 15px;
+    line-height: 15px;
+    -webkit-transition: 0.2s all;
+    transition: 0.2s all
+}
+
+.booking-form .form-group.input-not-empty .form-control {
+    padding-top: 16px
+}
+
+.booking-form .form-group.input-not-empty .form-label {
+    opacity: 1;
+    top: 10px
+}
+
+.booking-form .submit-btn {
+    color: #fff;
+    background-color: #e35e0a;
+    font-weight: 700;
+    height: 60px;
+    padding: 10px 30px;
+    width: 100%;
+    border-radius: 40px;
+    border: none;
+    text-transform: uppercase;
+    font-size: 16px;
+    letter-spacing: 1.3px;
+    -webkit-transition: 0.2s all;
+    transition: 0.2s all
+}
+
+.booking-form .submit-btn:hover,
+.booking-form .submit-btn:focus {
+    opacity: 0.9
+}
+@media only screen and (max-width: 500px) {
+.section-padding {
+    padding: 245px 0;
+    margin-bottom:10px;
+    }
+.form-margin{
+margin-top:25px;
+}
+.slider{
+padding:0;
+}
+}
+
+</style>
+<section class="roombg pages cart-page section-padding">
+    <div id="booking" class="section">
+        <div class="section-center">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-6 slider">
+                        <!---->
+                        <div id="demo" class="carousel slide" data-ride="carousel">
+
+                            <!-- Indicators -->
+                            <ul class="carousel-indicators">
+                                <li data-target="#demo" data-slide-to="0" class="active"></li>
+                                <li data-target="#demo" data-slide-to="1"></li>
+                                <li data-target="#demo" data-slide-to="2"></li>
+                                 <li data-target="#demo" data-slide-to="3"></li>
+                                <li data-target="#demo" data-slide-to="4"></li>
+                                 <li data-target="#demo" data-slide-to="5"></li>
+                                <li data-target="#demo" data-slide-to="6"></li>
+                                <li data-target="#demo" data-slide-to="7"></li>
+                                <li data-target="#demo" data-slide-to="8"></li>
+
+                            </ul>
+
+                            <!-- The slideshow -->
+                            <div class="carousel-inner" style="cursor:pointer; box-shadow: 0 14px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);">
+                                <div class="carousel-item active" >
+                                    <img id="myImg" onclick="getImage(this)" src="{% static 'img/room_pic/2nd.jpeg'%}" alt="Los Angeles" width="600"
+                                         height="320">
+                                </div>
+                                <div class="carousel-item">
+                                    <img id="myImg" onclick="getImage(this)" src="{% static 'img/room_pic/3rd.jpeg'%}" alt="Chicago" width="600"
+                                         height="320">
+                                </div>
+                                <div class="carousel-item">
+                                    <img id="myImg" onclick="getImage(this)" src="{% static 'img/room_pic/4th.jpeg'%}" alt="New York" width="600"
+                                         height="320">
+                                </div>
+                                <div class="carousel-item">
+                                    <img  id="myImg" onclick="getImage(this)" src="{% static 'img/room_pic/5th.jpeg'%}" alt="New York" width="600"
+                                        height="320">
+                                </div>
+                                <div  class="carousel-item">
+                                    <img id="myImg" onclick="getImage(this)" src="{% static 'img/room_pic/6th.jpeg'%}" alt="New York" width="600"
+                                         height="320">
+                                </div>
+                                <div  class="carousel-item">
+                                    <img id="myImg" onclick="getImage(this)" src="{% static 'img/room_pic/7th.jpeg'%}" alt="New York" width="600"
+                                         height="320">
+                                </div>
+                                <div class="carousel-item">
+                                    <img id="myImg" onclick="getImage(this)"  class="d-block w-100" src="{% static 'img/room_pic/8th.jpeg'%}"
+                                         alt="eight slide"  width="600" height="320">
+                                </div>
+                                <div class="carousel-item">
+                                    <img id="myImg" onclick="getImage(this)"  class="d-block w-100" src="{% static 'img/room_pic/room_main.jpeg'%}"
+                                         alt="eight slide"  width="600" height="320">
+                                </div>
+                                <div class="carousel-item">
+                                    <img id="myImg" onclick="getImage(this)"  class="d-block w-100" src="{% static 'img/room_pic/room_main2.jpeg'%}"
+                                         alt="eight slide"  width="600" height="320">
+                                </div>
+                                <div class="carousel-item">
+                                    <img id="myImg" onclick="getImage(this)"  class="d-block w-100" src="{% static 'img/room_pic/room_main3.jpeg'%}"
+                                         alt="eight slide"  width="600" height="320">
+                                </div>
+                                <div class="carousel-item">
+                                    <img id="myImg" onclick="getImage(this)"  class="d-block w-100" src="{% static 'img/room_pic/room_main_4.jpeg'%}"
+                                         alt="eight slide"  width="600" height="320">
+                                </div>
+                                 <div class="carousel-item">
+                                    <img id="myImg" onclick="getImage(this)"  class="d-block w-100" src="{% static 'img/room_pic/room_main_6.jpeg'%}"
+                                         alt="eight slide"  width="600" height="320">
+                                </div>
+                                <div class="carousel-item">
+                                    <img id="myImg" onclick="getImage(this)"  class="d-block w-100" src="{% static 'img/room_pic/room_main_9.jpeg'%}"
+                                         alt="eight slide"  width="600" height="320">
+                                </div>
+                            </div>
+
+                            <!-- Left and right controls -->
+                            <a class="carousel-control-prev" href="#demo" data-slide="prev">
+                                <span class="carousel-control-prev-icon"></span>
+                            </a>
+                            <a class="carousel-control-next" href="#demo" data-slide="next">
+                                <span class="carousel-control-next-icon"></span>
+                            </a>
+                        </div>
+                        <!--   image slider closed                 -->
+                    </div>
+                    <div class="col-md-6 form-margin">
+                        <div class="row">
+                            <div class="booking-form hotel-margin">
+                                <div class="form-header">
+                                    <h1>Make your reservation</h1>
+                                </div>
+                                <form action="/room-search/" method="post">
+                                    {% csrf_token %}
+                                    <div class="row">
+                                        {% if error %}
+                                        <div class="col-md-12 text-center">
+                                            <div class="alert alert-danger alert-dismissible fade show"
+                                                 id="message_error"
+                                                 role="alert">
+                                                <strong>{{error}}</strong>
+                                            </div>
+                                        </div>
+                                        {% endif %}
+                                        <div class="col-md-6">
+                                            <div class="form-group"><input class="form-control" type="date"
+                                                                           name="check_in"
+                                                                           required> <span
+                                                    class="form-label">Check In</span>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group"><input class="form-control" type="date"
+                                                                           name="check_out"
+                                                                           required> <span
+                                                    class="form-label">Check out</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <div class="form-group"><input class="form-control" type="number"
+                                                                           placeholder="Enter you Phone" name="mobile" required>
+                                                <span
+                                                        class="form-label">Phone</span></div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group"><select class="form-control" name="adult_no"
+                                                                            required>
+                                                <option value="" selected hidden>number of adults</option>
+                                                <option value="1">1</option>
+                                                <option value="2">2</option>
+                                            </select> <span class="select-arrow"></span> <span
+                                                    class="form-label">Adults</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-btn">
+                                        <button type="submit" class="submit-btn" style="cursor:pointer">Check
+                                            Availability
+                                        </button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+     <div class="col-lg-12 col-md-12 col-sm-12 col-12 villa_poster text-center" style="max-height:50%">
+                        <img class="img-fluid"  src="{% static 'img/room_pic/room_baner.jpeg'%}" />
+
+                    </div>
+
+
+</section>
+<div id="myModal" class="modal-custom">
+    <span class="close1">&times;</span>
+    <img class="modal-content-custom" id="img01">
+    <div id="caption"></div>
+</div>
+<script>
+function getImage(imageData)
+ {
+			var modal = document.getElementById("myModal");
+			var modalImg = document.getElementById("img01");
+			var captionText = document.getElementById("caption");
+			modal.style.display = "block";
+			modalImg.src = imageData.src;
+			captionText.innerHTML = "";//imageData.alt;
+			var span = document.getElementsByClassName("close1")[0];
+			span.onclick = function () {
+				modal.style.display = "none";
+			}
+		}
+</script>
+{%endblock%}

@@ -1,0 +1,513 @@
+{% extends 'index.html' %}
+{%block title%} Change Password {% endblock %}
+{%block content%}
+{% load static %}
+
+<style>
+    /*
+    DEMO STYLE
+*/
+
+@import "https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700";
+a,
+a:hover,
+a:focus {
+    color: inherit;
+    text-decoration: none;
+    transition: all 0.3s;
+}
+
+.navbar1 {
+    padding: 5px 0px;
+    background: #fff;
+    border: none;
+    border-radius: 0;
+    margin-bottom: 40px;
+    box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.navbar-btn {
+    box-shadow: none;
+    outline: none !important;
+    border: none;
+}
+
+.line {
+    width: 100%;
+    height: 1px;
+    border-bottom: 1px dashed #ddd;
+    margin: 40px 0;
+}
+
+/* ---------------------------------------------------
+    SIDEBAR STYLE
+----------------------------------------------------- */
+
+.wrapper {
+    display: flex;
+    width: 100%;
+    align-items: stretch;
+}
+
+#sidebar {
+    min-width: 250px;
+    max-width: 250px;
+    background: #7386D5;
+    color: #fff;
+    transition: all 0.3s;
+}
+
+#sidebar.active {
+    margin-left: -250px;
+}
+
+#sidebar .sidebar-header {
+    padding: 20px;
+    background: #6d7fcc;
+}
+
+#sidebar ul.components {
+    padding: 20px 0;
+    border-bottom: 1px solid #47748b;
+}
+
+#sidebar ul p {
+    color: #fff;
+    padding: 10px;
+}
+
+#sidebar ul li a {
+    padding: 10px;
+    font-size: 1.1em;
+    display: block;
+}
+
+#sidebar ul li a:hover {
+    color:  #fff;
+    background: #1a2d7d;
+}
+
+#sidebar ul li.active>a,
+a[aria-expanded="true"] {
+    color: #fff;
+    background: #0e1120;
+}
+
+a[data-toggle="collapse"] {
+    position: relative;
+}
+
+.dropdown-toggle::after {
+    display: block;
+    position: absolute;
+    top: 50%;
+    right: 20px;
+    transform: translateY(-50%);
+}
+
+ul ul a {
+    font-size: 0.9em !important;
+    padding-left: 30px !important;
+    background: #6d7fcc;
+}
+
+ul.CTAs {
+    padding: 20px;
+}
+
+ul.CTAs a {
+    text-align: center;
+    font-size: 0.9em !important;
+    display: block;
+    border-radius: 5px;
+    margin-bottom: 5px;
+}
+
+a.download {
+    background: #fff;
+    color: #7386D5;
+}
+
+a.article,
+a.article:hover {
+    background: #6d7fcc !important;
+    color: #fff !important;
+}
+
+/* ---------------------------------------------------
+    CONTENT STYLE
+----------------------------------------------------- */
+
+#content {
+    width: 100%;
+    padding: 20px;
+    min-height: 100vh;
+    transition: all 0.3s;
+}
+
+/* ---------------------------------------------------
+    MEDIAQUERIES
+----------------------------------------------------- */
+@media only screen and (max-width: 500px) {
+#sidebar {
+    min-width: 0px;
+    width: 70px;
+    background: #7386D5;
+    color: #fff;
+    transition: all 0.3s;
+    margin-left: 0px;
+}
+}
+@media only screen and (max-width: 768px) {
+   #sidebar {
+        margin-left: 0;
+
+    }
+    #sidebar.active {
+         margin-left: -250px;
+    }
+    #sidebarCollapse span {
+        display: none;
+    }
+}
+
+.order-card {
+    color: #fff;
+}
+
+.bg-c-blue {
+    background: linear-gradient(45deg,#4099ff,#73b4ff);
+}
+
+.bg-c-green {
+    background: linear-gradient(45deg,#2ed8b6,#59e0c5);
+}
+
+.bg-c-yellow {
+    background: linear-gradient(45deg,#FFB64D,#ffcb80);
+}
+
+.bg-c-pink {
+    background: linear-gradient(45deg,#FF5370,#ff869a);
+}
+
+
+.card {
+    border-radius: 5px;
+    -webkit-box-shadow: 0 1px 2.94px 0.06px rgba(4,26,55,0.16);
+    box-shadow: 0 1px 2.94px 0.06px rgba(4,26,55,0.16);
+    border: none;
+    margin-bottom: 30px;
+    -webkit-transition: all 0.3s ease-in-out;
+    transition: all 0.3s ease-in-out;
+}
+
+.card .card-block {
+    padding: 25px;
+}
+
+.order-card i {
+    font-size: 50px;
+}
+
+.f-left {
+    float: left;
+}
+
+.f-right {
+    float: right;
+}
+@media (min-width: 768px) and (max-width: 991.98px) {
+#content {
+    width: 68%;
+    padding-top:20px;
+    min-height: 100vh;
+    transition: all 0.3s;
+}
+}
+@media only screen and (max-width: 500px){
+#content {
+    width: 85%;
+    padding-top: 20px;
+    min-height: 100vh;
+    transition: all 0.3s;
+}
+}
+</style>
+<script>
+    $(document).ready(function () {
+            $('#sidebarCollapse').on('click', function () {
+                $('#sidebar').toggleClass('active');
+            });
+        });
+</script>
+<section id="centers" class="top bg-gray centers" style="margin-top:0;">
+   <div class="wrapper">
+        <!-- Sidebar  -->
+        <nav id="sidebar">
+            <div class="sidebar-header d-none  d-none d-lg-block">
+          <h4 style="color:white; text-transform: uppercase;">{{request.user.first_name}} {{request.user.last_name}}</h4>
+
+            </div>
+
+            <ul class="list-unstyled components d-none  d-md-block d-lg-block">
+                <li>
+                    <a href="/user-dashboard/"><i class="fa fa-dashboard" style="font-size: 26px;"></i>Dashboard</a>
+
+                </li>
+                <li>
+                    <a href="/profile/"><i class="fa fa-user" style="font-size: 26px;"></i>Profile</a>
+                </li>
+                <li>
+                    <a href="/myOrder/"> <i class="fa fa-shopping-bag" style="font-size: 26px;"></i>My Order</a>
+                </li>
+                <li>
+                    <a href="/Booked-room/"><i class="fa fa-hotel" style="font-size: 26px;"></i> Booked Stay</a>
+                </li>
+                <li>
+                    <a href="/change-password/"> <i class="fa fa-key" style="font-size: 26px;"></i>Change Password</a>
+                </li>
+                <li class="active">
+                    <a href="/refund-form/"> <i class="fa fa-money" style="font-size: 26px;"></i>Refund Form</a>
+                </li>
+                <li>
+                    <a href="/logout/"><i class="fa fa-sign-out" style="font-size: 26px;"></i>Logout</a>
+                </li>
+            </ul>
+            <ul class="list-unstyled components  d-sm-block d-md-none">
+                <li class="active">
+                    <a href="/user-dashboard/"><i class="fa fa-dashboard" style="font-size: 26px;"></i><span style="font-size: 8px;">Dashboard</span></a>
+
+                </li>
+                <li>
+                    <a href="/profile/"><i class="fa fa-user" style="font-size: 26px;"></i><span style="font-size: 8px;">Profile</span></a>
+                </li>
+                <li>
+                    <a href="/myOrder/"> <i class="fa fa-shopping-bag" style="font-size: 26px;"></i><span style="font-size: 8px;">My Order</span></a>
+                </li>
+                <li>
+                    <a href="/Booked-room/"><i class="fa fa-hotel" style="font-size: 26px;"></i><span style="font-size: 8px;">Booked&nbsp;Stay</span></a>
+                </li>
+                <li>
+                    <a href="/change-password/"> <i class="fa fa-key" style="font-size: 26px;"></i><span style="font-size: 8px;">Change&nbsp;Pass</span></a>
+                </li>
+                 <li class="active">
+                    <a href="/refund-form/"> <i class="fa fa-money" style="font-size: 26px;"></i><span style="font-size: 8px;">Refund Form</span></a>
+                </li>
+                <li>
+                    <a href="/logout/"><i class="fa fa-sign-out" style="font-size: 26px;"></i><span style="font-size: 8px;">Logout</span></a>
+                </li>
+            </ul>
+
+
+        </nav>
+
+        <!-- Page Content  -->
+        <div id="content" style="height: 700px;
+    overflow-y: auto;">
+
+            <nav class="navbar1 navbar-expand-lg navbar-light bg-light d-none d-none d-lg-block">
+                <div class="container-fluid ">
+
+                    <button type="button" id="sidebarCollapse" class="btn" style="padding:0; cursor: pointer;">
+                        <i class="fa fa-align-left"></i>
+                    </button>
+                </div>
+            </nav>
+<div class="container">
+
+<!-- Page Heading -->
+{% if messages %}
+{% for message in messages %}
+<div class="alert alert-success alert-dismissible fade show" id="message_success" role="alert">
+    <strong>{{message}}</strong>
+</div>
+{%endfor%}
+{% endif %}
+
+<!-- Error message===========-->
+        {%if error%}
+         <div class="alert alert-danger alert-dismissible fade show " id="message_error" role="alert">
+                                        <strong>{{error}}</strong>
+                                    </div>
+        {%endif%}
+<!-- Profile content -->
+
+<div class="card card-primary">
+    <div class="card-header">
+        <h5>Refund Failed Transaction Form</h5>
+    </div>
+    <form action="/refund-form/" method="post" id="myform" >
+        {% csrf_token %}
+
+         <div class="card-body">
+             <div class="card">
+                 <div class="card-header" style="background-color: rgb(159 219 242 / 18%);">
+                    <h6>Failed Transaction Details</h6>
+                 </div>
+                 <div class="card-body">
+                      <div class="row">
+                <input type="hidden" name="user_id" value="{{profile.id}}">
+                <div class="form-group col-md-6">
+                    <label for="last_name"> Select Order Id</label>
+                   <select class="form-control" id="Other_product1" name="Other_product1"
+                                             onchange="other_pro1(this.value)">
+                                    <option selected disabled  value="selected">--SELECT--</option>
+                                           {% for pro in all_product%}
+                                    <option value="{{pro.product_name}}">{{pro.product_name}}</option>
+                                        {% endfor %}
+                                     </select>
+                </div>
+                <div class="form-group col-md-6">
+                    <label for="last_name"> Order Date</label>
+                    <input type="date" class="form-control " id="last_name" required
+                           name="last_name" placeholder="Enter date" value="{{profile.last_name}}" maxlength="30">
+                </div>
+                <div class="form-group col-md-6">
+                    <label for="amount">Amount</label>
+                    <input type="number" class="form-control " id="amount"
+                           name="email" placeholder="Transaction Amount" readonly="" value="{{profile.email}}">
+                </div>
+                <div class="form-group col-md-6">
+                    <label for="mobile">Payment Mode</label>
+                     <input type="text" class="form-control " id="mobile"
+                           name="phone_number" placeholder="Mode of Transaction" onkeyup="mobile1()"/>
+
+                    <span id="msg"></span>
+                </div>
+
+                <!-- Storage::delete($file); -->
+
+                <!-- Close Upload Prodcut Image  -->
+            </div>
+                 </div>
+             </div>
+             <div class="card">
+                 <div class="card-header" style="background-color: rgb(159 219 242 / 18%);">
+                    <h6>Personal Details</h6>
+                 </div>
+                  <div class="card-body">
+            <div class="row">
+                <input type="hidden" name="user_id" value="{{profile.id}}">
+                <div class="form-group col-md-4">
+                    <label for="first_name"> First Name</label>
+                    <input type="text" class="form-control " id="first_name" required
+                           name="first_name" placeholder="Enter firstname" value="{{profile.first_name}}" maxlength="30">
+                </div>
+                <div class="form-group col-md-4">
+                    <label for="last_name"> Last Name</label>
+                    <input type="text" class="form-control " id="last_name" required
+                           name="last_name" placeholder="Enter lastname" value="{{profile.last_name}}" maxlength="30">
+                </div>
+                <div class="form-group col-md-4">
+                    <label for="email">Email</label>
+                    <input type="email" class="form-control " id="email"
+                           name="email" placeholder="Enter email" readonly="" value="{{profile.email}}">
+                </div>
+                <div class="form-group col-md-4">
+                    <label for="mobile">Mobile Number</label>
+                    {% if mobile%}
+                    <input type="number" class="form-control " id="mobile"
+                           name="phone_number" placeholder="Enter mobile number" value="{{mobile}}" onkeyup="mobile1()">
+                    {%else%}
+                     <input type="number" class="form-control " id="mobile"
+                           name="phone_number" placeholder="Enter phone number" onkeyup="mobile1()"/>
+
+                    {%endif%}
+                    <span id="msg"></span>
+                </div>
+                <div class="form-group  col-md-4">
+                    <label for="mobile_number">Alternate Number</label>
+                    <input type="number" class="form-control " id="mobile_number"
+                           name="alternate_number" placeholder="Enter other number" value="{{alternative_mobile}}" onkeyup="mobile2()">
+                    <span id="msg1"></span>
+                </div>
+                <div class="form-group  col-md-4">
+                    <label for="pincode">Pincode</label>
+                    <input type="number" class="form-control " id="pincode"
+                           name="pincode" placeholder="Pincode" value="{{alternative_mobile}}" onkeyup="mobile2()">
+
+                </div>
+                <div class="form-group  col-md-6">
+                    <label for="pincode">Address</label>
+                    <textarea class="form-control " id="address" name="address" rows="4" cols="50"
+                              placeholder="Enter Your Complete Address">
+
+                </textarea>
+
+                </div>
+            </div>
+        </div>
+             </div>
+             <div class="card">
+                 <div class="card-header" style="background-color: rgb(159 219 242 / 18%);">
+                    <h6>Refund Amount Account Details</h6>
+                 </div>
+                 <div class="card-body">
+                      <div class="row">
+                <input type="hidden" name="user_id" value="{{profile.id}}">
+                <div class="form-group col-md-6">
+                    <label for="bank"> Bank Name</label>
+                   <input type="text" class="form-control " id="bank" required
+                           name="Bank_name" placeholder="Enter date" value="{{profile.last_name}}">
+                </div>
+                <div class="form-group col-md-6">
+                    <label for="last_name"> Order Date</label>
+                    <input type="date" class="form-control " id="last_name" required
+                           name="last_name" placeholder="Enter date" value="{{profile.last_name}}" maxlength="30">
+                </div>
+                <div class="form-group col-md-6">
+                    <label for="amount">Amount</label>
+                    <input type="number" class="form-control " id="amount"
+                           name="email" placeholder="Transaction Amount" readonly="" value="{{profile.email}}">
+                </div>
+                <div class="form-group col-md-6">
+                    <label for="mobile">Payment Mode</label>
+                     <input type="text" class="form-control " id="mobile"
+                           name="phone_number" placeholder="Mode of Transaction" onkeyup="mobile1()"/>
+
+                    <span id="msg"></span>
+                </div>
+
+                <!-- Storage::delete($file); -->
+
+                <!-- Close Upload Prodcut Image  -->
+            </div>
+                 </div>
+             </div>
+<div class="col-md-6">
+                    <button type="submit" id="submitButton" class="btn btn-primary" style="cursor:pointer" >Update Profile</button>
+                </div>
+        </div>
+
+    </form>
+</div>
+</div>
+</div>
+</div>
+</section>
+
+<script>
+var check = function() {
+  if (document.getElementById('password').value ==
+    document.getElementById('confirm_password').value) {
+    document.getElementById('message').style.color = 'green';
+    document.getElementById('message').innerHTML = 'Password Matched';
+    document.getElementById('submitButton').disabled = false;
+  } else {
+    document.getElementById('message').style.color = 'red';
+    document.getElementById('message').innerHTML = 'Password not Match';
+    document.getElementById('submitButton').disabled = true;
+  }
+}
+</script>
+<script>
+        $(window).ready(function() {
+        $("#myform").on("submit", function(){
+        $("#submitButton").attr("disabled", true);
+
+        })
+        });
+
+    </script>
+{%endblock%}

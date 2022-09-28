@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% load static %}
+  <meta charset="UTF-8">
+  <meta name="viewport"
+        content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Email</title>
+ <link href="{% static 'bootstrap/css/bootstrap.min.css' %}">
+</head>
+<style>
+    p{
+    margin:8px;
+    padding-right:10px
+    font-size:18px;
+    }
+</style>
+<body>
+<div style="align:center; width:700px; height:auto;">
+<p>Hello {{first_name}} {{last_name}},</p>
+<p>Greetings from AMTZ Ltd.</p>
+<p>Seems like you forgot your password for AMTZ.</p>
+<p class="row">Your System Generated Password is  <h2>{{password}}</h2></p><br>
+<center><a href="{{set_url}}/reset-password/" target="_blank"><button style="line-height: 34px;
+    width: 186px;
+    border-radius: 9px;
+    font-size: 17px;
+    color: white;
+    cursor:pointer;
+    background: #087708;">Reset Password</button></a></center><br>
+    <p>This link will expire in 48 hours. After that, you’ll need to submit a new request in order to reset
+your password. If you didn’t request a password reset, simply disregard this mail.</p><br>
+    <P>If you need more help or believe this email was sent in error, feel free to contact us at
+info@amtz.in</P><br>
+    <h6 style="font-size:14px;">
+        Best,<br>
+           AMTZ team
+    </h6>
+</div>
+</body>
+</html>

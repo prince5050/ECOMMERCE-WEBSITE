@@ -1,0 +1,731 @@
+{% extends 'index.html' %}
+{% load mathfilters %}
+{% load custom_tags %}
+{%block title%}{{product_details.product_name}} | Medical Technology India | AMTZ{% endblock %}
+{% block meta_description%}
+<meta name="description" content="Order {{product_details.product_name}} online at best prices with ISO standards and certified device from AMTZ medical laboratory with latest health technology India">
+ {% endblock %}
+{%block content%}
+{% load static %}
+
+<!-- START SINGLE PRODUCT -->
+
+<section id="single-product" class="section-padding" style="padding-bottom:0;">
+    <div class="container">
+        <div class="row p-0">
+            <div class="col-md-12 col-lg-6 col-sm-12 col-12">
+                <div class="row">
+                    <div class="col-lg-3 col-md-3 col-sm-2 col-2">
+                         {% if product_details.product_option_image_1%}
+                        <div class="card">
+                            {% if product_details.product_option_image_1%}
+                            <div class="card">
+                                <img class="img-fluid" style="border: 2px solid #c7baba;"
+                                     id="myImg" onclick="getImage(this)"src="{{product_details.product_option_image_1.url}}" alt="img"/>
+                            </div>
+                            {%endif%}
+                            {% if product_details.product_option_image_2%}
+                            <div class="card">
+                                <img class="img-fluid" style="border: 2px solid #c7baba;"
+                                     id="myImg" onclick="getImage(this)"src="{{product_details.product_option_image_2.url}}" alt="img"/>
+                            </div>
+                            {%endif%}
+                            {% if product_details.product_option_image_3%}
+                            <div class="card">
+                                <img class="img-fluid" style="border: 2px solid #c7baba;"
+                                     id="myImg" onclick="getImage(this)"src="{{product_details.product_option_image_3.url}}" alt="img"/>
+                            </div>
+                            {%endif%}
+                            {% if product_details.product_option_image_4%}
+                            <div class="card">
+                                <img class="img-fluid" style="border: 2px solid #c7baba;"
+                                     id="myImg" onclick="getImage(this)"src="{{product_details.product_option_image_4.url}}" alt="img"/>
+                            </div>
+                            {%endif%}
+                        </div>
+                        {% endif %}
+                    </div>
+                 <div class="col-md-9 col-lg-9 col-sm-10 col-10">
+                <div class="sin-pro-image">
+                    <img class="img-fluid"  src="{{product_details.product_image.url}}"  alt="{{product_details.product_name}}" title="{{product_details.product_name}}"/>
+                </div>
+                 </div>
+                    </div>
+            </div>
+            <div class="col-md-12 col-lg-6 col-sm-12 col-12">
+                {% if messages %}
+                {% for message in messages %}
+                <div class="alert alert-success alert-dismissible fade show" id="message_success" role="alert">
+                    <strong>{{message}}</strong>
+                </div>
+                {%endfor%}
+                {% endif %}
+                <div class="product-summary">
+                    <h2>{{product_details.product_name}}</h2>
+                    <!--                                        IF Discount type is rupees-->
+
+                    {% if product_details.discount_type == 'Rs'%}
+                    <h6 style="font-size:14px;">M.R.P : <strike>₹{{product_details.product_price}}.00</strike></h6>
+                    <h6 style="font-size:14px;">Price :
+                        <span>₹{{product_details.product_price|sub:product_details.discount_amount_or_per}}</span>
+                        {% if product_details.gst != '0'%}
+                        <small>+GST {{product_details.gst}}%</small>
+                        <p style="color:black; font-size:14px;">You Save : <span style="color:#ae2029">
+                            ₹{{product_details.discount_amount_or_per}}</span>
+                        <span class="badge badge-success " style="font-size:12px;">
+                                                {{product_details.discount_amount_or_per}} {{product_details.discount_type}} Off</span>
+                        </p>
+                    </h6>
+                    {%endif%}
+                    <!--  IF Discount type is Percentage  -->
+
+                    {% elif product_details.discount_type == '%' %}
+                    <h6>M.R.P : <strike>₹{{product_details.product_price}}.00</strike></h6>
+                    <h6 style="color:#ae2029">Price :
+                        <span>₹{{product_details.product_price|percentage:product_details.discount_amount_or_per}}</span>
+                        {% if product_details.gst != '0'%}
+                        <small>+GST {{product_details.gst}}%</small><br>
+                        <p style="color:black;font-size:14px;">You Save : <span style="color:#ae2029"> ₹{{product_details.product_price|percentage_amount:product_details.discount_amount_or_per}}</span>
+                        <span class="badge badge-success " style="font-size:12px;">
+                            {{product_details.discount_amount_or_per}} {{product_details.discount_type}} Off</span>
+                        </p>
+                        {%endif%}
+                    </h6>
+                    {%else%}
+
+                    <!-- If Discount Not apply-->
+
+
+                    <h6>M.R.P : <span>
+                        {% if product_details.product_price != None %}
+                        ₹ {{product_details.product_price}}.00
+                        {% else %}
+                        <span class="badge badge-success">Ask for price</span>
+                        {% endif %}
+                    </span>
+                        {% if product_details.gst != '0'%}
+                        <span>+GST {{product_details.gst}}%</span>
+                        {%endif%}
+                    </h6>
+                    {%endif%}
+                </div>
+
+                <div class="description">
+                    <p>{{product_details.product_description}}</p>
+                </div>
+                <div class="cart-info clearfix">
+                    <form action="#" method="post">
+                        <div class="button col-12 p-0">
+                            <div class="row">
+                                <div class="col-lg-6 col-md-6 col-sm-12 col-12 mt-4">
+                                    <button type="button" class="btn btn-warning"
+                                            data-toggle="modal"
+                                             style="border-radius:20px;"
+                                            data-id="{{product_details.product_name}}{{product_details.pk}}"
+                                            data-target=".bd-example-modal-lg">
+                                        <a href="#" style="color:black"><b>Request Quote for Bulk</b></a>
+                                    </button>
+                                </div>
+                                {% if product_details.product_specification_boucher %}
+                                <div class="col-lg-6 col-md-6 col-sm-12 col-12 mt-4">
+                                    <button type="button" class="btn btn-primary"
+                                            style="border-radius:20px;"><a
+                                            style="color:white" href="{{product_details.product_specification_boucher.url}}" target="_blank">
+                                                <b>Specification/Brochure</b></a></button>
+                                </div>
+                                {%endif%}
+                            </div>
+                            {% if product_details.product_price != None %}
+                            <div class="row">
+                                <div class="col-lg-6 col-md-6 col-sm-6 col-6 mt-4"><br>
+                                  <center><a href="/Add-cart/{{product_details.pk}}/">
+                                      <button type="button" class="btn" style="color: #fff;background-color: #227611d6;; border-radius:40px; cursor:pointer;">
+                                      <i class="fa fa-cart-plus m-0 p-0" style="height: 21px;font-size: 21px;" aria-hidden="true" ></i><b>Add to Cart</b>
+                                    </button></a></center>
+                              </div>
+                              <div class="col-lg-6 col-md-6 col-sm-6 col-6 mt-4"><br>
+                                  <center>
+                                      <button type="button" class="btn" style="color: #fff;background-color: #e35e0a; border-radius:40px; cursor:pointer;"
+                                      data-toggle="modal" data-target="#modal-fullscreen-xl"
+                                      data-id="{{product_details.product_name}}{{product_details.pk}}
+                                      {{product_details.product_image.url}}{{product_details.product_price}}{{product_details.gst}}"
+                                               onclick="buy_now({{product_details.pk}},{{product_details.product_price}},
+                {{product_details.product_price|percentage_amount:product_details.gst}},
+                {{product_details.product_price|pro_with_percentage:product_details.gst}})"
+                                      >
+                                      <i class="fa fa-shopping-bag m-0 p-0" style="height: 21px;font-size: 21px;" aria-hidden="true" ></i><b>Buy Now</b>
+                                    </button></center>
+                              </div>
+                            </div>
+                            {%endif%}
+
+
+                        </div>
+
+                    </form>
+
+                </div>
+            </div>
+        </div>
+        <!--- END COL -->
+    </div>
+    <!-- end row-->
+
+    </div>
+    {% if product_details.product_price %}
+    <div class="modal modal-fullscreen-xl" id="modal-fullscreen-xl" tabindex="-1" role="dialog" aria-hidden="true">
+  <div class="modal-dialog" role="document" style="max-width:700px;">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">{{product_details.product_name}}</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+          <div class="row">
+              <div class="col-md-6">
+                  <div class="sin-pro-image">
+                    <img class="img-fluid"  src="{{product_details.product_image.url}}"  alt="{{product_details.product_name}}" title="{{product_details.product_name}}"/>
+                         </div>
+                      <h6>M.R.P : <span>
+                        {% if product_details.product_price != None %}
+                        ₹ {{product_details.product_price}}.00
+                        {% else %}
+                        <span class="badge badge-success">Ask for price</span>
+                        {% endif %}
+                    </span>
+                        {% if product_details.gst != '0'%}
+                        <span>+GST {{product_details.gst}}%</span>
+                        {%endif%}
+                    </h6>
+                  <h6>QTY :
+                     <button class="btn btn-light ml-2" style="border-radius:20px;background-color: #c4dbf3;">
+                              <select onchange="getValue(this.value,{{product_details.pk}});" class="form-select id_quantity" aria-label="Default select example">
+                                  <option selected value="1">1</option>
+                                  <option value="2">2</option>
+                                  <option value="3">3</option>
+                                  <option value="4">4</option>
+                                  <option value="5" >5</option>
+                                  <option value="6" >6</option>
+                                  <option value="7" >7</option>
+                                  <option value="8">8</option>
+                                  <option value="9">9</option>
+                                  <option value="10">10</option>
+                                  <option value="11">10+</option>
+                                    </select>
+                                  </button>
+                      <input class="form-control m-4" style="width:120px; display:none" type="number"
+                                     placeholder="Enter QTY " name="input_qty" id="{{product_details.pk}}" onkeyup="buy_ChangeQty(this.value,{{product_details.pk}})"/>
+                  </h6>
+
+              </div>
+              <div class="col-md-6">
+                  <div class="card checkout_padding">
+                   <div class="card-header" style="background-color:white">
+                       <h5>Payment Details</h5>
+                   </div>
+                   <div class="card-body">
+                       <div class="row">
+                           <div class="col-md-6 col-sm-6 col-6 row" style="padding-left:28px;">
+                               <h6>Price</h6>
+                           </div>
+                            <div class="col-md-6 col-sm-6 col-6 row" style="padding-left:42px;">
+                              <h6>₹</h6><h6 id="price_without_gst">{{product_details.product_price}}</h6>
+                           </div>
+                       </div><hr>
+                        <div class="row">
+                           <div class="col-md-6 col-sm-6 col-6">
+                               <h6>GST amt</h6>
+                           </div>
+                            <div class="row col-md-6 col-sm-6 col-6">
+                              <h6>₹</h6><h6 id="gst">{{product_details.product_price|percentage_amount:product_details.gst}}</h6>
+                           </div>
+                       </div><hr>
+                        <div class="row">
+                           <div class="col-md-6 col-sm-6 col-6">
+                               <h6>Total Price</h6>
+                           </div>
+                            <div class="col-md-6 col-sm-6 col-6 row">
+                              <h6>₹</h6><h6 id="total_price">{{product_details.product_price|pro_with_percentage:product_details.gst}}</h6>
+                           </div>
+                       </div>
+
+                   </div>
+                </div>
+              </div>
+
+          </div>
+           <div class="float-right">
+         <a style="color:white;" href="/buy-item$1/"><button style="cursor:pointer; font-weight: 500;" class="btn btn-primary"  id="rzp-button1">
+                           Checkout</button></a>
+      </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+    {% endif %}
+    <!--Modal for Request for Quote-->
+    <div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel"
+         aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Quotation Request for
+                        {{product_details.product_name}}</h5>
+                    <button type="button" style="font-size:35px;" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <form id="contact-form" class="form" name="enq" method="POST" action="/quotation/">
+                    {% csrf_token %}
+                    <div class="modal-body">
+                        <div class="col-lg-12">
+                            <div class="row">
+                                <input type="hidden" name="product_name" value="{{product_details.product_name}}">
+                                <input type="hidden" name="product_id" value="{{product_details.pk}}">
+                                <div class="form-group col-lg-6">
+                                    <input type="text" name="fullname" class="form-control" id="firstname"
+                                           placeholder="Full Name" required="required">
+                                </div>
+                                <div class="form-group col-lg-6">
+                                    <input type="email" name="email" class="form-control" id="email"
+                                           placeholder="Email Address" required="required">
+                                </div>
+                                <div class="form-group col-lg-6">
+                                    <input type="number" name="mobile" class="form-control" id="phone"
+                                           placeholder="Phone Number" onkeyup='check()' required="required">
+                                     <span id="message"></span>
+                                </div>
+                                 <div class="form-group col-lg-6">
+                                    <input type="number" name="quantity" class="form-control" id="quantity1"
+                                           placeholder="Product Quantity" required="required">
+                                </div>
+                                <div class="form-group col-lg-12">
+                                    <input type="text" name="subject" class="form-control" id="subject"
+                                           placeholder="Subject" required="required">
+                                </div>
+                                <div class="form-group col-lg-12">
+                                    <textarea rows="10" name="message" class="form-control" id="description"
+                                              placeholder="Your Message" required="required"></textarea>
+                                </div>
+                            </div>
+                            <div class="form-group col-lg-12 mb0">
+<!--                                <div class="actions">-->
+<!--                                    &lt;!&ndash;											<input type="submit" value="Request Quotation" name="submit" id="submitButton" class="btn btn-lg btn-contact-bg" title="Click here to submit your message!" />&ndash;&gt;-->
+<!--                                    <img src="assets/img/ajax-loader.gif" width="16" height="16" id="loader"-->
+<!--                                         style="display:none" alt="loading">-->
+<!--                                </div>-->
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        <input type="submit" id="submit_button" placeholder="Request Quotation" class="btn btn-primary"/>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div><br>
+<hr style="width:100%", size="2", color=#D3D3D3>
+    <h4 class="ml-2" >Products related to this item</h4>
+<!--<span class="ml-2" style="color:#ae2029">Sponsored</span>-->
+<div class="d-flex flex-row flex-nowrap mt-4 scrollbar">
+
+          <div class="col-lg-12 col-md-12 col-sm-12 col-12 ">
+                <div class="row product-base text-center">
+                    {%for category in categories%}
+                    <div class="col-lg-3 col-md-4 col-sm-9 col-12 text-center">
+                <a href="/products/{{category.product_name|replace_name}}/{{category.pk}}/">
+                            <div class=" card single-service h-90" style="height: 353px;">
+                                <div class="card-header p-0" style="height:200px;">
+                                    {% if category.product_image%}
+                                    <img class="img-product" style="padding:0%;" src="{{category.product_image.url}}"
+                                         alt="{{category.product_name}}" title="{{category.product_name}}"/>
+                                    {% endif %}
+                                </div>
+                                <div class="card-body text-left" style="height: 112px;">
+                                    <h6>{{category.product_name}}</h6>
+                                    <div class="text-left">
+<!--                                        IF Discount type is rupees-->
+
+                                        {% if category.discount_type == 'Rs'%}
+                                        <h6 style="font-size:14px;">Price : <strike>₹{{category.product_price}}.00</strike>
+                                            <span>₹{{category.product_price|sub:category.discount_amount_or_per}}</span>
+                                            <span class="badge badge-success " style="font-size:12px;">
+                                                {{category.discount_amount_or_per}} {{category.discount_type}} Off</span>
+                                            {% if category.gst != '0'%}
+                                            <small>+GST {{category.gst}}%</small>
+                                        </h6>
+                                            {%endif%}
+                                            <!--  IF Discount type is Percentage  -->
+
+                                        {% elif category.discount_type == '%' %}
+                                            <h6>Price : <strike>₹{{category.product_price}}.00</strike>
+                                            <span>₹{{category.product_price|percentage:category.discount_amount_or_per}}</span>
+                                                <span class="badge badge-success " style="font-size:12px;">
+                                                {{category.discount_amount_or_per}} {{category.discount_type}} Off </span>
+                                            {% if category.gst != '0'%}
+                                            <small>+GST {{category.gst}}%</small>
+                                            {%endif%}
+                                            </h6>
+                                        {%else%}
+<!--                                                If Discount Not apply-->
+                                          <h6>Price : <span>
+                                            {% if category.product_price != None %}
+                                            ₹ {{category.product_price}}.00
+                                            {% else %}
+                                           <span class="badge badge-success">Ask for price</span>
+                                           {% endif %}
+                                          </span>
+                                            {% if category.gst != '0'%}
+                                            <span>+GST {{category.gst}}%</span>
+                                            {%endif%}
+                                        </h6>
+                                        {%endif%}
+                                    </div>
+                                </div>
+                                <div class="card-footer m-0 p-0">
+                                    <div class="row" style="margin-left:.5px;margin-right:.5px">
+
+                                        <button type="button" class="col-lg-6 col-md-6 col-sm-6 col-6 btn btn-primary"
+                                                style="border-radius:0" onclick="showModal('{{category.product_name}}','{{category.pk}}')"
+                                               data-toggle="modal" data-target=".bd-example-modal-lg-1">
+                                            <a style="color:white;font-weight: 500;" href="#"> Enquiry</a></button>
+                                 {% if category.product_price != None %}
+                                        <button type="button" class="col-lg-6 col-md-6 col-sm-6 col-6 btn btn-warning"
+                                                style="border-radius:0">
+                                            <a style="color:black;font-weight: 500;" href="/Add-cart/{{category.pk}}/"> Add to Cart</a></button>
+
+                                    {% else %}
+                                            <button type="button"
+                                                    class="col-lg-6 col-md-6 col-sm-6 col-6 btn btn-warning"
+                                                    disabled
+                                                    style="border-radius:0">
+                                                Add to Cart
+                                            </button>
+                                            {% endif %}
+                                    </div>
+                                </div>
+
+
+                            </div>
+                        </a>
+                    </div>
+              {%endfor%}
+                      </div>
+          </div>
+
+
+<!--              <div class=" card-header">-->
+<!--              <img  class="img-fluid"  src="{{category.product_image.url}}" alt="img"/>-->
+<!--                  </div>-->
+<!--              <div class="card-body">-->
+
+<!--              </div>-->
+<!--</div>-->
+
+<!--     <div class="card card-block mx-2" style="min-width: 180px;">-->
+<!--              <img class="img-fluid"  src="{{product_details.product_image.url}}" alt="img"/>-->
+<!--</div>-->
+<!--     <div class="card card-block mx-2" style="min-width: 180px;">-->
+<!--              <img class="img-fluid"  src="{{product_details.product_image.url}}" alt="img"/>-->
+<!--</div>-->
+<!--     <div class="card card-block mx-2" style="min-width: 180px;">-->
+<!--              <img class="img-fluid"  src="{{product_details.product_image.url}}" alt="img"/>-->
+<!--</div>-->
+<!--     <div class="card card-block mx-2" style="min-width: 180px;">-->
+<!--              <img class="img-fluid"  src="{{product_details.product_image.url}}" alt="img"/>-->
+<!--</div>-->
+<!--     <div class="card card-block mx-2" style="min-width: 180px;">-->
+<!--              <img class="img-fluid"  src="{{product_details.product_image.url}}" alt="img"/>-->
+<!--</div>-->
+<!--     <div class="card card-block mx-2" style="min-width: 180px;">-->
+<!--              <img class="img-fluid"  src="{{product_details.product_image.url}}" alt="img"/>-->
+<!--</div>-->
+<!--     <div class="card card-block mx-2" style="min-width: 180px;">-->
+<!--              <img class="img-fluid"  src="{{product_details.product_image.url}}" alt="img"/>-->
+<!--</div>-->
+
+    </div>
+    <div id="myModal" class="modal-custom">
+  <span class="close1">&times;</span>
+  <img class="modal-content-custom" id="img01">
+  <div id="caption"></div>
+</div>
+
+     <!--Modal for Enquiry request-->
+    <div class="modal fade bd-example-modal-lg-1" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel"
+         aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title"  id="modal_title">
+                        </h5>
+                    <button type="button" style="font-size:35px;" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <form id="contact-form1" class="form" name="enq" method="POST" action="/quotation/">
+                    {% csrf_token %}
+                    <div class="modal-body">
+                        <div class="col-lg-12">
+                            <div class="row">
+                                <input type="hidden" name="product_name" class="form-control" id="product_name"
+                                           placeholder="product name">
+                                <input type="hidden" name="product_id" class="form-control" id="product_id">
+                                <div class="form-group col-lg-6">
+                                    <input type="text" name="fullname" class="form-control" id="fulltname"
+                                           placeholder="Full Name" required="required">
+                                </div>
+                                <div class="form-group col-lg-6">
+                                    <input type="email" name="email" class="form-control" id="email1"
+                                           placeholder="Email Address" required="required">
+                                </div>
+                                <div class="form-group col-lg-6">
+                                    <input type="number" name="mobile" class="form-control" id="phone1"
+                                           placeholder="Phone Number" onkeyup="check1()"  required="required">
+                                    <span id="message1"></span>
+                                </div>
+                                 <div class="form-group col-lg-6">
+                                    <input type="number" name="quantity" class="form-control" id="quantity"
+                                           placeholder="Product Quantity" required="required">
+                                </div>
+                                <!--                                    Addition product start block-->
+                                    <div class="form-group col-lg-6">
+                                     <select class="form-control" id="Other_product1" name="Other_product1"
+                                             onchange="other_pro1(this.value)">
+                                    <option selected disabled  value="selected">Select Other Product If you want</option>
+                                           {% for pro in all_product%}
+                                    <option value="{{pro.product_name}}">{{pro.product_name}}</option>
+                                        {% endfor %}
+                                     </select>
+                                    </div>
+                                     <div class="form-group col-lg-6">
+                                        <input type="number" name="quantity1" class="form-control" id="quantity12"
+                                               placeholder="Product Quantity" style="display:none" onkeyup="qty1()">
+                                    </div>
+                                    <div class="form-group col-lg-6">
+                                     <select class="form-control" id="Other_product2" name="Other_product2" onchange="other_pro2(this.value)"
+                                     style="display:none">
+                                    <option selected disabled value="selected">Select Other Product If you want</option>
+                                         {% for pro in all_product%}
+                                    <option value="{{pro.product_name}}">{{pro.product_name}}</option>
+                                        {% endfor %}
+                                     </select>
+                                    </div>
+                                     <div class="form-group col-lg-6">
+                                        <input type="number" name="quantity2" class="form-control" id="quantity2"
+                                               placeholder="Product Quantity" style="display:none">
+                                    </div>
+
+<!--                                    End Block-->
+
+
+                                <div class="form-group col-lg-12">
+                                    <input type="text" name="subject" class="form-control" id="subject1"
+                                           placeholder="Subject" required="required">
+                                </div>
+                                <div class="form-group col-lg-12">
+                                    <textarea rows="10" name="message" class="form-control" id="description1"
+                                              placeholder="Your Message" required="required"></textarea>
+                                </div>
+                            </div>
+                            <div class="form-group col-lg-12 mb0">
+<!--                                <div class="actions">-->
+<!--                                    &lt;!&ndash;											<input type="submit" value="Request Quotation" name="submit" id="submitButton" class="btn btn-lg btn-contact-bg" title="Click here to submit your message!" />&ndash;&gt;-->
+<!--                                    <img src="assets/img/ajax-loader.gif" width="16" height="16" id="loader"-->
+<!--                                         style="display:none" alt="loading">-->
+<!--                                </div>-->
+                            </div>
+                        </div>
+
+                    </div>
+                     <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal" style="cursor:pointer" onclick="reset()">Close</button>
+                             <button type="button" class="btn btn-warning"  style="cursor:pointer" onclick="reset()">Reset</button>
+                            <input type="submit" id="submit_button1"  style="cursor:pointer" placeholder="Request Quotation" class="btn btn-primary"/>
+                        </div>
+                </form>
+            </div>
+        </div>
+    </div><br>
+</section>
+<!-- END SINGLE PRODUCT -->
+<script>
+function other_pro1(val){
+        if(val=='selected'){
+     document.getElementById('quantity12').style.display = 'none';
+     }
+     else{
+      document.getElementById('quantity12').style.display = 'block';
+     }
+    }
+function other_pro2(val){
+     if(val=='selected'){
+     document.getElementById('quantity2').style.display = 'none';
+     }
+     else{
+      document.getElementById('quantity2').style.display = 'block';
+     }
+    }
+
+function qty1(){
+ document.getElementById('Other_product2').style.display = 'Block';
+}
+function reset(){
+ document.getElementById('custom_form').reset();
+}
+</script>
+<script>
+        $(window).ready(function() {
+        $("#contact-form").on("submit", function(){
+        $("#submit_button").attr("disabled", true);
+        })
+
+         $("#contact-form1").on("submit", function(){
+        $("#submit_button1").attr("disabled", true);
+        })
+        });
+
+    </script>
+
+
+<script>
+$('#myModal').on('shown.bs.modal', function () {
+  $('#myInput').trigger('focus')
+})
+
+
+function getImage(imageData){
+	var modal = document.getElementById("myModal");
+	var modalImg = document.getElementById("img01");
+    var captionText = document.getElementById("caption");
+		modal.style.display = "block";
+		modalImg.src = imageData.src;
+		captionText.innerHTML = "";//imageData.alt;
+		console.log(imageData)
+	var span = document.getElementsByClassName("close1")[0];
+		span.onclick = function() {
+	modal.style.display = "none";
+	}
+}
+
+  function showModal(product_name,product_id)
+{
+   //you can do anything with data, or pass more data to this function. i set this data to modal header for example
+   $("#modal_title").html('Enquiry For '+ product_name)
+   $("#product_name").val(product_name)
+   $("#product_id").val(product_id)
+
+}
+
+function check() {
+   var pattern=/^\d{10}$/;
+  if(!pattern.test(phone.value))
+ {
+    document.getElementById('message').style.color = 'red';
+    document.getElementById('message').innerHTML = 'Phone Number should be 10 digit';
+    phone.focus();
+    return false;
+  }
+  else {
+     document.getElementById('message').style.color = 'green';
+     document.getElementById('message').innerHTML = 'correct phone Number';
+  }
+}
+
+function check1() {
+   var pattern=/^\d{10}$/;
+  if(!pattern.test(phone1.value))
+ {
+    document.getElementById('message1').style.color = 'red';
+    document.getElementById('message1').innerHTML = 'Phone Number should be 10 digit';
+    phone.focus();
+    return false;
+  }
+  else {
+     document.getElementById('message1').style.color = 'green';
+     document.getElementById('message1').innerHTML = 'correct phone Number';
+  }
+}
+
+</script>
+<script>
+   function getValue(Qty,product_id)
+    {
+      var element=document.getElementById(product_id);
+       if (Qty==11){
+       element.style.display='block';
+       }
+       else{
+       element.style.display='none';
+      var url = '/quantity-change-buy/';
+      $.ajax({
+        url: url,
+        type:'post',
+        data: {
+          'quantity': Qty,
+          'id' : product_id,
+          'csrfmiddlewaretoken':"{{csrf_token}}"
+        },
+        success: function (data) {
+        document.getElementById("price_without_gst").innerHTML = data.net_price
+        document.getElementById("gst").innerHTML = data.total_gst
+        document.getElementById("total_price").innerHTML = data.payable_price
+        console.log(data)
+        }
+      });
+}
+    }
+
+
+//first click on buy now the its call
+
+function buy_now(product_id, price, gst, payable_price)
+    {
+     var url = '/buy-now/';
+      $.ajax({
+        url: url,
+        type:'post',
+        data: {
+          'id' : product_id,
+          'net_price' : price,
+          'gst' : gst,
+          'payable_price' : payable_price,
+          'csrfmiddlewaretoken':"{{csrf_token}}"
+        },
+        success: function (data) {
+        console.log(data)
+        }
+      });
+}
+
+// when input box of Qty is filled the its execute
+
+function buy_ChangeQty(Qty,product_id)
+    {
+    if(Qty>0){
+     var url = '/quantity-change-buy/';
+      $.ajax({
+        url: url,
+        type:'post',
+        data: {
+          'quantity': Qty,
+          'id' : product_id,
+          'csrfmiddlewaretoken':"{{csrf_token}}"
+        },
+        success: function (data) {
+        document.getElementById("price_without_gst").innerHTML = data.net_price
+        document.getElementById("gst").innerHTML = data.total_gst
+        document.getElementById("total_price").innerHTML = data.payable_price
+        console.log(data)
+        }
+      });
+    }
+}
+</script>
+
+{% endblock content %}

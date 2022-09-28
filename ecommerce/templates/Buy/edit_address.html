@@ -1,0 +1,336 @@
+{% extends 'index.html' %}
+{%block title%} Delivery-Address {% endblock %}
+{%block content%}
+{% load static %}
+<section id="centers" class="section-padding top bg-gray centers">
+
+    <div class="container">
+        <div class="container">
+            <h4>Please update the delivery address.</h4>
+            <br>
+            <hr>
+        </div>
+
+          <div id="tabsJustifiedContent" class="tab-content">
+            <div id="one" class="tab-pane animated fadeInRight active show">
+                <div class="row" id="new-address">
+                    <div class=" col-lg-12 col-md-12 col-sm-12">
+                    <div class="card">
+                        <div class="card-header" style="background-color:white">
+                            <h5>Update address</h5>
+                        </div>
+                         {% for add in address %}
+                        <div class="card-body">
+                              <form action="/edit-address$2/" method="post" id="myform">
+                            {% csrf_token %}
+                            <div class="row">
+                                <div class="col-lg-6 col-md-6 col-sm-12">
+                                    <div class=" card">
+                                        <div class="card-header">
+                                           <h6>Shipping Address</h6>
+                                        </div>
+                                        <div class="card-body">
+
+  <div class="form-row">
+    <div class="form-group col-md-6">
+      <label for="inputEmail4" class="label_buy">Full Name</label>
+        <input type="hidden" class="form-control" id="inputEmail7"
+               value="{{product_id}}" name="product_id">
+        <input type="hidden" class="form-control" id="inputEmail9"
+               value="{{add.pk}}" name="address_id">
+         <input type="hidden" class="form-control" id="inputEmail2" value="{{product_id}}" name="product_id"
+                placeholder="full name">
+      <input type="text" class="form-control" id="fname" name="full_name"
+              value="{{add.fullname}}" placeholder="full name" required>
+    </div>
+    <div class="form-group col-md-6">
+      <label for="mobile"class="label_buy">Mobile Number</label>
+      <input type="text" class="form-control" id="mobile"
+             value="{{add.mobile}}" name="mobile" placeholder="mobile number" onkeyup="mobile1()" required>
+        <span id="msg"></span>
+    </div>
+  </div>
+                            <div class="form-row">
+  <div class="form-group col-md-6 ">
+    <label for="id_country"class="label_buy">Country</label>
+     <select class="form-control" id="id_country" name="country" required>
+        <option selected value="{{add.country.id}}">{{add.country.country_name}}</option>
+         {% for c in country%}
+        <option value="{{c.id}}">{{c.country_name}}</option>
+         {% endfor %}
+      </select>
+  </div>
+  <div class="form-group col-md-6 ">
+    <label for="id_state"class="label_buy" name="state">State</label>
+    <select class="form-control" id="id_state" name="State"  required>
+        <option selected  value="{{add.state.id}}">{{add.state.state_name}}</option>
+      </select>
+  </div>
+                            </div>
+  <div class="form-row">
+      <div class="form-group col-md-6">
+      <label for="pin_code"class="label_buy">Pincode</label>
+      <input type="text" class="form-control" id="pin_code"name="pincode"
+              value="{{add.pincode}}" placeholder="6 digits[0-9] pincode" onkeyup="check()" required>
+       <span id="message"></span>
+      </div>
+    <div class="form-group col-md-6">
+      <label for="city"class="label_buy">City/Town</label>
+      <input type="text" class="form-control" id="city" name="city" value="{{add.city}}" required>
+    </div>
+    <div class="form-group col-md-12">
+      <label for="address"class="label_buy">Flat, House no.,Building,Company,Apartment</label>
+      <input type="text" class="form-control" id="address" name="address1"  value="{{add.address1}}" required>
+    </div>
+       <div class="form-group col-md-6">
+      <label for="address2"class="label_buy">Area, Street, Sector, Village</label>
+      <input type="text" class="form-control" id="address2" name="address2"  value="{{add.address2}}" required>
+    </div>
+       <div class="form-group col-md-6">
+      <label for="Landmark"class="label_buy">Landmark</label>
+      <input type="text" class="form-control" id="landmark" name="landmark"  value="{{add.landmark}}" required>
+    </div>
+
+  </div>
+                                        </div><br><br><br></div>
+                                </div>
+
+                              <div class="col-lg-6 col-md-6 col-sm-12">
+                                  <div class=" card">
+                                        <div class="card-header">
+                                           <h6>Billing Address</h6>
+                                        </div>
+                                        <div class="card-body">
+  <div class="form-row">
+       <div class="form-check col-md-12">
+  <input class="form-check-input ml-0 mt-2" type="checkbox" value="" id="same">
+  <label class="form-check-label" for="same">
+    Billing Address Same as Shipping Address
+  </label>
+</div>
+    <div class="form-group col-md-6">
+      <label for="inputEmail4" class="label_buy">Full Name</label>
+         <input type="hidden" class="form-control" id="inputEmail4" value="{{product_id}}" name="product_id"
+                placeholder="full name">
+      <input type="text" class="form-control" id="bfname" name="billing_full_name" value="{{add.billing_fullname}}" placeholder="full name" required>
+    </div>
+    <div class="form-group col-md-6">
+      <label for="inputPassword4"class="label_buy">Mobile Number</label>
+      <input type="text" class="form-control" id="mobile_number" name="billing_mobile"
+             value="{{add.billing_mobile}}" placeholder="mobile number" onkeyup="mobile2()" required>
+        <span id="msg1"></span>
+    </div>
+  </div>
+                            <div class="form-row">
+  <div class="form-group col-md-6 ">
+    <label class="label_buy">Country</label>
+       <input type="text" class="form-control"  id="bcountry" value="{{add.billing_country}}" name="billing_country" placeholder="Country" required>
+  </div>
+  <div class="form-group col-md-6 ">
+    <label class="label_buy" name="state">State</label>
+      <input type="text" class="form-control" id="bstate"  name="billing_State" value="{{add.billing_state}}" placeholder="state" required>
+      </div>
+                            </div>
+
+  <div class="form-row">
+      <div class="form-group col-md-6">
+      <label for="pin_code"class="label_buy">Pincode</label>
+      <input type="text" class="form-control" id="pin_code1"name="billing_pincode"
+             onkeyup='check1();' value="{{add.billing_pincode}}" placeholder="6 digits[0-9]  pincode" required>
+       <span id="message1"></span>
+      </div>
+    <div class="form-group col-md-6">
+      <label for="bcity"class="label_buy">City/Town</label>
+      <input type="text" class="form-control" id="bcity" value="{{add.billing_city}}" name="billing_city" required>
+    </div>
+    <div class="form-group col-md-12">
+      <label for="address"class="label_buy">Flat, House no.,Building,Company,Apartment</label>
+      <input type="text" class="form-control" id="baddress" name="billing_address1" value="{{add.billing_address1}}" required>
+    </div>
+       <div class="form-group col-md-6">
+      <label for="address2"class="label_buy">Area, Street, Sector, Village</label>
+      <input type="text" class="form-control" id="baddress2" name="billing_address2" value="{{add.billing_address2}}" required>
+    </div>
+       <div class="form-group col-md-6">
+      <label for="Landmark"class="label_buy">Landmark</label>
+      <input type="text" class="form-control" id="blandmark" name="billing_landmark" value="{{add.billing_landmark}}" required>
+    </div>
+      <div class="form-group col-md-12">
+      <label for="gst"class="label_buy">GST Number (if Have)</label>
+      <input type="text" class="form-control" id="gst" name="billing_gst_no" value="{{add.billing_gst_no}}">
+    </div>
+
+  </div>
+                        </div></div></div>
+                            </div><br>
+                                  <button type="submit" class="btn btn-primary add" style="cursor:pointer" id="add">Update</button>
+                              </form>
+
+                    </div>
+                        {% endfor%}
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    </div>
+</section>
+<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+<script>
+      $("#id_country").change(function () {
+      var url = '/state/';
+      var countryId = $(this).val();
+      $.ajax({
+        url: url,
+        data: {
+          'country': countryId
+        },
+        success: function (data) {
+          $("#id_state").html(data);
+        }
+      });
+    });
+
+    $(window).ready(function() {
+        $("#myform").on("submit", function(){
+        $("#add").attr("disabled", true);
+        })
+        });
+</script>
+<script>
+var check = function() {
+   var pat1=/^\d{6}$/;
+  if(!pat1.test(pin_code.value))
+ {
+    document.getElementById('message').style.color = 'red';
+    document.getElementById('message').innerHTML = 'Pincode should be 6 digit';
+    pin_code.focus();
+    document.getElementById('add').disabled = true;
+    return false;
+  } else {
+     document.getElementById('message').style.color = 'green';
+     document.getElementById('message').innerHTML = 'correct pincode';
+      document.getElementById('add').disabled = false;
+  }
+}
+var check1 = function() {
+   var pat1=/^\d{6}$/;
+  if(!pat1.test(pin_code1.value))
+ {
+
+    document.getElementById('message1').style.color = 'red';
+    document.getElementById('message1').innerHTML = 'Pincode should be 6 digit';
+    pin_code1.focus();
+    document.getElementById('add').disabled = true;
+    return false;
+  } else {
+     document.getElementById('message1').style.color = 'green';
+     document.getElementById('message1').innerHTML = 'correct pincode';
+     document.getElementById('add').disabled = false;
+  }
+}
+var mobile1 = function() {
+   var pat1=/^\d{10}$/;
+   var phoneno = /^\(?([0-0]{3})\)?[-. ]?([0-0]{3})[-. ]?([0-0]{4})$/;
+  if(!pat1.test(mobile.value))
+ {
+    document.getElementById('msg').style.color = 'red';
+    document.getElementById('msg').innerHTML = 'Mob No should be 10 digit';
+    mobile.focus();
+    document.getElementById('add').disabled = true;
+    return false;
+  } else {
+     document.getElementById('msg').style.color = 'green';
+     document.getElementById('msg').innerHTML = 'correct Mobile number';
+     document.getElementById('add').disabled = false;
+  }
+   if(mobile.value.match(phoneno)){
+  document.getElementById('msg').style.color = 'red';
+  document.getElementById('msg').innerHTML = 'Enter correct Mobile number';
+  document.getElementById('add').disabled = true;
+  }
+  else{
+  document.getElementById('msg').style.color = 'green';
+     document.getElementById('msg').innerHTML = 'correct Mobile number';
+     document.getElementById('add').disabled = false;
+  }
+}
+var mobile2 = function() {
+   var pat1=/^\d{10}$/;
+   var phoneno = /^\(?([0-0]{3})\)?[-. ]?([0-0]{3})[-. ]?([0-0]{4})$/;
+  if(!pat1.test(mobile_number.value))
+ {
+    document.getElementById('msg1').style.color = 'red';
+    document.getElementById('msg1').innerHTML = 'Mob No should be 10 digit';
+    mobile_number.focus();
+    document.getElementById('add').disabled = true;
+    return false;
+  } else {
+     document.getElementById('msg1').style.color = 'green';
+     document.getElementById('msg1').innerHTML = 'correct Mobile number';
+     document.getElementById('add').disabled = false;
+  }
+  if(mobile_number.value.match(phoneno)){
+  document.getElementById('msg1').style.color = 'red';
+  document.getElementById('msg1').innerHTML = 'Enter correct Mobile number';
+  document.getElementById('add').disabled = true;
+  }
+  else{
+  document.getElementById('msg1').style.color = 'green';
+     document.getElementById('msg1').innerHTML = 'correct Mobile number';
+     document.getElementById('add').disabled = false;
+  }
+}
+
+
+    </script>
+
+<script>
+$(window).ready(function() {
+    $('#same').click(function(){
+    if($('#same').is(':checked')){
+        $('#bfname').val($('#fname').val());
+        $('#mobile_number').val($('#mobile').val());
+        $('#pin_code1').val($('#pin_code').val());
+        $('#bcity').val($('#city').val());
+        $('#baddress').val($('#address').val());
+        $('#baddress2').val($('#address2').val());
+        //alert($('#id_country option:selected').val()); //not sure what to do here
+        $('#blandmark').val($('#landmark').val());
+
+        var country_Id = ($('#id_country').val());
+        var state_Id = ($('#id_state').val());
+        var url = '/state_change/';
+        $.ajax({
+        url: url,
+        type:'post',
+        data: {
+          'country_id': country_Id,
+          'state_id' : state_Id,
+          'csrfmiddlewaretoken':"{{csrf_token}}"
+        },
+        success: function (data) {
+          $("#bcountry").val(data.country);
+          $("#bstate").val(data.state);
+        }
+      });
+}else{
+        $('#bfname').val('');
+        $('#mobile_number').val('');
+        $('#pin_code1').val('');
+        $('#bcity').val('');
+        $('#baddress').val('');
+        $('#baddress2').val('');
+        $('#blandmark').val('');
+        $("#bcountry").val('');
+        $("#bstate").val('');
+
+
+}
+});
+});
+</script>
+{% endblock%}

@@ -1,0 +1,115 @@
+{% extends 'index.html' %}
+{%block title%}AMTZ News, Technology in Healthcare, MedTech Innovations{% endblock %}
+{% block meta_description%}
+<meta name="description" content="Latest news updates on medical technology from all top advanced medical device manufacturing trends, healthcare IoT industry and MedTech startups in India">
+ {% endblock %}
+{%block content%}
+{% load static %}
+
+<section class="single-page-title-area" data-background="{%static 'img/bg/KCC JPEG.jpg'%}">
+    <div class="auto-container">
+        <div class="row">
+            <div class="col-lg-8 col-md-8 col-sm-12 col-12">
+                <div class="single-page-title">
+                    <h6>AMTZ</h6>
+                    <span></span>
+                    <h2>News</h2>
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-4 col-sm-12 col-12">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="/">Home</a></li>
+                    <li class="breadcrumb-item active">News</li>
+                </ol>
+            </div>
+        </div>
+        <!-- end row-->
+    </div>
+</section>
+<section id="centers" class="section-padding top centers" style="padding:0; margin-top:90px">
+		<div class="container">
+				<div id="tabsJustifiedContent" class="tab-content">
+                        <div id="one" class="tab-pane animated fadeInRight active show">
+							<div class="row">
+                                {% for new in news%}
+								<div class="col-lg-6 col-md-6 col-sm-12 col-12 text-center" style="max-height:50%">
+									<div class="single-service" style="min-height: 400px;">
+                                        {% if new.news_picture and not new.news_youtube_link_key%}
+										<div class="single-service-img">
+											<img class="img-fluid" style="min-height: 220px; max-height:380px; min-width:-webkit-fill-available;" src="{{new.news_picture.url}}" alt="" />
+										</div>
+                                         {% elif new.news_youtube_link_key and not new.news_picture %}
+                                        <div class="single-service-img">
+											<iframe width="100%" height="300" src="https://www.youtube.com/embed/{{new.news_youtube_link_key}}" ></iframe>
+                                        </div>
+                                        {% elif not new.news_youtube_link_key and not new.news_picture%}
+                                        <div class="single-service-img">
+                                            <img class="img-fluid" style="min-height: 220px; min-width:webkit-fill-available;"src="{% static 'img/bg/maxresdefault.jpg'%}" alt="" />
+                                        </div>
+                                        {%else%}
+                                        <div class="single-service-img">
+
+											<img class="img-fluid" style="max-height: 104px;"src="{{new.news_picture.url}}" alt="" />
+										</div>
+                                         <div class="single-service-img">
+											<iframe width="100%" height="300" src="https://www.youtube.com/embed/{{new.news_youtube_link_key}}" ></iframe>
+                                        </div>
+
+                                        {%endif%}
+                                        {% if new.news_picture and not new.news_youtube_link_key%}
+										<div class="single-service-info" style="min-height: 447px;overflow-y: scroll;max-height: 447px;">
+											<h4>{{new.news_title}}</h4>
+                                            <span style="color: black;font-size: 20px;">News Date: {{new.news_date}}</span>
+											<p style="text-align:justify;">{{new.news_discription}}</p>
+<!--                                            <a class="serv-red-btn" href="{{service.service_link}}" target="_blank">Play recording</a>-->
+<!--&lt;!&ndash;											<a class="serv-red-btn" href="/centerDetails/?youtubekey={{center.pk}}">Know More</a>&ndash;&gt;-->
+										</div>
+                                        {% elif new.news_youtube_link_key and not new.news_picture %}
+                                        <div class="single-service-info" style="min-height: 447px;overflow-y: scroll;max-height: 447px;">
+											<h4>{{new.news_title}}</h4>
+                                            <span style="color: black;font-size: 20px;">News Date: {{new.news_date}}</span>
+											<p style="text-align:justify;">{{new.news_discription}}</p>
+<!--                                            <a class="serv-red-btn" href="{{service.service_link}}" target="_blank">Play recording</a>-->
+<!--&lt;!&ndash;											<a class="serv-red-btn" href="/centerDetails/?youtubekey={{center.pk}}">Know More</a>&ndash;&gt;-->
+										</div>
+                                        {%else%}
+                                         <div class="single-service-info" style="min-height: 447px;overflow-y: scroll;max-height: 447px;">
+											<h4>{{new.news_title}}</h4>
+                                            <span style="color: black;font-size: 20px;">News Date: {{new.news_date}}</span>
+											<p style="text-align:justify;">{{new.news_discription}}</p>
+<!--                                            <a class="serv-red-btn" href="{{service.service_link}}" target="_blank">Play recording</a>-->
+<!--&lt;!&ndash;											<a class="serv-red-btn" href="/centerDetails/?youtubekey={{center.pk}}">Know More</a>&ndash;&gt;-->
+										</div>
+                                        {%endif%}
+
+
+									</div>
+								</div>
+                                {%endfor%}
+
+
+							</div>
+                            <div class="center">
+      <div class="pagination">
+        {% if news.has_previous %}
+            <a href="?page=1">&laquo; first</a>
+            <a href="?page={{ news.previous_page_number }}">previous</a>
+        {% endif %}
+
+
+        {% if news.has_next %}
+            <a href="?page={{news.next_page_number}}">next &raquo;</a>
+            <a href="?page={{news.paginator.num_pages}}">last</a>
+        {% endif %}
+
+     <div class="center">
+            Page {{news.number}} of {{news.paginator.num_pages}}.
+        </div>
+           </div>
+</div>
+                        </div>
+				</div>
+		</div>
+ </section>
+
+{% endblock %}

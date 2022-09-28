@@ -1,0 +1,250 @@
+{% extends 'index.html' %}
+{%block title%}Order Details {% endblock %}
+{%block content%}
+{% load static %}
+<style>
+
+
+.cursor-pointer {
+    cursor: pointer
+}
+
+.bold {
+    font-weight: 600
+}
+
+.small {
+    font-size: 12px !important;
+    letter-spacing: 0.5px !important
+}
+
+.Today {
+    color: rgb(83, 83, 83)
+}
+
+.btn-outline-primary {
+    background-color: #fff !important;
+    color: #4bb8a9 !important;
+    border: 1.3px solid #4bb8a9;
+    font-size: 12px;
+    border-radius: 0.4em !important
+}
+
+.btn-outline-primary:hover {
+    background-color: #4bb8a9 !important;
+    color: #fff !important;
+    border: 1.3px solid #4bb8a9
+}
+
+.btn-outline-primary:focus,
+.btn-outline-primary:active {
+    outline: none !important;
+    box-shadow: none !important;
+    border-color: #42A5F5 !important
+}
+
+#progressbar {
+    margin-bottom: 10px;
+    overflow: hidden;
+    color: #455A64;
+    padding-left: 0px;
+
+}
+
+#progressbar li {
+    list-style-type: none;
+    font-size: 13px;
+    width: 33.33%;
+    float: left;
+    position: relative;
+    font-weight: 400;
+    color: #455A64 !important
+}
+
+#progressbar #step1:before {
+    content: "1";
+    color: #fff;
+    width: 29px;
+    margin-left: 15px !important;
+    padding-left: 11px !important
+}
+
+#progressbar #step2:before {
+    content: "2";
+    color: #fff;
+    width: 29px
+}
+
+#progressbar #step3:before {
+    content: "3";
+    color: #fff;
+    width: 29px;
+    margin-right: 15px !important;
+    padding-right: 11px !important
+}
+
+#progressbar li:before {
+    line-height: 29px;
+    display: block;
+    font-size: 12px;
+    background: #455A64;
+    border-radius: 50%;
+    margin: auto
+}
+
+#progressbar li:after {
+    content: '';
+    width: 121%;
+    height: 2px;
+    background: #455A64;
+    position: absolute;
+    left: 0%;
+    right: 0%;
+    top: 15px;
+    z-index: -1
+}
+
+#progressbar li:nth-child(2):after {
+    left: 50%
+}
+
+#progressbar li:nth-child(1):after {
+    left: 25%;
+    width: 121%
+}
+
+#progressbar li:nth-child(3):after {
+    left: 25% !important;
+    width: 50% !important
+}
+
+#progressbar li.active:before,
+#progressbar li.active:after {
+    background: #4bb8a9
+}
+
+.card {
+    background-color: #fff;
+    box-shadow: 2px 4px 15px 0px rgb(215 229 238);
+    z-index: 0
+}
+
+small {
+    font-size: 12px !important
+}
+
+.a {
+    justify-content: space-between !important
+}
+
+.border-line {
+    border-right: 1px solid rgb(226, 206, 226)
+}
+
+.card-footer img {
+    opacity: 0.3
+}
+
+.card-footer h5 {
+    font-size: 1.1em;
+    color: #8C9EFF;
+    cursor: pointer
+}
+</style>
+<section id="centers" class="section-padding top bg-gray centers">
+    <div class="container">
+        <div id="tabsJustifiedContent" class="tab-content">
+            <div id="one" class="tab-pane animated fadeInRight active show ">
+                <!--                    style="overflow-y: scroll; height:400px;"-->
+
+                <div class=" ml-4 col-lg-12 col-md-12 col-sm-12 col-12">
+                    <div class="card">
+                        <div class="card-header" style="background-color:white;">
+                            <div class="row">
+                            <a class="btn btn-secondary" href="/myOrder/" style="border-radius:30px;">Back</a>
+                            <h6 class="ml-4">ORD/{{order_id}}</h6></div>
+                                </div>
+                        <div class="card-body">
+                            <div class="col-lg-12 col-md-12 col-sm-12 col-12">
+                                <div class="row">
+
+                            <div class="col-lg-8 col-md-12 col-sm-12 col-12" style="height:400px; overflow-y:scroll">
+                                {% for ord in order%}
+                            <div class="row">
+                                <div class=" p-0 col-lg-3 col-md-3 col-sm-3 col-3">
+                                    <img class="align-self-center img-fluid" src="{{ord.product_image.url}}" width="100 " height="100">
+                            </div>
+                                 <div class=" pl-1 col-lg-5 col-md-5 col-sm-9 col-9">
+                                     <h6 class="mt-4">{{ord.Product_name}}</h6>
+                            </div>
+                                 <div class=" col-lg-2 col-md-2 col-sm-6 col-6">
+                                     <h6 class="mt-4">₹{{ord.Product_amount}}</h6><span style="font-size:12px;">including Gst</span>
+                            </div>
+                                <div class=" col-lg-2 col-md-2 col-sm-6 col-6">
+                                     <h6 class="mt-4">{{ord.Product_qty}} QTY</h6>
+                            </div>
+
+                </div><br>
+                                 {% endfor %}
+                                   </div>
+
+                                    <div class="col-lg-4 col-md-12 col-sm-12 col-12">
+                                        <h6><b>Payment Details</b></h6><hr>
+                                        <div class="row">
+                                            <div class="col-md-6 col-6">
+                                                <p><b>Transaction Id </b></p>
+                                            </div>
+                                            <div class="col-md-6 col-6">
+                                               <p>{{txn_id}}</p>
+                                            </div>
+                                        </div>
+                                         <div class="row">
+                                            <div class="col-md-6 col-6">
+                                                <p><b>Price </b></p>
+                                            </div>
+                                            <div class="col-md-6 col-6">
+                                               <p>₹ {{price}}.00</p>
+                                            </div>
+                                        </div>
+                                         <div class="row">
+                                            <div class="col-md-6 col-6">
+                                                <p><b>GST amt </b></p>
+                                            </div>
+                                            <div class="col-md-6 col-6">
+                                               <p>₹ {{gst}}.00</p>
+                                            </div>
+                                        </div><hr>
+                                        <div class="row">
+                                            <div class="col-md-6 col-6">
+                                                <p class="m-0"><b>Paid Amount</b></p>
+                                            </div>
+                                            <div class="col-md-6 col-6">
+                                               <h6 class="m-0"> ₹ {{total_price}}</h6>
+                                            </div>
+                                        </div><hr><br>
+                                         <div class="row">
+                                             <div class="col-md-12 col-12 text-center">
+                                                 <h6>More action</h6><hr>
+                                             </div><br><br>
+                                            <div class="col-md-6 col-6 text-center">
+                                                <p class="m-0"><b>Download Invoice</b></p>
+                                            </div>
+                                            <div class="col-md-6 col-6 text-center">
+                                                <a href="{{invoice.url}}" target="_blank"><img src="{% static 'img/logo/download.png'%}" height="60px"; width="65px;"
+                                           title="Download Invoice" style="cursor:pointer"></a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+        </div>
+    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+{% endblock%}
